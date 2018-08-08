@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+    		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"
+			>
+	<!-- 自动扫描(自动注入) -->
+	<context:component-scan base-package="com.ssrs.service;com.ssrs.permission.service"/>
+	<!--<context:component-scan base-package="com.sojson.common.timer"/>-->
+	
+	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
+    	<property name="resultSetLogEnabled" value="true" />
+	</bean>
+	<!-- 配置数据源 -->
+	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+<!--		<property name="driverClassName" value="${jdbc.driverClassName}" /> -->
+		<property name="url" value="${jdbc.url}" /> 
+		<property name="username" value="${jdbc.username}" /> 
+		<property name="password" value="${jdbc.password}" /> 
+		<property name="initialSize" value="${jdbc.initialSize}" /> 
+	    <property name="minIdle" value="${jdbc.minIdle}" /> 
+	    <property name="maxActive" value="${jdbc.maxActive}" /> 
+	    <property name="maxWait" value="${jdbc.maxWait}" /> 
+	    <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" /> 
+	    <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}" /> 
+	    <property name="validationQuery" value="${jdbc.validationQuery}" /> 
+	    <property name="testWhileIdle" value="${jdbc.testWhileIdle}" /> 
+	    <property name="testOnBorrow" value="${jdbc.testOnBorrow}" /> 
+	    <property name="testOnReturn" value="${jdbc.testOnReturn}" /> 
+	    <property name="removeAbandoned" value="${jdbc.removeAbandoned}" /> 
+	    <property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}" /> 
+<!--	    <property name="logAbandoned" value="${jdbc.logAbandoned}" /> -->
+	    <property name="filters" value="${jdbc.filters}" />
+		<!-- 关闭abanded连接时输出错误日志 -->
+		<property name="logAbandoned" value="true" />
+		<property name="proxyFilters">
+	        <list>
+	            <ref bean="log-filter"/>
+	        </list>
+	    </property>
+		<!-- 监控数据库 -->
+		 <!--<property name="filters" value="stat" /> -->
+		<!--<property name="filters" value="mergeStat" />-->
+	</bean>
+
+	<!--  配置SqlSessionFactoryBean
+            Mybatis提供的: org.mybatis.spring.SqlSessionFactoryBean
+            MP提供的:com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean
+         -->
+	<bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<property name="mapperLocations"  >
+			<list>
+				<value>classpath:com/ssrs/permission/mapper/xml/*.xml</value>
+				<!--<value>classpath:com/ssrs/permission/mapper/xml/*.xml</value>-->
+			</list>
+		</property>
+		<!-- 注入全局MP策略配置 -->
+		<property name="globalConfig" ref="globalConfiguration"></property>
+		<!-- 插件注册 -->
+		<property name="plugins">
+			<list>
+				<!-- 注册分页插件 -->
+				<bean class="com.baomidou.mybatisplus.plugins.PaginationInterceptor"></bean>
+				<!-- 注册执行分析插件 -->
+				<bean class="com.baomidou.mybatisplus.plugins.SqlExplainInterceptor">
+					<property name="stopProceed" value="true"></property>
+				</bean>
+				<!-- 注册性能分析插件 -->
+				<bean class="com.baomidou.mybatisplus.plugins.PerformanceInterceptor">
+					<property name="format" value="true"></property>
+					<!-- <property name="maxTime" value="5"></property> -->
+				</bean>
+				<!-- 注册乐观锁插件 -->
+				<bean class="com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor">
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 定义MybatisPlus的全局策略配置-->
+	<bean id ="globalConfiguration" class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
+		<!-- 在2.3版本以后，dbColumnUnderline 默认值就是true -->
+		<property name="dbColumnUnderline" value="true"></property>
+
+		<!-- 全局的主键策略 -->
+		<property name="idType" value="0"></property>
+
+		<!-- 全局的表前缀策略配置 -->
+		<property name="tablePrefix" value="ssrs_"></property>
+
+	</bean>
+
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	<!--扫描mapperr接口-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.ssrs" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+	 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	     <property name="dataSource" ref="dataSource" />
+	 </bean>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="publish*" />
+			<tx:method name="save*" />
+			<tx:method name="add*" />
+			<tx:method name="update*" />
+			<tx:method name="insert*" />
+			<tx:method name="create*" />
+			<tx:method name="del*" />
+			<tx:method name="load*" />
+			<tx:method name="init*" />
+			<tx:method name="*"  read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+ 	<!-- AOP配置--> 
+	<aop:config>
+		<aop:pointcut id="myPointcut"
+			expression="execution(* com.ssrs.service.*.impl..*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut" />
+	</aop:config>
+	<aop:config>
+	<aop:pointcut id="myPointcut2"
+					  expression="execution(* com.ssrs.permission.service.impl.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut2" />
+	</aop:config>
+<!--	<aop:config>-->
+<!--		<aop:pointcut id="myPointcut"-->
+<!--			expression="execution(public * net.wenyifan.*.service.*.*(..))" />-->
+<!--		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut" />-->
+<!--	</aop:config>-->
+</beans>

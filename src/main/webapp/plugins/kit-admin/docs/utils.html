@@ -1,0 +1,62 @@
+<div>
+  <ul class="kit-nav" style="text-align:center;" lay-filter="ccc">
+    <li class="kit-item">
+      <a href="javascript:;">
+        <i class="layui-icon">&#xe607;</i>
+        <span>帮助</span>
+      </a>
+      <ul class="kit-nav-child kit-nav-left">
+        <li class="kit-item">
+          <a href="javascript:;">
+            <i class="layui-icon">&#xe611;</i>
+            <span>基本资料</span>
+          </a>
+        </li>
+        <li class="kit-item">
+          <a href="javascript:;">
+            <i class="layui-icon">&#xe6b2;</i>
+            <span>安全设置</span>
+          </a>
+        </li>
+        <li class="kit-nav-line"></li>
+        <li class="kit-item">
+          <a href="javascript:;">
+            <i class="layui-icon">&#x1006;</i>
+            <span>退出</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="kit-item">
+      <a href="javascript:;">
+        <i class="layui-icon">&#xe60e;</i>
+      </a>
+    </li>
+    <li class="kit-item">
+      <a href="javascript:;">
+        <i class="layui-icon">&#xe64c;</i>
+      </a>
+    </li>
+    <li class="kit-item">
+      <a href="javascript:;">
+        <span>Van</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<script>
+  layui.config({
+    base: '/src/js/'
+  }).use(['utils', 'layer', 'component'], function() {
+    var $ = layui.jquery,
+      layer = layui.layer,
+      utils = layui.utils,
+      component = layui.component.init();
+    component.on('nav(ccc)', function(cc) {
+      console.log(cc.elem);
+    });
+  });
+</script>
+<style>
+
+</style>

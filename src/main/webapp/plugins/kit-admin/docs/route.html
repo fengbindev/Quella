@@ -1,0 +1,177 @@
+<div class="layui-fluid">
+  <div class="layui-row">
+    <div class="layui-col-xs12">
+      <div class="layui-card">
+        <div class="layui-card-header">路由配置(Route)</div>
+        <div class="layui-card-body">
+          主要提供路由的设置，读取功能。有了它，就能很轻易地实现单页面应用程序啦~~
+<br>
+          注：<span style="color:red;">要实现页面的跳转，路由必须配置正确，是与页面模板绑定的。然后输入对应的hash地址，会读取对应的页面模板进行渲染</span>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">方法(Method)</div>
+        <div class="layui-card-body">
+          <table class="layui-table">
+            <colgroup>
+              <col width="150">
+              <col width="400">
+              <col width="150">
+              <col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th>名称</th>
+                <th>参数/返回值</th>
+                <th>用法</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  setRoutes
+                </td>
+                <td>
+                  <p>{Object} options</p>
+                  <p>描述：options 参考 参数(options)</p>
+                  <p>返回：route对象</p>
+                </td>
+                <td>
+                  route.setRoutes(options)
+                </td>
+                <td>必须调用该方法配置路由信息才能正常工作。</td>
+              </tr>
+              <tr>
+                <td>
+                  getRoutes
+                </td>
+                <td>
+                  <p>无</p>
+                  <p>描述：根据设定的config.name读取路由列表</p>
+                  <p>默认值：config.name [KITADMINROUTE]</p>
+                  <p>返回：路由列表</p>
+                </td>
+                <td>
+                  route.getRoutes();
+                </td>
+                <td>获取已配置的路由列表.</td>
+              </tr>
+              <tr>
+                <td>
+                  getRoute
+                </td>
+                <td>
+                  <p>{String}hash(hash地址)</p>
+                  <p>返回：返回对应地址的路由信息</p>
+                </td>
+                <td>
+                  route.getRoute(hash);
+                </td>
+                <td>获取单个路由地址信息</td>
+              </tr>
+              <tr>
+                <td>
+                  params
+                </td>
+                <td>
+                  <p>返回类型：{Object}</p>
+                  <p>返回：当前页面地址上的参数</p>
+                </td>
+                <td>
+                  route.params();
+                </td>
+                <td>
+                  <p>获取当前页面地址上的参数,参数不存在则返回null</p>
+                  <pre class="layui-code">
+// http://localhost:8000/#/docs/route?keywork=xx&name=Van
+var params = route.params();
+// result params is: {keywork:'xx',name:'Van'}</pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">参数(options)</div>
+        <div class="layui-card-body">
+          <table class="layui-table">
+            <colgroup>
+              <col width="150">
+              <col width="150">
+              <col width="300">
+              <col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th>名称</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  name
+                </td>
+                <td>
+                  <p>{String}</p>
+                </td>
+                <td>
+                  'KITADMINROUTE'
+                </td>
+                <td>路由名称，名称唯一</td>
+              </tr>
+              <tr>
+                <td>
+                  routes
+                </td>
+                <td>
+                  <p>{Array}</p>
+                </td>
+                <td>
+                  []
+                </td>
+                <td>
+                  <p>路由地址列表</p>
+                  <pre class="layui-code">
+[{
+  path: '/user/table',                       //路由地址
+  component: '/components/table/teble.html', //模板组件地址
+  name: 'Table'                              //显示名称
+},
+//...
+]</pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">结语(End)</div>
+        <div class="layui-card-body">
+          <blockquote class="layui-elem-quote">
+            <p>很高兴在此版本加入一个简单的路由功能，如果大家有什么想法或者问题，欢迎来群里问我。</p>
+            <br/>
+            <p>Author：Van Zheng</p>
+            <p> Date：2018-01-19</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  layui.config({
+    base: '/src/js/'
+  }).use(['utils', 'layer'], function () {
+    var $ = layui.jquery,
+      layer = layui.layer,
+      utils = layui.utils;
+  });
+</script>
+<style>
+</style>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrs.permission.mapper.PermissionMapper">
+
+    <!-- 开启二级缓存 -->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ssrs.permission.model.Permission">
+        <id column="id" property="id" />
+        <result column="url" property="url" />
+        <result column="name" property="name" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, url, name
+    </sql>
+    <!-- 根据用ID查询permission -->
+    <select id="findPermissionByUserId" resultType="java.lang.String">
+        select p.url from ssrs_permission p , ssrs_role_permission rp, ssrs_user_role ur
+        where uid =#{id,jdbcType=BIGINT} and p.id = rp.pid and rp.rid = ur.rid
+    </select>
+</mapper>

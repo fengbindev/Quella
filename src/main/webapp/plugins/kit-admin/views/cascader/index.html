@@ -1,0 +1,90 @@
+<div class="layui-fluid">
+  <div class="layui-row">
+    <div class="layui-col-xs12">
+      <input type="text" class="kit-cascader-input" name="cascader_hash" placeholder="请选择.." />
+      <!-- <div class="kit-cascader" kit-filter="ccc">
+        <div class="kit-cascader-title">
+          <span>Please select</span>
+          <div class="kit-icon">
+            <i class="layui-icon">&#xe61a;</i>
+          </div>
+        </div>
+        <ul class="kit-cascader-list layui-show">
+          <li class="kit-item" data-value="440000" data-label="广东省">
+            <a href="javascript:;">
+              <span>广东省</span>
+              <i class="layui-icon">&#xe602;</i>
+            </a>
+            <ul class="kit-cascader-child">
+              <li class="kit-item" data-value="440100" data-label="广州市">
+                <a href="javascript:;">
+                  <span>广州市</span>
+                  <i class="layui-icon">&#xe602;</i>
+                </a>
+                <ul class="kit-cascader-child">
+                  <li class="kit-item" data-value="440106" data-label="天河区">
+                    <a href="javascript:;">
+                      <span>天河区</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="kit-item" data-value="510000" data-label="四川省">
+            <a href="javascript:;">
+              <span>四川省</span>
+              <i class="layui-icon">&#xe602;</i>
+            </a>
+            <ul class="kit-cascader-child" style="display:none;">
+              <li class="kit-item" data-value="510100" data-label="成都市">
+                <a href="javascript:;">
+                  <span>成都市</span>
+                  <i class="layui-icon">&#xe602;</i>
+                </a>
+                <ul class="kit-cascader-child">
+                  <li class="kit-item" data-value="510101" data-label="市辖区">
+                    <a href="javascript:;">
+                      <span>市辖区</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+  </div>
+</div>
+<script>
+  layui.config({
+    base: './js/'
+  }).use(['cascader'], function() {
+    var cascader = layui.cascader,
+      $ = layui.jquery;
+
+    var c = new cascader();
+
+    c.render({
+      elem: 'input[name=cascader_hash]',
+      onChange: function(opts) {
+        console.log(opts);
+        console.log(opts.elem.val());
+      }
+    });
+
+    // cascader.render();
+
+    // cascader.on('click(ccc)', function(that) {
+    //   // console.log(that);
+    // });
+    // cascader.on('change(ccc)', function(obj) {
+    //   console.log(obj);
+    // });
+
+  });
+</script>
+<style scoped>
+
+</style>

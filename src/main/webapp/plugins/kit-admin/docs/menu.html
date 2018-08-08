@@ -1,0 +1,395 @@
+<div class="layui-fluid">
+  <div class="layui-row">
+    <div class="layui-col-xs12">
+      <div class="layui-card">
+        <div class="layui-card-header">左侧菜单(Menu)</div>
+        <div class="layui-card-body">
+          该组件提供左侧导航功能.
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">方法(Method)</div>
+        <div class="layui-card-body">
+          <table class="layui-table">
+            <colgroup>
+              <col width="150">
+              <col width="320">
+              <col width="150">
+              <col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th>名称</th>
+                <th>参数</th>
+                <th>用法</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  set
+                </td>
+                <td>
+                  <p>{Object} options</p>
+                  <p>描述： options 参考 参数(options)</p>
+                </td>
+                <td>
+                  menu.set(options)
+                </td>
+                <td>配置menu,所设置的参数将会覆盖默认设置</td>
+              </tr>
+              <tr>
+                <td>
+                  removeCache
+                </td>
+                <td>
+                  <p>{String} key</p>
+                  <p>描述：菜单的缓存key</p>
+                  <p>默认值：options.cacheKey [KITADMINMENU]</p>
+                </td>
+                <td>
+                  menu.removeCache(key);
+                </td>
+                <td>清除缓存的远程数据.</td>
+              </tr>
+              <tr>
+                <td>
+                  render
+                </td>
+                <td>
+                  <p>无</p>
+                </td>
+                <td>
+                  menu.render();
+                </td>
+                <td>渲染menu菜单</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">参数(options)</div>
+        <div class="layui-card-body">
+          <table class="layui-table">
+            <colgroup>
+              <col width="150">
+              <col width="150">
+              <col width="300">
+              <col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th>名称</th>
+                <th>类型</th>
+                <th>默认值</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  elem
+                </td>
+                <td>
+                  <p>{String}</p>
+                </td>
+                <td>
+                  undefined
+                </td>
+                <td>配置menu渲染的目标容器</td>
+              </tr>
+              <tr>
+                <td>
+                  onClicked
+                </td>
+                <td>
+                  <p>{Function}</p>
+                </td>
+                <td>
+                  undefined
+                </td>
+                <td>
+                  <p>菜单点击后触发的回调函数</p>
+                  <pre class="layui-code">
+menu.set({
+  // ... 其他的一些配置
+  onClicked:function(obj){
+    console.log(obj.elem); //点击的目标jquery对象
+    console.log(obj.hasChild); //是否有子菜单
+    console.log(obj.data); //返回的数据
+    console.log(obj.data.href);//当前点击的a标签的href属性值
+  }
+})
+</pre>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  dynamicRender
+                </td>
+                <td>
+                  <p>{Boolean}</p>
+                </td>
+                <td>
+                  false
+                </td>
+                <td>
+                  <p>是否动态渲染 --如果此参数为true,则需要设置elem,还需要设置data或者remote参数 </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  data
+                </td>
+                <td>
+                  <p>{Array}</p>
+                </td>
+                <td>
+                  []
+                </td>
+                <td>
+                  <p>本地数据集，具体数据结构请参考：数据结构(data)</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  remote
+                </td>
+                <td>
+                  <p>{Object}</p>
+                </td>
+                <td>
+                  <pre class="layui-code">
+{
+  url: undefined, //远程地址
+  method: 'get'   //请求方式
+}</pre>
+                </td>
+                <td>
+                  <p>要使远程加载数据时，先要设置dynamicRender为true</p>
+                  <p>此配置还可以设置其他参数，请参考axios的request配置</p>
+                  <p>axios文档地址：
+                    <a href="https://www.kancloud.cn/yunye/axios/234845" target="_blank">
+                      https://www.kancloud.cn/yunye/axios/234845
+                    </a>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  cached
+                </td>
+                <td>
+                  <p>{Boolean}</p>
+                </td>
+                <td>
+                  false
+                </td>
+                <td>
+                  <p>是否开启缓存？,注：只缓存远程加载的数据。</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  cacheKey
+                </td>
+                <td>
+                  <p>{String}</p>
+                </td>
+                <td>
+                  KITADMINMENU
+                </td>
+                <td>
+                  <p>缓存key</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  isJump
+                </td>
+                <td>
+                  <p>{Boolean}</p>
+                </td>
+                <td>
+                  true
+                </td>
+                <td>
+                  <p>是否拦截a标签的直接跳转页面</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  onlyOne
+                </td>
+                <td>
+                  <p>{Boolean}</p>
+                </td>
+                <td>
+                  true
+                </td>
+                <td>
+                  <p>只展开一级菜单</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">数据结构(data)</div>
+        <div class="layui-card-body">
+          <table class="layui-table">
+            <colgroup>
+              <col width="150">
+              <col width="150">
+              <col width="300">
+              <col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th>名称</th>
+                <th>类型</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  id
+                </td>
+                <td>
+                  <p>{Number}</p>
+                </td>
+                <td>ID,唯一标识</td>
+              </tr>
+              <tr>
+                <td>
+                  title
+                </td>
+                <td>
+                  <p>{String}</p>
+                </td>
+                <td>显示的标题</td>
+              </tr>
+              <tr>
+                <td>
+                  path
+                </td>
+                <td>
+                  <p>{String}</p>
+                </td>
+                <td>地址，(a标签的href属性值)</td>
+              </tr>
+              <tr>
+                <td>
+                  icon
+                </td>
+                <td>
+                  <p>{String}</p>
+                </td>
+                <td>图标，当前只支持layui图标值</td>
+              </tr>
+              <tr>
+                <td>
+                  pid
+                </td>
+                <td>
+                  <p>{Number}</p>
+                </td>
+                <td>父级ID(重要)，一级菜单pid为0</td>
+              </tr>
+              <tr>
+                <td>
+                  open
+                </td>
+                <td>
+                  <p>{Boolean}</p>
+                </td>
+                <td>是否展开(该值只对拥有子菜单的菜单有效)</td>
+              </tr>
+              <tr>
+                <td>
+                  blank
+                </td>
+                <td>
+                  <p>{Boolean}</p>
+                </td>
+                <td>跳转到外链</td>
+              </tr>
+              <tr>
+                <td>
+                  children
+                </td>
+                <td>
+                  <p>{Array}</p>
+                </td>
+                <td>子菜单的数据列表(值参考以上字段)[递归]</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">示例(数据结构)</div>
+        <div class="layui-card-body">
+          <pre class="layui-code">
+[{
+  id:1,
+  title:'一级菜单1',
+  path:'#/user/index',
+  icon:'##xe631;' //第一个#号用&代替,
+  pid:0,
+  open:false,
+  children:[]
+},{
+  id:2,
+  title:'一级菜单2',
+  path:'#/user/cc',
+  icon:'##xe631;' //第一个#号用&代替,
+  pid:0,
+  open:true,
+  children:[{
+    id:22,
+    title:'二级菜单21',
+    path:'#/user/cc',
+    icon:'##xe631;' //第一个#号用&代替,
+    pid:2,
+    open:false,
+    children:[]
+  }]
+}]
+          </pre>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">结语(End)</div>
+        <div class="layui-card-body">
+          <blockquote class="layui-elem-quote">
+            <p>应广大群友的要求，在layui不支持三级菜单的情况下，自己动手写了一个多级菜单，最多只能支持到四级哟~~ ps:也就是说，你递归多少层不管你，但是，它只提供到四级的样式。 </p>
+            <p>还是那句话：多思考，多动手，进步的可以看得见的。</p>
+            <br/>
+            <p>Author：Van Zheng</p>
+            <p> Date：2018-01-17</p>
+            <br>
+            <p>UpdateTime:2018-04-23</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+  layui.config({
+    base: '/src/js/'
+  }).use(['menu', 'layer'], function() {
+    var $ = layui.jquery,
+      layer = layui.layer,
+      menu = layui.menu;
+  });
+</script>
+<style>
+
+</style>

@@ -1,0 +1,186 @@
+<!-- 模板 -->
+<div class="layui-fluid">
+  <div class="layui-row">
+    <div class="layui-col-xs12">
+      <div class="layui-card">
+        <div class="layui-card-header">拦截器(Mockjs)</div>
+        <div class="layui-card-body">
+          该组件主要用于拦截AJAX请求，返回模拟数据。
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">示例</div>
+        <div class="layui-card-body">
+          <form class="layui-form">
+            <div>
+              <div class="layui-row layui-col-space10">
+                <div class="layui-col-sm6">
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">APIs</label>
+                    <div class="layui-input-block">
+                      <select name="apis" lay-verify="required">
+                        <option value=""></option>
+                        <option value="get /api/getuserinfo">获取用户信息(/api/getuserinfo)</option>
+                        <option value="post /api/getlist">获取数据列表(/api/getlist)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="layui-col-sm6">
+                  <a href="javascript:;" class="layui-btn" id="sendRequest">发起请求</a>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="layui-card">
+            <div class="layui-card-header">响应信息(请选择一个APIs，然后点击发起请求按钮.)</div>
+            <div class="layui-card-body" id="response" style="text-align: left;">
+              <p>暂无数据.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">用法介绍</div>
+        <div class="layui-card-body">
+          <pre class="layui-code">
+layui.config({ 
+  base: '/src/js/' 
+}).use('mockjs',function(){
+  var APIConfigs = {
+    'GET /api/getuserinfo': {
+      id: 1,
+      name: '@name',
+      email: '@email',
+      address: '@region',
+      datetime: '@datetime'
+    },
+    'POST /api/getlist': {
+      'list|10': [{
+        'id|+1': 1,
+        name: '@name',
+        email: '@email',
+        datetime: '@datetime',
+        address: '@region',
+      }]
+    },
+  };
+  // 注入mock
+  layui.mockjs.inject(APIConfigs);
+});
+          </pre>
+          <blockquote class="layui-elem-quote">
+            具体的配置方式请参考官方的文档：
+            <a href="https://github.com/nuysoft/Mock/wiki/Getting-Started" target="_blank">
+              https://github.com/nuysoft/Mock/wiki/Getting-Started
+            </a>
+          </blockquote>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">方法(Method)</div>
+        <div class="layui-card-body">
+          <table class="layui-table">
+            <colgroup>
+              <col width="150">
+              <col width="320">
+              <col width="150">
+              <col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th>名称</th>
+                <th>参数</th>
+                <th>用法</th>
+                <th>描述</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  inject
+                </td>
+                <td>
+                  <p>{Object} config</p>
+                </td>
+                <td>mockjs.inject(config)</td>
+                <td>
+                  注入需要拦截的APIs, config 参考 用法介绍 中的 APIConfigs
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <blockquote class="layui-elem-quote">
+            具体的配置方式请参考官方的文档：
+            <a href="https://github.com/nuysoft/Mock/wiki/Getting-Started" target="_blank">
+              https://github.com/nuysoft/Mock/wiki/Getting-Started
+            </a>
+          </blockquote>
+        </div>
+      </div>
+      <div class="layui-card">
+        <div class="layui-card-header">结语(End)</div>
+        <div class="layui-card-body">
+          <blockquote class="layui-elem-quote">
+            <p>这篇使用说明文档到这里也就结束了，大家有什么看不懂的或者有什么疑问的，加群问吧。PS:多思考，多动手，进步的可以看得见的</p>
+            <br/>
+            <p>Author：Van Zheng</p>
+            <p> Date：2018-01-16</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  layui.config({
+    base: '/src/js/'
+  }).use(['layer', 'mockjs', 'form'], function () {
+    var $ = layui.jquery,
+      layer = layui.layer,
+      form = layui.form;
+    form.render();
+
+    var APIConfigs = {
+      'GET /api/getuserinfo': {
+        id: 1,
+        name: '@name',
+        email: '@email',
+        address: '@region',
+        datetime: '@datetime'
+      },
+      'POST /api/getlist': {
+        'list|10': [{
+          'id|+1': 1,
+          name: '@name',
+          email: '@email',
+          datetime: '@datetime',
+          address: '@region',
+        }]
+      },
+    };
+    // 注入mock
+    layui.mockjs.inject(APIConfigs);
+
+    $('#sendRequest').on('click', function () {
+      var apiValue = $('select[name=apis]').val();
+      if (apiValue === '') {
+        layer.msg('请选择一个APIs');
+      } else {
+        var d = apiValue.split(' ');
+        var method = d[0];
+        var url = d[1];
+        $.ajax({
+          url: url,
+          type: method,
+          success: function (res) {
+            $('#response').html('<pre class="layui-code">' + res + '</pre>');
+          }
+        });
+      }
+    });
+  });
+</script>
+<style>
+</style>
