@@ -444,6 +444,7 @@
       </div>
     </div>
   </div>
+  <script src="${basePath}/js/jquery.js"></script>
   <script src="${basePath}/plugins/kit-admin/polyfill.min.js"></script>
   <script src="${basePath}/plugins/kit-admin/layui.js"></script>
   <script src="${basePath}/plugins/kit-admin/kitadmin.js"></script>

@@ -1,5 +1,6 @@
 package com.ssrs.permission.model;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableId;
@@ -50,11 +51,13 @@ public class Menu implements Serializable {
     /**
      * 权限id
      */
+    @TableField(exist = false)
     private Permission permission;
     /**
      * 是否允许编辑 |  1:允许，2：不允许
      */
     private Integer systemMeun;
 
+    @TableField(exist = false)
     private List<Menu> children = new ArrayList<>();
 }
