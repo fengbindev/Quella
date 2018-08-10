@@ -1,7 +1,7 @@
 package com.ssrs.permission.service;
 
-import com.ssrs.permission.model.Menu;
 import com.baomidou.mybatisplus.service.IService;
+import com.ssrs.permission.model.Menu;
 
 import java.util.List;
 
@@ -16,4 +16,12 @@ import java.util.List;
 public interface IMenuService extends IService<Menu> {
 
     List<Menu> getRootMenu();
+
+    int insert2(Menu menu);
+
+    Menu selectById2(Long id);
+
+    int updateById2(Menu menu);
+
+    int deleteById2(Integer id,Long permissionId);
 }

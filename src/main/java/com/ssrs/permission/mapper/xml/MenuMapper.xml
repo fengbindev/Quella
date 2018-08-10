@@ -7,25 +7,27 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.ssrs.permission.model.Menu">
-        <id column="id" property="id" />
-        <result column="sequence" property="sequence" />
-        <result column="icon" property="icon" />
-        <result column="title" property="title" />
-        <result column="url" property="url" />
-        <result column="parent_id" property="parentId" />
-        <result column="system_meun" property="systemMeun" />
-        <association property="permission" column="permission_id" javaType="com.ssrs.permission.model.Permission" columnPrefix="p_">
+        <id column="id" property="id"/>
+        <result column="sequence" property="sequence"/>
+        <result column="icon" property="icon"/>
+        <result column="title" property="title"/>
+        <result column="url" property="url"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="system_menu" property="systemMenu"/>
+        <association property="permission" column="permission_id" javaType="com.ssrs.permission.model.Permission"
+                     columnPrefix="p_">
             <id property="id" column="id"/>
             <result property="name" column="name"/>
             <result property="url" column="url"/>
         </association>
-        <collection property="children" column="id" select="com.ssrs.permission.mapper.MenuMapper.getChildernMenu" ofType="com.ssrs.permission.model.Menu"></collection>
+        <collection property="children" column="id" select="com.ssrs.permission.mapper.MenuMapper.getChildernMenu"
+                    ofType="com.ssrs.permission.model.Menu"></collection>
 
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, sequence, icon, title, url, parent_id, permission_id, system_meun
+        id, sequence, icon, title, url, parent_id, permission_id, system_menu
     </sql>
 
     <!--查询所有菜单-->
@@ -37,7 +39,7 @@
             m.title,
             m.url,
             m.parent_id,
-            m.system_meun,
+            m.system_menu,
             p.id AS p_id,
             p.url AS p_url,
             p.`name` AS p_name
@@ -57,7 +59,7 @@
             m.title,
             m.url,
             m.parent_id,
-            m.system_meun,
+            m.system_menu,
             p.id AS p_id,
             p.url AS p_url,
             p.`name` AS p_name
@@ -68,4 +70,34 @@
         m.parent_id = #{parentId}
         ORDER BY m.sequence DESC
     </select>
+
+    <!--插入-->
+    <insert id="insert2" useGeneratedKeys="true">
+        INSERT INTO ssrs_menu
+        ( `sequence`,icon, title,url,parent_id, permission_id,system_menu)  VALUES(#{sequence},#{icon},#{title},#{url},#{parentId},#{permission.id},#{systemMenu})
+    </insert>
+    <!--通过id查询-->
+    <select id="selectById2" resultMap="BaseResultMap">
+        SELECT
+        m.id,
+        m.sequence,
+        m.icon,
+        m.title,
+        m.url,
+        m.parent_id,
+        m.system_menu,
+        p.id AS p_id,
+        p.url AS p_url,
+        p.`name` AS p_name
+    FROM ssrs_menu m
+    LEFT JOIN ssrs_permission p ON(m.permission_id = p.id)
+    WHERE
+        m.id  = #{id}
+    </select>
+
+    <!--通过id更新-->
+    <update id="updateById2">
+        UPDATE ssrs_menu  SET title=#{title},sequence=#{sequence},parent_id=#{parentId},url=#{url},system_menu=#{systemMenu} WHERE id=#{id}
+    </update>
+
 </mapper>

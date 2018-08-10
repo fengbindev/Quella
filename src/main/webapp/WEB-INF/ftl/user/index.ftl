@@ -444,9 +444,10 @@
       </div>
     </div>
   </div>
+
   <script src="${basePath}/js/jquery.js"></script>
-  <script src="${basePath}/plugins/kit-admin/polyfill.min.js"></script>
   <script src="${basePath}/plugins/kit-admin/layui.js"></script>
+  <script src="${basePath}/plugins/kit-admin/polyfill.min.js"></script>
   <script src="${basePath}/plugins/kit-admin/kitadmin.js"></script>
   <script src="${basePath}/plugins/kit-admin/mockjs-config.js"></script>
   <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>

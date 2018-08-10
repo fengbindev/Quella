@@ -48,7 +48,6 @@ layui.define(mods, function (e) {
             routes = data;
         }
     });
-    console.log(routes);
 
     var u = {
         routeInit: function (e) {

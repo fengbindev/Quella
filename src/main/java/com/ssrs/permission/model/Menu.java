@@ -56,7 +56,7 @@ public class Menu implements Serializable {
     /**
      * 是否允许编辑 |  1:允许，2：不允许
      */
-    private Integer systemMeun;
+    private Integer systemMenu;
 
     @TableField(exist = false)
     private List<Menu> children = new ArrayList<>();

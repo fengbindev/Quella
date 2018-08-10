@@ -19,5 +19,11 @@ public interface MenuMapper extends BaseMapper<Menu> {
     //查询所有菜单
     List<Menu> getRootMenu();
 
+    int insert2(Menu menu);
+
+    Menu selectById2(Long id);
+
+    int updateById2(Menu menu);
+
 //    List<Menu> getChildernMenu(@Param("parentId") Integer parentId);
 }

@@ -55,7 +55,7 @@ public class BaseController {
 	
 
 	private Map<String, Object> handleParams(Map<String, Object> params) {
-		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> result = new HashMap<String, Object>(16);
 		if (null != params) {
 			Set<Entry<String, Object>> entrySet = params.entrySet();
 			
