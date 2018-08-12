@@ -10,6 +10,8 @@
         <id column="id" property="id" />
         <result column="url" property="url" />
         <result column="name" property="name" />
+        <collection property="children" column="id" select="com.ssrs.permission.mapper.PermissionMapper.getChildrenPermission" ofType="com.ssrs.permission.model.Permission" >
+        </collection>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -20,5 +22,25 @@
     <select id="findPermissionByUserId" resultType="java.lang.String">
         select p.url from ssrs_permission p , ssrs_role_permission rp, ssrs_user_role ur
         where uid =#{id,jdbcType=BIGINT} and p.id = rp.pid and rp.rid = ur.rid
+    </select>
+
+    <!--查询顶级权限-->
+    <select id="getPermissionTree" resultMap="BaseResultMap">
+        SELECT * FROM ssrs_permission p WHERE p.parent_id IS NULL;
+    </select>
+
+    <!--查询子权限-->
+    <select id="getChildrenPermission" resultMap="BaseResultMap">
+      SELECT * FROM ssrs_permission p WHERE p.parent_id = #{id};
+    </select>
+
+    <select id="findPermissionByRoleId" resultType="java.lang.String">
+        SELECT
+            p.id
+        FROM
+            ssrs_permission p
+        LEFT JOIN ssrs_role_permission rp ON(p.id = rp.pid)
+        WHERE
+	         rp.rid = #{id}
     </select>
 </mapper>

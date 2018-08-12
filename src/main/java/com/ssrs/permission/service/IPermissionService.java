@@ -3,6 +3,7 @@ package com.ssrs.permission.service;
 import com.ssrs.permission.model.Permission;
 import com.baomidou.mybatisplus.service.IService;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,4 +17,8 @@ import java.util.Set;
 public interface IPermissionService extends IService<Permission> {
 
     Set<String> findPermissionByUserId(Long userId);
+
+    List<Permission> getPermissionTree();
+
+    List<String> findPermissionByRoleId(Long id);
 }

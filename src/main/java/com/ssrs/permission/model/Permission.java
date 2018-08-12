@@ -1,11 +1,16 @@
 package com.ssrs.permission.model;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -15,6 +20,7 @@ import java.io.Serializable;
  * @author ssrs
  * @since 2018-08-06
  */
+@Data
 @TableName("ssrs_permission")
 public class Permission implements Serializable {
 
@@ -31,37 +37,7 @@ public class Permission implements Serializable {
      */
     private String name;
 
+    @TableField(exist = false)
+    private List<Permission> children = new ArrayList<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Permission{" +
-        ", id=" + id +
-        ", url=" + url +
-        ", name=" + name +
-        "}";
-    }
 }

@@ -97,7 +97,7 @@
 
     <!--通过id更新-->
     <update id="updateById2">
-        UPDATE ssrs_menu  SET title=#{title},sequence=#{sequence},parent_id=#{parentId},url=#{url},system_menu=#{systemMenu} WHERE id=#{id}
+        UPDATE ssrs_menu  SET title=#{title},icon=#{icon},sequence=#{sequence},parent_id=#{parentId},url=#{url},system_menu=#{systemMenu} WHERE id=#{id}
     </update>
 
 </mapper>

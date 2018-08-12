@@ -1,6 +1,7 @@
 package com.ssrs.core.manager;
 
 import com.ssrs.permission.model.Menu;
+import com.ssrs.util.commom.LoggerUtils;
 import com.ssrs.vo.MenuVo;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class MenuManager {
      * @return
      */
     public static List<MenuVo> buildMenuUrl(List<Menu> menuList) {
+        LoggerUtils.debug(MenuManager.class,"进行菜单tree构建");
         List<MenuVo> menuVoList = new ArrayList<>();
         for (Menu menu: menuList) {
             MenuVo menuVo = new MenuVo();

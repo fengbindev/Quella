@@ -1,11 +1,14 @@
 package com.ssrs.permission.service.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.ssrs.permission.model.Menu;
 import com.ssrs.permission.mapper.MenuMapper;
 import com.ssrs.permission.model.Permission;
+import com.ssrs.permission.model.RolePermission;
 import com.ssrs.permission.service.IMenuService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.ssrs.permission.service.IPermissionService;
+import com.ssrs.permission.service.IRolePermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +27,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
 
     @Autowired
     private IPermissionService permissionService;
+    @Autowired
+    private IRolePermissionService rolePermissionService;
 
     @Override
     public List<Menu> getRootMenu() {
@@ -35,6 +40,11 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         Permission permission = menu.getPermission();
         permission.setUrl(menu.getUrl());
         permissionService.insert(permission);
+        //给admin角色添加这个权限
+        RolePermission rp = new RolePermission();
+        rp.setPid(permission.getId());
+        rp.setRid(1L);
+        rolePermissionService.insert(rp);
         return baseMapper.insert2(menu);
     }
 
@@ -54,6 +64,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         //因为外教约束必须先删除菜单再删除权限
         int count =  baseMapper.deleteById(id);
         permissionService.deleteById(permissionId);
+        //删除菜单时也删除这个菜单对应的权限
+        rolePermissionService.delete(new EntityWrapper<RolePermission>().eq("pid",permissionId));
         return count;
     }
 }

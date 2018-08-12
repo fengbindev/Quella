@@ -7,10 +7,12 @@
                 <div class="layui-card-body">
                     <div class="layui-card-header">
                         <!-- <span>所有会员列表</span> -->
+                         <@shiro.hasPermission name="/menu/add">
                         <a id="add" class="layui-btn layui-btn-xs">
                             <i class="layui-icon"></i>
                             <span>新增</span>
                         </a>
+                         </@shiro.hasPermission>
                         <a href="javascript:;" class="layui-btn layui-btn-xs layui-btn-primary" id="rhqvf8w5t6q8">
                             <i class="layui-icon"></i>
                         </a>
@@ -100,30 +102,6 @@
             </div>
         </div>
     </div>
-    <form class="layui-form " id="addForm" hidden="hidden"
-          style="width: 440px;height: 500px;margin: 30px auto;">
-        <input type="hidden" name="id"/>
-        <div class="layui-form-item">
-            <label class="layui-form-label">标题</label>
-            <div class="layui-input-block">
-                <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
-                       class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">回复内容</label>
-            <div class="layui-input-block">
-                <textarea name="content" placeholder="请输入内容" class="layui-textarea" required lay-verify="required"
-                          rows="9"></textarea>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block" align="right">
-                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-            </div>
-        </div>
-    </form>
     <script>
         var formIndex;
         var currPage = 1;

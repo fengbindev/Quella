@@ -6,6 +6,7 @@ import com.ssrs.permission.service.IPermissionService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -22,5 +23,15 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
     @Override
     public Set<String> findPermissionByUserId(Long userId) {
         return baseMapper.findPermissionByUserId(userId);
+    }
+
+    @Override
+    public List<Permission> getPermissionTree() {
+        return baseMapper.getPermissionTree();
+    }
+
+    @Override
+    public List<String> findPermissionByRoleId(Long id) {
+        return baseMapper.findPermissionByRoleId(id);
     }
 }

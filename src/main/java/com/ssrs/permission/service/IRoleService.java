@@ -16,4 +16,8 @@ import java.util.Set;
 public interface IRoleService extends IService<Role> {
 
     Set<String> findRoleByUserId(Long userId);
+
+    int insertRoleAndPermission(Role role, String pids);
+
+    int updateById(Role role, String pids);
 }

@@ -3,6 +3,7 @@ package com.ssrs.permission.mapper;
 import com.ssrs.permission.model.Permission;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,4 +16,8 @@ import java.util.Set;
  */
 public interface PermissionMapper extends BaseMapper<Permission> {
     Set<String> findPermissionByUserId(Long userId);
+
+    List<Permission> getPermissionTree();
+
+    List<String> findPermissionByRoleId(Long id);
 }
