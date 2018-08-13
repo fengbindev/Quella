@@ -27,7 +27,7 @@ public class UserManager {
      * @param pswd
      * @return
      */
-    private static String md5Pwsd(String email, String pswd) {
+    public static String md5Pwsd(String email, String pswd) {
         pswd = String.format("%s#%s",email,pswd);
         pswd = DigestUtil.md5Hex(pswd);
         return pswd;

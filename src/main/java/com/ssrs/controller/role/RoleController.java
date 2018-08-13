@@ -4,6 +4,7 @@ package com.ssrs.controller.role;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.ssrs.controller.BaseController;
 import com.ssrs.core.manager.PageManager;
+import com.ssrs.core.manager.RoleManager;
 import com.ssrs.permission.model.Permission;
 import com.ssrs.permission.model.Role;
 import com.ssrs.permission.service.IPermissionService;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -117,6 +119,14 @@ public class RoleController extends BaseController{
     public Object add(Role role ,String pids){
         int count = roleService.insertRoleAndPermission(role,pids);
         return count>0?APPUtil.resultMapType(APPUtil.INSERT_SUCCESS_TYPE):APPUtil.resultMapType(APPUtil.INSERT_ERROR_TYPE);
+    }
+
+    @RequestMapping(value = "getAllRole",method = RequestMethod.GET)
+    @ResponseBody
+    public Object getAllRole(){
+        List<Role> roles = roleService.selectList(null);
+        List<Map<String, Object>> mapList = RoleManager.buildRoleTree(roles);
+        return mapList;
     }
 
 

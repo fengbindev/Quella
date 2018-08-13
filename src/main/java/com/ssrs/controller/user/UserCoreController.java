@@ -1,22 +1,25 @@
 package com.ssrs.controller.user;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.ssrs.controller.BaseController;
+import com.ssrs.core.manager.PageManager;
 import com.ssrs.core.manager.UserManager;
 import com.ssrs.core.shiro.token.manager.TokenManager;
-import com.ssrs.permission.model.Menu;
-import com.ssrs.permission.model.Permission;
-import com.ssrs.permission.model.Role;
-import com.ssrs.permission.service.IMenuService;
-import com.ssrs.permission.service.IPermissionService;
-import com.ssrs.permission.service.IRoleService;
+import com.ssrs.permission.model.*;
+import com.ssrs.permission.service.*;
+import com.ssrs.util.commom.APPUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Description: 用户管理
@@ -37,6 +40,10 @@ public class UserCoreController extends BaseController {
     private IPermissionService permissionService;
     @Autowired
     private IMenuService menuService;
+    @Autowired
+    private IUserService userService;
+    @Autowired
+    private IUserRoleService userRoleService;
 
     /**
      * 登录成功跳转到首页
@@ -53,4 +60,91 @@ public class UserCoreController extends BaseController {
         modelAndView.addObject("menus",menus);
         return modelAndView;
     }
+
+    @RequestMapping(value = "list",method = RequestMethod.GET)
+    public String list(){
+        return "user/list";
+    }
+
+    /**
+     * 用户分页数据
+     * @param page
+     * @param limit
+     * @return
+     */
+    @RequestMapping(value = "getUserPage",method = RequestMethod.POST)
+    @ResponseBody
+    public Object getUserPage(int page,int limit){
+        Page<User> userPage = userService.selectPage(new Page<>(page, limit));
+        return PageManager.buildPage(userPage);
+    }
+
+    /**
+     * 跳转到用户添加页面
+     * @return
+     */
+    @RequestMapping(value = "goAdd",method = RequestMethod.GET)
+    public String goAdd(){
+        return "user/add";
+    }
+
+    /**
+     * 用户添加方法
+     * @param user
+     * @param rids 角色ids
+     * @return
+     */
+    @RequestMapping(value = "add",method = RequestMethod.POST)
+    @ResponseBody
+    public Object add(User user,String rids){
+        int i = userService.selectCount(new EntityWrapper<User>().eq("email", user.getEmail()));
+        //检查该邮箱是否已经注册
+        if (i>0){
+            Map<String ,Object> map = new HashMap<>(16);
+            map.put("status",101);
+            map.put("message","该邮箱已经注册！");
+            return  map;
+        }
+        //密码加密
+        user.setPswd(UserManager.md5Pwsd(user.getEmail(),user.getPswd()));
+        user.setCreateTime(new Date());
+        int count = userService.insertUserAndRole(user,rids);
+        return count>0? APPUtil.resultMapType(APPUtil.INSERT_SUCCESS_TYPE):APPUtil.resultMapType(APPUtil.INSERT_ERROR_TYPE);
+    }
+
+    /**
+     * 跳转到用户编辑页面
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "goUpdate",method = RequestMethod.GET)
+    public ModelAndView goUpdate(Long id){
+        ModelAndView modelAndView = new ModelAndView("user/update");
+        User user = userService.selectById(id);
+        modelAndView.addObject("user",user);
+        List<String> rids = userRoleService.findRoleIdByUserId(id);
+        String s = StringUtils.join(rids, ",");
+        modelAndView.addObject("selectvalue",s);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "update",method = RequestMethod.POST)
+    @ResponseBody
+    public Object update(User user,String rids){
+        //如果密码为空表示不修改密码
+        if (com.ssrs.util.commom.StringUtils.isBlank(user.getPswd())){
+            user.setPswd(null);
+        }
+        int count = userService.updateById(user,rids);
+        return count>0? APPUtil.resultMapType(APPUtil.UPDATE_SUCCESS_TYPE):APPUtil.resultMapType(APPUtil.UPDATE_ERROR_TYPE);
+    }
+
+    @RequestMapping(value = "del",method = RequestMethod.POST)
+    @ResponseBody
+    public Object del(Long id){
+        boolean b = userService.deleteById(id);
+        return b? APPUtil.resultMapType(APPUtil.DELEATE_SUCCESS_TYPE):APPUtil.resultMapType(APPUtil.DELEATE_ERROR_TYPE);
+    }
+
+
 }

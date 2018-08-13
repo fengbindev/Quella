@@ -16,4 +16,8 @@ public interface IUserService extends IService<User> {
     User login(String username, String pswd);
 
     void updateByPrimaryKeySelective(User user);
+
+    int insertUserAndRole(User user, String rids);
+
+    int updateById(User user, String rids);
 }

@@ -16,4 +16,7 @@
         uid, rid
     </sql>
 
+    <select id="findRoleIdByUserId" resultType="string">
+        SELECT rid FROM ssrs_user_role ur WHERE uid=#{id}
+    </select>
 </mapper>

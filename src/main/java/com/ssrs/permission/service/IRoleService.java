@@ -3,6 +3,7 @@ package com.ssrs.permission.service;
 import com.ssrs.permission.model.Role;
 import com.baomidou.mybatisplus.service.IService;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,4 +21,5 @@ public interface IRoleService extends IService<Role> {
     int insertRoleAndPermission(Role role, String pids);
 
     int updateById(Role role, String pids);
+
 }
