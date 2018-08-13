@@ -25,7 +25,7 @@
         {{d.LAY_TABLE_INDEX+1}}
     </script>
     <script type="text/html" id="kaiguan">
-        <input type="checkbox" value="{{ d.userId }}" {{# if(d.status== 1){ }} checked="" {{# } }} name="open"
+        <input type="checkbox" value="{{ d.id }}" {{# if(d.status== 1){ }} checked="" {{# } }} name="open"
                lay-skin="switch" lay-filter="ahType" lay-text="开|关">
     </script>
     <script type="text/html" id="barDemo">
@@ -37,8 +37,8 @@
        </@shiro.hasPermission>
     </script>
     <script>
-        layui.use(['jquery', 'layer', 'table'], function () {
-            var layer = layui.layer,table = layui.table;
+        layui.use(['jquery','form','layer', 'table'], function () {
+            var layer = layui.layer,table = layui.table,form = layui.form;
             //让层自适应iframe
             $('#add').on('click', function(){
                 var index = layer.open({
@@ -65,11 +65,31 @@
                     ,{field:'email',  title: '邮箱'}
                     ,{field:'createTime',  title: '创建时间'}
                     ,{field:'lastLoginTime',  title: '最近登录'}
-                    , {field: 'ahType', align: 'center', width: 120, toolbar: '#kaiguan', title: '是否禁止登录'}
+                    , {field: 'ahType', align: 'center', width: 120, toolbar: '#kaiguan', title: '是否允许登录'}
                     ,{field:'right',align:'center', width:150, toolbar: '#barDemo', title: '操作'}
                 ]]
             });
 
+            // 监听开关事件
+            form.on('switch(ahType)', function (data) {
+                var a = data.elem.checked;
+                var b = 0;
+                var id = data.value;
+                if (a) {
+                    b = 1;
+                } else {
+                    b = 2;
+                }
+                // 开关方法
+                $.post("${basePath}/user/updateType", {"id": id, "status": b}, function (data) {
+                    if (data.status == 200) {
+                        layer.msg(data.message, {icon: 1, time: 1000});
+                    } else {
+                        layer.msg(data.message, {icon: 0, time: 1000});
+                    }
+                });
+
+            });
             //监听修改按钮
             table.on('tool(usertable2)', function(obj){
                 var data = obj.data;

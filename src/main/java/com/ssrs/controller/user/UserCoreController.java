@@ -146,5 +146,17 @@ public class UserCoreController extends BaseController {
         return b? APPUtil.resultMapType(APPUtil.DELEATE_SUCCESS_TYPE):APPUtil.resultMapType(APPUtil.DELEATE_ERROR_TYPE);
     }
 
+    /**
+     * 是否允许登录
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "updateType",method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateType(User user){
+        boolean b = userService.updateById(user);
+        return b? APPUtil.resultMapType(APPUtil.UPDATE_SUCCESS_TYPE):APPUtil.resultMapType(APPUtil.UPDATE_ERROR_TYPE);
+    }
+
 
 }
