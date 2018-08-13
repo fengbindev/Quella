@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>KITADMIN 后台管理模板</title>
+  <title>Quella</title>
   <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/layui.css" id="layui">
   <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/theme/default.css" id="theme">
   <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/kitadmin.css" id="kitadmin">
@@ -18,7 +18,7 @@
           <i class="layui-icon">&#xe65a;</i>
         </div>
         <div class="layui-logo-brand">
-          <a href="#/">KITADMIN 2.0</a>
+          <a href="#/">QUElLA 1.0</a>
         </div>
       </div>
       <div class="layui-layout-left">
@@ -52,7 +52,8 @@
           <li class="kit-item">
             <a href="javascript:;">
               <span>
-                <img src="http://m.zhengjinfan.cn/images/0.jpg" class="layui-nav-img">Van
+                <#--<img src="http://m.zhengjinfan.cn/images/0.jpg" class="layui-nav-img">-->
+                ${token.nickname}
               </span>
             </a>
             <ul class="kit-nav-child kit-nav-right">
@@ -70,7 +71,7 @@
               </li>
               <li class="kit-nav-line"></li>
               <li class="kit-item">
-                <a href="temp/login.html">
+                <a href="javascript:;" onclick="logout()">
                   <i class="layui-icon">&#x1006;</i>
                   <span>注销</span>
                 </a>
@@ -116,318 +117,6 @@
             </#list>
             </#if>
 
-
-
-
-
-            <li class="kit-menu-item layui-show">
-              <a href="javascript:;">
-                <i class="layui-icon"></i>
-                <span>Layui组件</span>
-              </a>
-              <ul class="kit-menu-child layui-anim layui-anim-upbit">
-                <li class="kit-menu-item">
-                  <a href="#/layui/grid">
-                    <i class="layui-icon"></i>
-                    <span>Grid</span>
-                  </a>
-                </li>
-                <li class="kit-menu-item">
-                  <a href="javascript:;">
-                    <i class="layui-icon"></i>
-                    <span>基本元素</span>
-                  </a>
-                  <ul class="kit-menu-child layui-anim layui-anim-upbit">
-                    <li class="kit-menu-item">
-                      <a href="#/layui/button">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>按钮</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/form">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>表单</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/nav">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>导航/面包屑</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/tab">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>选项卡</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/progress">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>进度条</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/panel">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>面板</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/badge">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>徽章</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/timeline">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>时间线</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/table-element">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>静态表格</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/anim">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>动画</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/auxiliar">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>辅助元素</span>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="kit-menu-item layui-show">
-                  <a href="javascript:;">
-                    <i class="layui-icon"></i>
-                    <span>组件</span>
-                  </a>
-                  <ul class="kit-menu-child layui-anim layui-anim-upbit">
-                    <li class="kit-menu-item">
-                      <a href="#/layui/layer">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>弹出层</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/laydate">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>日期与时间</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/table">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>数据表格</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/laypage">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>分页</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/upload">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>文件上传</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/carousel">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>轮训</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/laytpl">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>模板引擎</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/flow">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>流加载</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/util">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>工具集</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="#/layui/code">
-                        <i class="layui-icon">&#xe62e;</i>
-                        <span>代码修饰器</span>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li class="kit-menu-item">
-              <a href="javascript:;">
-                <i class="layui-icon"></i>
-                <span>组件</span>
-              </a>
-              <ul class="kit-menu-child layui-anim layui-anim-upbit">
-                <li class="kit-menu-item">
-                  <a href="#/components/select">
-                    <i class="layui-icon"></i>
-                    <span>Select</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="kit-menu-item">
-              <a href="javascript:;">
-                <i class="layui-icon"></i>
-                <span>异常页</span>
-              </a>
-              <ul class="kit-menu-child layui-anim layui-anim-upbit">
-                <li class="kit-menu-item">
-                  <a href="#/exception/403">
-                    <i class="layui-icon">&#xe69c;</i>
-                    <span>403</span>
-                  </a>
-                </li>
-                <li class="kit-menu-item">
-                  <a href="#/exception/404">
-                    <i class="layui-icon">&#xe61c;</i>
-                    <span>404</span>
-                  </a>
-                </li>
-                <li class="kit-menu-item">
-                  <a href="#/exception/500">
-                    <i class="layui-icon">&#xe64d;</i>
-                    <span>500</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="kit-menu-item">
-              <a href="javascript:;" class="child">
-                <i class="layui-icon"></i>
-                <span>多级菜单</span>
-              </a>
-              <ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
-                <li class="kit-menu-item">
-                  <a href="#/user/form">
-                    <i class="layui-icon"></i>
-                    <span>二级菜单1</span>
-                  </a>
-                </li>
-                <li class="kit-menu-item">
-                  <a href="#/user/as" class="child">
-                    <i class="layui-icon"></i>
-                    <span>二级菜单2</span>
-                  </a>
-                  <ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
-                    <li class="kit-menu-item">
-                      <a href="https://www.baidu.com" target="_blank">
-                        <i class="layui-icon"></i>
-                        <span>三级菜单1</span>
-                      </a>
-                    </li>
-                    <li class="kit-menu-item">
-                      <a href="javascript:;" target="_blank">
-                        <i class="layui-icon"></i>
-                        <span>三级菜单2</span>
-                      </a>
-                      <ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
-                        <li class="kit-menu-item">
-                          <a href="https://www.baidu.com" target="_blank">
-                            <i class="layui-icon"></i>
-                            <span>四级菜单1</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li class="kit-menu-item">
-                  <a href="#/user/aa">
-                    <i class="layui-icon"></i>
-                    <span>二级菜单3</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="kit-menu-item">
-              <a href="javascript:;" class="child">
-                <i class="layui-icon"></i>
-                <span>API文档</span>
-              </a>
-              <ul class="kit-menu-child layui-anim layui-anim-upbit">
-                <li class="kit-menu-item">
-                  <a href="#/docs/mockjs">
-                    <i class="layui-icon"></i>
-                    <span>拦截器(Mockjs)</span>
-                  </a>
-                </li>
-                <li class="kit-menu-item">
-                  <a href="#/docs/menu">
-                    <i class="layui-icon"></i>
-                    <span>左侧菜单(Menu)</span>
-                  </a>
-                </li>
-                <li class="kit-menu-item">
-                  <a href="#/docs/route">
-                    <i class="layui-icon"></i>
-                    <span>路由配置(Route)</span>
-                  </a>
-                </li>
-                <li class="kit-menu-item">
-                  <a href="#/docs/tabs">
-                    <i class="layui-icon"></i>
-                    <span>选项卡(Tabs)</span>
-                  </a>
-                </li>
-                <li class="kit-menu-item">
-                  <a href="#/docs/utils">
-                    <i class="layui-icon"></i>
-                    <span>工具包(Utils)</span>
-                  </a>
-                </li>
-                <li class="kit-menu-item layui-show">
-                  <a href="javascript:;" class="child">
-                    <i class="layui-icon"></i>
-                    <span>组件(Component)</span>
-                  </a>
-                  <ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
-                    <li class="kit-menu-item">
-                      <a href="#/docs/component/nav">
-                        <i class="layui-icon"></i>
-                        <span>导航栏(Nav)</span>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li class="kit-menu-item">
-              <a href="https://www.baidu.com" target="_blank">
-                <i class="layui-icon"></i>
-                <span>外链百度一</span>
-              </a>
-            </li>
-            <li class="kit-menu-item">
-              <a href="#/inputnumber">
-                <i class="layui-icon"></i>
-                <span>InputNumber</span>
-              </a>
-            </li>
           </ul>
         </div>
       </div>
@@ -446,12 +135,35 @@
   </div>
 
   <script src="${basePath}/js/jquery.js"></script>
+  <script>
+      var themeKey = 'KITADMIN_SETTING_THEME';
+      var theme = localStorage.getItem(themeKey);
+      var themeName = $.parseJSON(theme).theme;
+      var str = $('#theme').attr('href');
+      var _themeUrl = str.substr(0, str.lastIndexOf('/') + 1);
+      $('#theme').attr('href', _themeUrl + themeName + '.css');
+      var _body = $('body');
+      if (!_body.hasClass('kit-theme-' + themeName)) {
+          _body.addClass('kit-theme-' + themeName);
+      }
+  </script>
   <script src="${basePath}/plugins/kit-admin/layui.js"></script>
   <script src="${basePath}/plugins/kit-admin/polyfill.min.js"></script>
-  <script src="${basePath}/plugins/kit-admin/kitadmin.js"></script>
+  <script baseUrl="${basePath}" src="${basePath}/plugins/kit-admin/kitadmin.js"></script>
   <script src="${basePath}/plugins/kit-admin/mockjs-config.js"></script>
-  <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
+  <#--<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>-->
   <script>layui.use("admin");</script>
+<script>
+    function logout() {
+        $.get("${basePath}/u/logout",{},function (data) {
+            if (data.status==200){
+                location.href="${basePath}/u/login";
+            }else{
+                layer.msg("退出失败！", {icon: 0, time: 1000});
+            }
+        },"json");
+    }
+</script>
 </body>
 
 </html>

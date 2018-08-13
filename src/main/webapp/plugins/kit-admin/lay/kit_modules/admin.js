@@ -1,6 +1,7 @@
 /** kitadmin-v2.1.0 MIT License By http://kit.zhengjinfan.cn Author Van Zheng */
 ;"use strict";
 var mods = ["element", "sidebar", "mockjs", "select", "tabs", "menu", "route", "utils", "component", "kit"];
+var baseUrl = $("script[baseUrl]").attr('baseUrl');
 layui.define(mods, function (e) {
     layui.element;
     var n = layui.utils, i = layui.jquery, l = (layui.lodash, layui.route), o = layui.tabs, m = layui.layer,
@@ -23,7 +24,7 @@ layui.define(mods, function (e) {
                 title: "这是表单盒子",
                 shade: !0,
                 dynamicRender: !0,
-                url: "views/form/index.ftl",
+                url: "/views/form/index.ftl",
                 width: "50%"
             })
         }), s.on("nav(header_right)", function (e) {
@@ -33,7 +34,7 @@ layui.define(mods, function (e) {
                 title: "设置",
                 shade: !0,
                 dynamicRender: !0,
-                url: "views/setting.html"
+                url: baseUrl+"/open/setting"
             }), "help" === t && m.alert("QQ群：248049395，616153456")
         }), layui.mockjs.inject(APIs), "SPA" === t.loadType && l.render(), "function" == typeof e && e()
     };

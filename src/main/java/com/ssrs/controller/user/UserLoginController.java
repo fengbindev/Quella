@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * @Description: 用户登录相关
@@ -96,6 +97,22 @@ public class UserLoginController extends BaseController {
         return resultMap;
     }
 
-
+    /**
+     * 退出
+     * @return
+     */
+    @RequestMapping(value="logout",method =RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> logout(){
+        try {
+            TokenManager.logout();
+            resultMap.put("status", 200);
+        } catch (Exception e) {
+            resultMap.put("status", 500);
+            logger.error("errorMessage:" + e.getMessage());
+            LoggerUtils.fmtError(getClass(), e, "退出出现错误，%s。", e.getMessage());
+        }
+        return resultMap;
+    }
 
 }

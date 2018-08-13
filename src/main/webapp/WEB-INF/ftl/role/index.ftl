@@ -17,7 +17,7 @@
                             <i class="layui-icon"></i>
                         </a>
                     </div>
-                    <table class="layui-table" id="roletable" lay-filter="roletable2"></table>
+                    <table class="layui-table" id="roletable"  lay-filter="roletable2"></table>
                 </div>
             </div>
         </div>

@@ -178,8 +178,13 @@ public class CommonController extends BaseController {
 	public ModelAndView unauthorized(){
 		return new ModelAndView("common/unauthorized");
 	}
-	@RequestMapping(value="shiro",method= RequestMethod.GET)
-	public ModelAndView shiro(){
-		return new ModelAndView("shiro");
+
+	/**
+	 * 主题设置界面
+	 * @return
+	 */
+	@RequestMapping(value = "setting",method = RequestMethod.GET)
+	public String setting(){
+		return "common/setting";
 	}
 }
