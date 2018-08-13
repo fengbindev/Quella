@@ -39,6 +39,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
     public int insert2(Menu menu) {
         Permission permission = menu.getPermission();
         permission.setUrl(menu.getUrl());
+        //通过菜单的parentId找到要这个菜单权限的parentId
+        Long permissionParentId = permissionService.getParentIdByMenuParentId(menu.getParentId());
+        permission.setParentId(permissionParentId);
         permissionService.insert(permission);
         //给admin角色添加这个权限
         RolePermission rp = new RolePermission();

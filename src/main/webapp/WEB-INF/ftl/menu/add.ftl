@@ -250,6 +250,9 @@
 
         //监听提交，发送请求
         form.on('submit(add)', function(data){
+            if (data.field.isFu == 1){
+                data.field.parentId=null;
+            }
             $.post("${basePath}/menu/add",data.field,function(data){
                 // 获取 session
                 if(data.status!=200){

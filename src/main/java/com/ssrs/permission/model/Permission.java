@@ -37,6 +37,8 @@ public class Permission implements Serializable {
      */
     private String name;
 
+    private Long parentId;
+
     @TableField(exist = false)
     private List<Permission> children = new ArrayList<>();
 

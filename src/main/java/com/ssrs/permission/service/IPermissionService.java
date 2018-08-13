@@ -21,4 +21,8 @@ public interface IPermissionService extends IService<Permission> {
     List<Permission> getPermissionTree();
 
     List<String> findPermissionByRoleId(Long id);
+
+    Long getParentIdByMenuParentId(Integer parentId);
+
+    int insert2(Permission permission);
 }

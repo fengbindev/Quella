@@ -43,4 +43,13 @@
         WHERE
 	         rp.rid = #{id}
     </select>
+
+    <select id="getParentIdByMenuParentId" resultType="long">
+        SELECT
+            m.permission_id
+        FROM
+            ssrs_menu m
+        WHERE
+            m.id = #{menuParentId}
+    </select>
 </mapper>

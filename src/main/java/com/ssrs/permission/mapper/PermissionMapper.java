@@ -20,4 +20,6 @@ public interface PermissionMapper extends BaseMapper<Permission> {
     List<Permission> getPermissionTree();
 
     List<String> findPermissionByRoleId(Long id);
+
+    Long getParentIdByMenuParentId(Integer menuParentId);
 }
