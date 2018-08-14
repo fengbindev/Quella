@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Quella</title>
+    <link   rel="shortcut icon" href="${basePath}/favicon.ico" />
   <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/layui.css" id="layui">
   <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/theme/default.css" id="theme">
   <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/kitadmin.css" id="kitadmin">
@@ -18,7 +19,7 @@
           <i class="layui-icon">&#xe65a;</i>
         </div>
         <div class="layui-logo-brand">
-          <a href="#/">QUElLA 1.0</a>
+          <a href="#/">QUELLA 1.0</a>
         </div>
       </div>
       <div class="layui-layout-left">
@@ -147,7 +148,7 @@
           _body.addClass('kit-theme-' + themeName);
       }
   </script>
-  <script src="${basePath}/plugins/kit-admin/layui.js"></script>
+  <script baseUrl="${basePath}" src="${basePath}/plugins/kit-admin/layui.js"></script>
   <script src="${basePath}/plugins/kit-admin/polyfill.min.js"></script>
   <script baseUrl="${basePath}" src="${basePath}/plugins/kit-admin/kitadmin.js"></script>
   <script src="${basePath}/plugins/kit-admin/mockjs-config.js"></script>

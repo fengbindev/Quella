@@ -13,7 +13,7 @@ import org.springframework.web.util.UrlPathHelper;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@Scope(value="prototype")
+@Scope(value = "prototype")
 @RequestMapping("open")
 public class CommonController extends BaseController {
 //	@Resource
@@ -25,53 +25,69 @@ public class CommonController extends BaseController {
 //		resultMap.put("status", 200);
 //		return resultMap;
 //	}
-	/**
-	 * 404错误
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping("404")
-	public ModelAndView _404(HttpServletRequest request){
-		ModelAndView view = new ModelAndView("common/404");
-		return view;
-	}
-	/**
-	 * 500错误
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping("500")
-	public ModelAndView _500(HttpServletRequest request){
-		ModelAndView view = new ModelAndView("common/500");
-		
-		Throwable t = (Throwable)request.getAttribute("javax.servlet.error.exception");
-		String defaultMessage = "未知" ;
-		if(null == t){
-			view.addObject("line", defaultMessage);
-			view.addObject("clazz", defaultMessage);
-			view.addObject("methodName",defaultMessage);
-			return view;
-		}
-		String message = t.getMessage() ;//错误信息
-		StackTraceElement[] stack = t.getStackTrace();
-		view.addObject("message", message);
-		if(null != stack && stack.length != 0 ){
-			StackTraceElement element = stack[0];
-			int line = element.getLineNumber();//错误行号
-			String clazz = element.getClassName();//错误java类
-			String fileName = element.getFileName();
-			
-			String methodName = element.getMethodName() ;//错误方法
-			view.addObject("line", line);
-			view.addObject("clazz", clazz);
-			view.addObject("methodName",methodName);
-			LoggerUtils.fmtError(getClass(), "line:%s,clazz:%s,fileName:%s,methodName:%s()",
-					line,clazz,fileName,methodName);
-		}
-		return view;
-	}
-	
-//	/**
+
+    /**
+     * 404错误
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("404")
+    public ModelAndView _404(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("common/404");
+        return view;
+    }
+
+    /**
+     * 403错误
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("403")
+    public ModelAndView _403(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("common/403");
+        return view;
+    }
+
+    /**
+     * 500错误
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("500")
+    public ModelAndView _500(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("common/500");
+
+        Throwable t = (Throwable) request.getAttribute("javax.servlet.error.exception");
+        String defaultMessage = "未知";
+        if (null == t) {
+            view.addObject("line", defaultMessage);
+            view.addObject("clazz", defaultMessage);
+            view.addObject("methodName", defaultMessage);
+            return view;
+        }
+        String message = t.getMessage();//错误信息
+        StackTraceElement[] stack = t.getStackTrace();
+        view.addObject("message", message);
+        if (null != stack && stack.length != 0) {
+            StackTraceElement element = stack[0];
+            int line = element.getLineNumber();//错误行号
+            String clazz = element.getClassName();//错误java类
+            String fileName = element.getFileName();
+
+            String methodName = element.getMethodName();//错误方法
+            view.addObject("line", line);
+            view.addObject("clazz", clazz);
+            view.addObject("methodName", methodName);
+            LoggerUtils.fmtError(getClass(), "line:%s,clazz:%s,fileName:%s,methodName:%s()",
+                    line, clazz, fileName, methodName);
+        }
+        return view;
+    }
+
+    //	/**
 //	 * 获取验证码
 //	 * @param response
 //	 */
@@ -157,34 +173,47 @@ public class CommonController extends BaseController {
 //
 //		return new ModelAndView("www/go_to","url",url);
 //	}
-	/**
-	 * 踢出页面
-	 * @return
-	 */
-	@RequestMapping(value="kickedOut",method= RequestMethod.GET)
-	public ModelAndView kickedOut(HttpServletRequest request, UrlPathHelper pp){
-		//如果是踢出后，来源地址是：http://shiro.itboy.net/u/login.shtml;JSESSIONID=4f1538d9-df19-48c8-b4b1-aadacadde23a
-		//如果来源是null，那么就重定向到首页。这个时候，如果首页是要登录，那就会跳转到登录页
-		if(StringUtils.isBlank(request.getHeader("Referer"))){
-			return redirect("/");
-		}
-		return new ModelAndView("common/kicked_out");
-	}
-	/**
-	 * 没有权限提示页面
-	 * @return
-	 */
-	@RequestMapping(value="unauthorized",method= RequestMethod.GET)
-	public ModelAndView unauthorized(){
-		return new ModelAndView("common/unauthorized");
-	}
+//	/**
+//	 * 踢出页面
+//	 * @return
+//	 */
+//    @RequestMapping(value = "kickedOut", method = RequestMethod.GET)
+//    public ModelAndView kickedOut(HttpServletRequest request, UrlPathHelper pp) {
+//        //如果是踢出后，来源地址是：http://shiro.itboy.net/u/login.shtml;JSESSIONID=4f1538d9-df19-48c8-b4b1-aadacadde23a
+//        //如果来源是null，那么就重定向到首页。这个时候，如果首页是要登录，那就会跳转到登录页
+//        if (StringUtils.isBlank(request.getHeader("Referer"))) {
+//            return redirect("/");
+//        }
+//        return new ModelAndView("common/kicked_out");
+//    }
 
-	/**
-	 * 主题设置界面
-	 * @return
-	 */
-	@RequestMapping(value = "setting",method = RequestMethod.GET)
-	public String setting(){
-		return "common/setting";
-	}
+    /**
+     * 多账户登录踢出
+     *
+     * @return
+     */
+    @RequestMapping(value = "kickout", method = RequestMethod.GET)
+    public String kickout() {
+        return "common/kickout";
+    }
+
+    /**
+     * 没有权限提示页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "unauthorized", method = RequestMethod.GET)
+    public ModelAndView unauthorized() {
+        return new ModelAndView("common/unauthorized");
+    }
+
+    /**
+     * 主题设置界面
+     *
+     * @return
+     */
+    @RequestMapping(value = "setting", method = RequestMethod.GET)
+    public String setting() {
+        return "common/setting";
+    }
 }

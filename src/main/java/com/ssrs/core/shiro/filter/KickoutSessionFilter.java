@@ -30,8 +30,8 @@ import java.util.Map;
 */
 @SuppressWarnings({"unchecked","static-access"})
 public class KickoutSessionFilter extends AccessControlFilter {
-	//静态注入
-	static String kickoutUrl;
+//	//静态注入
+//	static String kickoutUrl;
 	//在线用户
 	final static String ONLINE_USER = KickoutSessionFilter.class.getCanonicalName()+ "_online_user";
 	//踢出状态，true标示踢出
@@ -126,9 +126,9 @@ public class KickoutSessionFilter extends AccessControlFilter {
 		//先退出
 		Subject subject = getSubject(request, response);
 		subject.logout();
-		WebUtils.getSavedRequest(request);
+		WebUtils.saveRequest(request);
 		//再重定向
-		WebUtils.issueRedirect(request, response,kickoutUrl);
+		WebUtils.issueRedirect(request, response,ShiroFilterUtils.KICKED_OUT);
 		return false;
 	}
 
@@ -149,14 +149,14 @@ public class KickoutSessionFilter extends AccessControlFilter {
 			ShiroSessionRepository shiroSessionRepository) {
 		KickoutSessionFilter.shiroSessionRepository = shiroSessionRepository;
 	}
-
-	public static String getKickoutUrl() {
-		return kickoutUrl;
-	}
-
-	public static void setKickoutUrl(String kickoutUrl) {
-		KickoutSessionFilter.kickoutUrl = kickoutUrl;
-	}
+//
+//	public static String getKickoutUrl() {
+//		return kickoutUrl;
+//	}
+//
+//	public static void setKickoutUrl(String kickoutUrl) {
+//		KickoutSessionFilter.kickoutUrl = kickoutUrl;
+//	}
 
 
 }

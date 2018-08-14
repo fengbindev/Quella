@@ -21,7 +21,7 @@ import java.util.Map.Entry;
 public class BaseController {
 	protected final static Logger logger = Logger.getLogger(BaseController.class);
 	protected Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
-	public static String URL404 =  "/404.html";
+	public static String URL404 =  "commom/404.ftl";
 
 	/**
 	 * 往Request里带值

@@ -10,6 +10,7 @@ import com.ssrs.permission.model.*;
 import com.ssrs.permission.service.*;
 import com.ssrs.util.commom.APPUtil;
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -34,10 +35,7 @@ import java.util.*;
 @RequestMapping("user")
 public class UserCoreController extends BaseController {
 
-    @Autowired
-    private IRoleService roleService;
-    @Autowired
-    private IPermissionService permissionService;
+
     @Autowired
     private IMenuService menuService;
     @Autowired
@@ -156,6 +154,66 @@ public class UserCoreController extends BaseController {
     public Object updateType(User user){
         boolean b = userService.updateById(user);
         return b? APPUtil.resultMapType(APPUtil.UPDATE_SUCCESS_TYPE):APPUtil.resultMapType(APPUtil.UPDATE_ERROR_TYPE);
+    }
+
+    /**
+     * 跳转到个人中心页面
+     * @return
+     */
+    @RequestMapping(value = "my",method = RequestMethod.GET)
+    public ModelAndView my(){
+        ModelAndView modelAndView = new ModelAndView("user/my");
+        return modelAndView;
+    }
+
+    /**
+     * 个人资料修改
+     * @return
+     */
+    @RequestMapping(value = "updateSelf",method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateSelf(User user){
+        boolean b = userService.updateById(user);
+        //重新登录一次
+        boolean isRembered = false;
+        if (SecurityUtils.getSubject().isRemembered()){
+            isRembered = true;
+        }
+        TokenManager.login(TokenManager.getToken(), isRembered);
+        return b?APPUtil.resultMapType(APPUtil.UPDATE_SUCCESS_TYPE):APPUtil.resultMapType(APPUtil.UPDATE_ERROR_TYPE);
+    }
+
+    /**
+     * 密码修改
+     * @return
+     */
+    @RequestMapping(value="updatePswd",method=RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> updatePswd(String pswd,String newPswd){
+        //根据当前登录的用户帐号 + 老密码，查询。
+        String email = TokenManager.getToken().getEmail();
+        pswd = UserManager.md5Pwsd(email,pswd);
+        User user = userService.login(email, pswd);
+
+        if(null == user){
+            resultMap.put("status", 300);
+            resultMap.put("message", "密码不正确！");
+        }else{
+            user.setPswd(newPswd);
+            //加工密码
+            user = UserManager.md5Pswd(user);
+            //修改密码
+            userService.updateByPrimaryKeySelective(user);
+            resultMap.put("status", 200);
+            resultMap.put("message", "修改成功!");
+            //重新登录一次
+            boolean isRembered = false;
+            if (SecurityUtils.getSubject().isRemembered()){
+                isRembered = true;
+            }
+            TokenManager.login(user, isRembered);
+        }
+        return resultMap;
     }
 
 

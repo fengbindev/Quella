@@ -23,7 +23,7 @@ public class ShiroFilterUtils {
 	//登录页面
 	static final String LOGIN_URL = "/u/login";
 	//踢出登录提示
-	final static String KICKED_OUT = "/open/kickedOut";
+	final static String KICKED_OUT = "/open/kickout?kickout";
 	//没有权限提醒
 	final static String UNAUTHORIZED = "/open/unauthorized";
 	/**

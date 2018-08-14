@@ -17,10 +17,13 @@
 	<context:component-scan base-package="com.ssrs.controller;com.ssrs.permission.controller"/>
 
  	<mvc:annotation-driven  /><!-- cache-period="315360000" -->
+	<mvc:resources mapping="/favicon.ico" location="/favicon.ico" />
 	<mvc:resources mapping="/images/**" location="/images/" />
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/plugins/**" location="/plugins/" />
+
+
 
 	
 	<!-- 自动扫描 标签 -->

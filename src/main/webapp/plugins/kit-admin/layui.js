@@ -7,7 +7,7 @@
  @License：MIT
 
  */
- 
+var baseUrl = $("script[baseUrl]").attr('baseUrl');
 ;!function(win){
   "use strict";
 
@@ -171,7 +171,10 @@
       ,url = ( modules[item] ? (dir + 'lay/') 
         : (/^\{\/\}/.test(that.modules[item]) ? '' : (config.base || ''))
       ) + (that.modules[item] || item) + '.js';
-      
+      //因为我自己写的，因为layui自带的获取不到。
+     if (!dir){
+       url = baseUrl+"/plugins/kit-admin/"+url;
+     }
       url = url.replace(/^\{\/\}/, '');
       
       node.async = true;

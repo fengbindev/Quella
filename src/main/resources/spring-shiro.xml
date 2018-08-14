@@ -132,10 +132,10 @@
 	<bean id="kickoutSessionFilter"   class="com.ssrs.core.shiro.filter.KickoutSessionFilter">
 		<!--<property name="kickoutUrl" value="/u/login?kickout"/>-->
 	</bean>
-	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-		<property name="staticMethod" value="com.ssrs.core.shiro.filter.KickoutSessionFilter.setKickoutUrl"/>
-		<property name="arguments" value="/u/login?kickout"/>
-	</bean>
+	<!--<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">-->
+		<!--<property name="staticMethod" value="com.ssrs.core.shiro.filter.KickoutSessionFilter.setKickoutUrl"/>-->
+		<!--<property name="arguments" value="/open/kickout?kickout"/>-->
+	<!--</bean>-->
 	<!-- 静态注入 jedisShiroSessionRepository-->
 	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
 		<property name="staticMethod" value="com.ssrs.core.shiro.filter.KickoutSessionFilter.setShiroSessionRepository"/>
@@ -148,7 +148,7 @@
 		<property name="loginUrl" value="/u/login" />
 		<!--	TODO 待提取	-->
 		<property name="successUrl" value="/" />
-		<property name="unauthorizedUrl" value="/?login" />
+		<property name="unauthorizedUrl" value="/open/unauthorized" />
 
 		<!--	初始配置，现采用自定义	-->
 				<!--<property name="filterChainDefinitions" >-->

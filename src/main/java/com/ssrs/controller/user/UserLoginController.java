@@ -75,17 +75,17 @@ public class UserLoginController extends BaseController {
             resultMap.put("status", 200);
             resultMap.put("message", "登录成功");
             //获取登录之前的地址
-            SavedRequest savedRequest = WebUtils.getSavedRequest(request);
-            String url = null;
-            if (savedRequest != null) {
-                url = savedRequest.getRequestUrl();
-            }
-            LoggerUtils.fmtDebug(getClass(), "获取登录之前的URL:[%s]", url);
+//            SavedRequest savedRequest = WebUtils.getSavedRequest(request);
+//            String url = null;
+//            if (savedRequest != null) {
+//                url = savedRequest.getRequestUrl();
+//            }
+//            LoggerUtils.fmtDebug(getClass(), "获取登录之前的URL:[%s]", url);
             //如果登录之前没有地址，那么跳转到首页
-            if (StringUtils.isBlank(url)) {
-                url = "/"+request.getContextPath() + "user/index";
-            }
-            resultMap.put("back_url", url);
+//            if (StringUtils.isBlank(url)) {
+//                url = "/"+request.getContextPath() + "user/index";
+//            }
+//            resultMap.put("back_url", url);
         } catch (DisabledAccountException e) {
             resultMap.put("status", 500);
             resultMap.put("message", "账户已经禁用");

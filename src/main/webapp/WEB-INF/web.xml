@@ -110,17 +110,17 @@
     </session-config>
 
     <!--错误页面-->
-    <!--<error-page>-->
-    <!--<error-code>403</error-code>-->
-    <!--<location>/template/common/403.jsp</location>-->
-    <!--</error-page>-->
-    <!--<error-page>-->
-    <!--<error-code>404</error-code>-->
-    <!--<location>/template/common/404.jsp</location>-->
-    <!--</error-page>-->
-    <!--<error-page>-->
-    <!--<error-code>500</error-code>-->
-    <!--<location>/template/common/500.jsp</location>-->
-    <!--</error-page>-->
+    <error-page>
+    <error-code>403</error-code>
+    <location>/open/403</location>
+    </error-page>
+    <error-page>
+    <error-code>404</error-code>
+    <location>/open/404</location>
+    </error-page>
+    <error-page>
+    <error-code>500</error-code>
+    <location>/open/500</location>
+    </error-page>
 
 </web-app>
