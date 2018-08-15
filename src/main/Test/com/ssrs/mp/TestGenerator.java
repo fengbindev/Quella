@@ -62,12 +62,12 @@ public class TestGenerator {
         //4. 包名策略配置
         PackageConfig pkConfig = new PackageConfig();
         pkConfig.setParent(null)
-                .setMapper("com.ssrs.permission.mapper")
-                .setService("com.ssrs.permission.service")
-                .setServiceImpl("com.ssrs.permission.service.impl")
-                .setController("com.ssrs.permission.controller")
-                .setEntity("com.ssrs.permission.model")
-                .setXml("com.ssrs.permission.mapper.xml");
+                .setMapper("com.ssrs.mapper")
+                .setService("com.ssrs.service")
+                .setServiceImpl("com.ssrs.service.impl")
+                .setController("com.ssrs.controller")
+                .setEntity("com.ssrs.model")
+                .setXml("com.ssrs.mapper.xml");
 
         //5. 整合配置
         AutoGenerator ag = new AutoGenerator();

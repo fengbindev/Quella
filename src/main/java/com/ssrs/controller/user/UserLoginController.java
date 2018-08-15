@@ -70,7 +70,6 @@ public class UserLoginController extends BaseController {
     public Object submitLogin(User user, Boolean remeberMe, HttpServletRequest request) {
         try {
             remeberMe = false;
-            user = UserManager.md5Pswd(user);
             User loginInfo = TokenManager.login(user, remeberMe);
             resultMap.put("status", 200);
             resultMap.put("message", "登录成功");

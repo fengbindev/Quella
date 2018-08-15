@@ -22,18 +22,32 @@
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/plugins/**" location="/plugins/" />
+	<!-- 这个一定得有，注意了，如果其他配置也有需要这个，已经配置了，那不必了 -->
+	<mvc:annotation-driven  />
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!--默认拦截的连接-->
+			<mvc:mapping path="/**"/>
+			<!--不拦截的连接-->
+			<!--<mvc:exclude-mapping path="/api**/**"/>-->
+			<mvc:exclude-mapping path="/favicon.ico"/>
+			<mvc:exclude-mapping path="/images/**"/>
+			<mvc:exclude-mapping path="/css/**"/>
+			<mvc:exclude-mapping path="/js/**"/>
+			<mvc:exclude-mapping path="/plugins/**"/>
+			<bean class="com.ssrs.interceptor.SystemLogInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 
 
-	
 	<!-- 自动扫描 标签 -->
 	<!--<context:component-scan base-package="com.sojson.*.*.tag;com.sojson.*.tag" />-->
 	<!--<bean name="api" class="com.sojson.core.tags.APITemplateModel"></bean>-->
 	<bean name="springContextUtil" class="com.ssrs.util.commom.SpringContextUtil" scope="singleton"></bean>
 	
-	<!-- 这个一定得有，注意了，如果其他配置也有需要这个，已经配置了，那不必了 -->
-	<mvc:annotation-driven  />
-	
+
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">  
 		<property name="messageConverters">  
 	        <list>  

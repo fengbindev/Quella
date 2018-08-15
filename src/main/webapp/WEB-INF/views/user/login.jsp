@@ -52,6 +52,7 @@
     <script src="<%=basePath%>/js/jquery.js"></script>
     <script src="<%=basePath%>/plugins/kit-admin/layui.js"></script>
     <script src="<%=basePath%>/js/login.js"></script>
+    <script src="<%=basePath%>/js/MD5.js"></script>
     <script>
 
         layui.use(['jquery', 'layer'], function () {
@@ -77,7 +78,9 @@
         });
 
         function login() {
-            $.post("<%=basePath%>/u/submitLogin", $("#logoFrom").serialize(), function (data) {
+            var email = $("#userName").val();
+            var pswd = MD5(email+"#"+$("#password").val());
+            $.post("<%=basePath%>/u/submitLogin",{email:email,pswd:pswd}, function (data) {
                 if (data.status == 200) {
                     //登录返回
                     window.location.href = "<%=basePath%>user/index";

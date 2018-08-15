@@ -93,8 +93,6 @@
     <orderEntry type="library" name="Maven: net.mingsoft:shiro-freemarker-tags:0.1" level="project" />
     <orderEntry type="library" name="Maven: com.google.zxing:javase:3.1.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.zxing:core:3.1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.quartz-scheduler:quartz:2.2.1" level="project" />
-    <orderEntry type="library" name="Maven: c3p0:c3p0:0.9.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.integration:spring-integration-mail:4.0.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.integration:spring-integration-core:4.0.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.retry:spring-retry:1.1.1.RELEASE" level="project" />
@@ -103,7 +101,6 @@
     <orderEntry type="library" name="Maven: com.mortennobel:java-image-scaling:0.8.6" level="project" />
     <orderEntry type="library" name="Maven: com.jhlabs:filters:2.0.235" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.opensymphony.quartz:quartz:1.6.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-all:1.2.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-guice:1.2.5" level="project" />
     <orderEntry type="library" name="Maven: com.google.inject:guice:3.0" level="project" />
@@ -112,6 +109,8 @@
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-core:1.2.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-web:1.2.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-quartz:1.2.5" level="project" />
+    <orderEntry type="library" name="Maven: org.quartz-scheduler:quartz:2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: c3p0:c3p0:0.9.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.shiro:shiro-spring:1.2.5" level="project" />
     <orderEntry type="library" name="Maven: redis.clients:jedis:2.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-pool2:2.3" level="project" />
