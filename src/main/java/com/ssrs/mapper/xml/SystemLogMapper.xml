@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrs.mapper.SystemLogMapper">
+
+    <!-- 开启二级缓存 -->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ssrs.model.SystemLog">
+        <id column="id" property="id" />
+        <result column="client_ip" property="clientIp" />
+        <result column="uri" property="uri" />
+        <result column="type" property="type" />
+        <result column="method" property="method" />
+        <result column="param_dara" property="paramDara" />
+        <result column="session_id" property="sessionId" />
+        <result column="time" property="time" />
+        <result column="return_time" property="returnTime" />
+        <result column="return_data" property="returnData" />
+        <result column="http_status_code" property="httpStatusCode" />
+        <result column="time_consuming" property="timeConsuming" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, client_ip, uri, type, method, param_dara, session_id, time, return_time, return_data, http_status_code, time_consuming
+    </sql>
+
+</mapper>
