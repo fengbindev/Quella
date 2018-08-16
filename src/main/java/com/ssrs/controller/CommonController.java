@@ -26,6 +26,15 @@ public class CommonController extends BaseController {
 //		return resultMap;
 //	}
 
+
+    /**
+     * 跳转到主页
+     * @return
+     */
+    @RequestMapping(value = "app",method =RequestMethod.GET)
+    public String app(){
+        return "common/app";
+    }
     /**
      * 404错误
      *
@@ -188,7 +197,7 @@ public class CommonController extends BaseController {
 //    }
 
     /**
-     * 多账户登录踢出
+     * 多账户登录踢出跟在线踢出都是这个
      *
      * @return
      */

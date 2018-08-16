@@ -69,7 +69,7 @@ public class UserLoginController extends BaseController {
     @ResponseBody
     public Object submitLogin(User user, Boolean remeberMe, HttpServletRequest request) {
         try {
-            remeberMe = false;
+//            remeberMe = false;
             User loginInfo = TokenManager.login(user, remeberMe);
             resultMap.put("status", 200);
             resultMap.put("message", "登录成功");

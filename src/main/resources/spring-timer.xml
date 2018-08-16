@@ -39,6 +39,7 @@
 			<ref bean="jobDetail" />
 		</property>
 		<property name="cronExpression">
+			<!--测试用的-->
 			<!--<value>0/5 * * * * ?</value>-->
 			<!--每天2点触发-->
 			<value>0 0 2 * * ?</value>

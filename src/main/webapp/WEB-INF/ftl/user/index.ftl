@@ -35,9 +35,9 @@
       <div class="layui-layout-right">
         <ul class="kit-nav" lay-filter="header_right">
           <li class="kit-item" kit-target="help">
-            <a href="javascript:;">
-              <i class="layui-icon">&#xe607;</i>
-              <span>帮助</span>
+            <a href="javascript:;" id="pay">
+              <i class="layui-icon">&#xe65e;</i>
+              <span>捐赠我</span>
             </a>
           </li>
           <li class="kit-item" id="ccleft">
@@ -152,7 +152,7 @@
   <script src="${basePath}/plugins/kit-admin/polyfill.min.js"></script>
   <script baseUrl="${basePath}" src="${basePath}/plugins/kit-admin/kitadmin.js"></script>
   <script src="${basePath}/plugins/kit-admin/mockjs-config.js"></script>
-  <#--<script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>-->
+  <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
   <script>layui.use("admin");</script>
 <script>
     function logout() {

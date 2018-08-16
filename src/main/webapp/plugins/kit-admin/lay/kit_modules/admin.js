@@ -35,7 +35,13 @@ layui.define(mods, function (e) {
                 shade: !0,
                 dynamicRender: !0,
                 url: baseUrl+"/open/setting"
-            }), "help" === t && m.alert("QQ群：248049395，616153456")
+            }), "help" === t && m.open({
+                title: false,
+                type: 1,
+                content: '<img src='+baseUrl+'"/images/play.png" />',
+                area: ['500px', '604px'],
+                shadeClose: true
+            });
         }), layui.mockjs.inject(APIs), "SPA" === t.loadType && l.render(), "function" == typeof e && e()
     };
 
@@ -51,7 +57,7 @@ layui.define(mods, function (e) {
     });
 
     //主页
-    // routes.push({path: "/", component: "/role/index", name: "主页"})
+    routes.push({path: "/", component: "/open/app", name: "主页"})
     //个人中心
     routes.push({path: "/user/my", component: baseUrl+"/user/my", name: "个人中心"})
     var u = {

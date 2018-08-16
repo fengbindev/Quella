@@ -44,7 +44,7 @@ public class UserCoreController extends BaseController {
     private IUserRoleService userRoleService;
 
     /**
-     * 登录成功跳转到首页
+     * 登录成功跳转到登录首页
      *
      * @return
      */
