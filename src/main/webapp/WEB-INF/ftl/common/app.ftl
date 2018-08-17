@@ -43,10 +43,15 @@
                   <p style="margin-bottom: 5px;">QQ交流群：</p>
                   <p style="margin-bottom: 5px;">源码下载:
                     <a href='https://gitee.com/quella01/Quella/' target="_blank">
-                      <img src='https://gitee.com/quella01/Quella/badge/star.svg?theme=white' alt='star'></img>
+                      <img src='https://gitee.com/quella01/Quella/badge/star.svg?theme=white' alt='star' width="100px" height="25px"></img>
                     </a>
                     (项目源码)
                   </p>
+                    <p style="margin-left: 65px">
+                        <a href='https://github.com/fengbindev/Quella/' target="_blank">
+                                <iframe src="https://ghbtns.com/github-btn.html?user=fengbindev&repo=Quella&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170px" height="30px"></iframe>
+                        </a>
+                    </p>
                     <p style="margin-bottom: 5px;">希望大家在Fork项目或下载拉取项目的时候能给我一个Star,谢谢大家，也欢迎大家参与提交代码哦</p>
                     <p style="margin-bottom: 5px;">后续有时间我会提供此项目的开发文档，也会就此项目所用到的技术写博客教程</p>
                 </div>
@@ -180,7 +185,7 @@
                         <li class="layui-timeline-item">
                             <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
                             <div class="layui-timeline-content layui-text">
-                                <h3 class="layui-timeline-title">特别感谢一下开源项目：</h3>
+                                <h3 class="layui-timeline-title">特别感谢以下开源项目：</h3>
                                 <p>
                                 <ul>
                                     <li>前端框架：基于layui的kit-admin</li>

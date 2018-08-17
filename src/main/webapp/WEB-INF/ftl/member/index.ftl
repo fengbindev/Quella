@@ -61,7 +61,7 @@
         function onlineDetails(sessionId){
             var index = layer.open({
                 type: 2,
-                content: '${basePath}/member/onlineDetails/'+sessionId,
+                content: '${basePath}/member/onlineDetails?sessionId='+sessionId,
                 area: ['800px', '600px'],
                 maxmin: true
             });

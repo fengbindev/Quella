@@ -15,15 +15,15 @@
 	<!--<task:executor id="executor" pool-size="5" />  -->
     <!--<task:scheduler id="scheduler" pool-size="10" />  -->
     <!--<task:annotation-driven executor="executor" scheduler="scheduler" />-->
-
-	<bean id="taskJob" class="com.ssrs.core.timer.CleanSystemLogTask"/>
-	<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+<!--清除日志定时任务开始-->
+	<bean id="cleanSystemLogJob" class="com.ssrs.core.timer.CleanSystemLogTask"/>
+	<bean id="cleanSystemLogJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="group" value="job_work"/>
 		<property name="name" value="job_work_name"/>
 		<!--false表示等上一个任务执行完后再开启新的任务-->
 		<property name="concurrent" value="false"/>
 		<property name="targetObject">
-			<ref bean="taskJob"/>
+			<ref bean="cleanSystemLogJob"/>
 		</property>
 		<property name="targetMethod">
 			<value>run</value>
@@ -31,26 +31,59 @@
 	</bean>
 
 	<!--  调度触发器 -->
-	<bean id="myTrigger"
+	<bean id="cleanSystemLogTrigger"
 		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="name" value="work_default_name"/>
 		<property name="group" value="work_default"/>
 		<property name="jobDetail">
-			<ref bean="jobDetail" />
+			<ref bean="cleanSystemLogJobDetail" />
 		</property>
 		<property name="cronExpression">
 			<!--测试用的-->
-			<!--<value>0/5 * * * * ?</value>-->
+			<!--<value>0/10 * * * * ?</value>-->
 			<!--每天2点触发-->
 			<value>0 0 2 * * ?</value>
 		</property>
 	</bean>
+	<!--清除日志定时任务结束-->
+
+	<!--初始化数据库定时任务开始-->
+	<bean id="initQuellaDataJob" class="com.ssrs.core.timer.InitQuellaDataTask"/>
+	<bean id="initQuellaDataJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="group" value="job_work_2"/>
+		<property name="name" value="job_work_name_2"/>
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="initQuellaDataJob"/>
+		</property>
+		<property name="targetMethod">
+			<value>run</value>
+		</property>
+	</bean>
+	<!--初始化数据库定时任务结束-->
+	<!--  调度触发器 -->
+	<bean id="initQuellaDataTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="name" value="work_default_name_2"/>
+		<property name="group" value="work_default_2"/>
+		<property name="jobDetail">
+			<ref bean="initQuellaDataJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<!--测试用的-->
+			<!--<value>0/10 * * * * ?</value>-->
+			<value>0 0 0/1 * * ?</value>
+		</property>
+	</bean>
+
 
 	<!-- 调度工厂 -->
 	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
-				<ref bean="myTrigger"/>
+				<ref bean="cleanSystemLogTrigger"/>
+				<ref bean="initQuellaDataTrigger"/>
 			</list>
 		</property>
 	</bean>

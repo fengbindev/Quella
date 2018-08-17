@@ -20,4 +20,6 @@ public interface IUserService extends IService<User> {
     int insertUserAndRole(User user, String rids);
 
     int updateById(User user, String rids);
+
+    void initQuellaData();
 }

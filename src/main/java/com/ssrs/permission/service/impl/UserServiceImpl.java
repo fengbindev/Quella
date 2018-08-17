@@ -72,4 +72,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
         return count;
     }
+
+    @Override
+    public void initQuellaData() {
+        baseMapper.initQuellaData();
+    }
 }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +45,21 @@ public class MemberController {
     @RequestMapping(value = "index",method = RequestMethod.GET)
     public ModelAndView index() {
         List<UserOnlineBo> list = customSessionManager.getAllUser();
-        return new ModelAndView("member/index", "list", list);
+        List<UserOnlineBo> newList = new ArrayList<>(100);
+        Iterator<UserOnlineBo> iterator = list.iterator();
+        //将同一个用户的session去重,之保留最后登录的session
+        while (iterator.hasNext()){
+            UserOnlineBo bo = iterator.next();
+            Iterator<UserOnlineBo> iterator1 = newList.iterator();
+            while (iterator1.hasNext()){
+                UserOnlineBo newBo = iterator1.next();
+                if (newBo.getEmail().equals(bo.getEmail()) && newBo.getLastLoginTime().getTime()<bo.getLastLoginTime().getTime()){
+                    iterator1.remove();
+                }
+            }
+            newList.add(bo);
+        }
+        return new ModelAndView("member/index", "list", newList);
     }
 
     /**
@@ -55,6 +71,7 @@ public class MemberController {
     @ResponseBody
     public ModelAndView online() {
         List<UserOnlineBo> list = customSessionManager.getAllUser();
+
         return new ModelAndView("member/online", "list", list);
     }
 
@@ -63,9 +80,9 @@ public class MemberController {
      *
      * @return
      */
-    @RequestMapping(value = "onlineDetails/{sessionId}", method = RequestMethod.GET)
-    public ModelAndView onlineDetails(@PathVariable("sessionId") String sessionIds) {
-        UserOnlineBo bo = customSessionManager.getSession(sessionIds);
+    @RequestMapping(value = "onlineDetails", method = RequestMethod.GET)
+    public ModelAndView onlineDetails(String sessionId) {
+        UserOnlineBo bo = customSessionManager.getSession(sessionId);
         return new ModelAndView("member/detail", "bo", bo);
     }
 
@@ -73,7 +90,7 @@ public class MemberController {
      * 改变Session状态
      *
      * @param status
-     * @param sessionId
+     * @param sessionIds
      * @return
      */
     @RequestMapping(value = "changeSessionStatus", method = RequestMethod.POST)
