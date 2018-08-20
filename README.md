@@ -8,7 +8,9 @@
 "Quella"中译英为"杀手"的意思,亦有“杀人红尘中，脱身白刃里”的感觉，正符合这个项目的意境----为一个好的项目名而兴奋的boy  :)
 
 #### 项目演示地址
-http://quella.ssrsdev.top/ 密码：admin
+http://quella.ssrsdev.top/
+账号：ssrs@qq.com
+密码：admin
 
 #### 软件架构
 软件架构说明
