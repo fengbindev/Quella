@@ -235,11 +235,11 @@
       <version>0.1</version>
     </dependency>
     <!-- freemarker + shiro（标签） begin -->
-    <dependency>
-      <artifactId>quartz</artifactId>
-      <groupId>org.opensymphony.quartz</groupId>
-      <version>1.6.1</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<artifactId>quartz</artifactId>-->
+      <!--<groupId>org.opensymphony.quartz</groupId>-->
+      <!--<version>1.6.1</version>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>org.apache.shiro</groupId>
       <artifactId>shiro-all</artifactId>

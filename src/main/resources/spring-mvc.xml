@@ -25,20 +25,20 @@
 	<!-- 这个一定得有，注意了，如果其他配置也有需要这个，已经配置了，那不必了 -->
 	<mvc:annotation-driven  />
 
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<!--默认拦截的连接-->
-			<mvc:mapping path="/**"/>
-			<!--不拦截的连接-->
-			<!--<mvc:exclude-mapping path="/api**/**"/>-->
-			<mvc:exclude-mapping path="/favicon.ico"/>
-			<mvc:exclude-mapping path="/images/**"/>
-			<mvc:exclude-mapping path="/css/**"/>
-			<mvc:exclude-mapping path="/js/**"/>
-			<mvc:exclude-mapping path="/plugins/**"/>
-			<bean class="com.ssrs.interceptor.SystemLogInterceptor"></bean>
-		</mvc:interceptor>
-	</mvc:interceptors>
+	<!--<mvc:interceptors>-->
+		<!--<mvc:interceptor>-->
+			<!--&lt;!&ndash;默认拦截的连接&ndash;&gt;-->
+			<!--<mvc:mapping path="/**"/>-->
+			<!--&lt;!&ndash;不拦截的连接&ndash;&gt;-->
+			<!--&lt;!&ndash;<mvc:exclude-mapping path="/api**/**"/>&ndash;&gt;-->
+			<!--<mvc:exclude-mapping path="/favicon.ico"/>-->
+			<!--<mvc:exclude-mapping path="/images/**"/>-->
+			<!--<mvc:exclude-mapping path="/css/**"/>-->
+			<!--<mvc:exclude-mapping path="/js/**"/>-->
+			<!--<mvc:exclude-mapping path="/plugins/**"/>-->
+			<!--<bean class="com.ssrs.interceptor.SystemLogInterceptor"></bean>-->
+		<!--</mvc:interceptor>-->
+	<!--</mvc:interceptors>-->
 
 
 

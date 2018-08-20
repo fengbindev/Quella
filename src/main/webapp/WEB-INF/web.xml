@@ -32,7 +32,7 @@
 
     <context-param>
         <param-name>loggingLevel</param-name>
-        <param-value>info</param-value>
+        <param-value>ALL</param-value>
     </context-param>
     <!-- 加载log4j配置文件 -->
     <listener>

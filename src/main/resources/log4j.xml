@@ -91,7 +91,7 @@
 	<!-- Root Logger -->
 	<!-- 所有logger的父类，记录所有的日志。 -->
 	<root>
-		<level value="ALL"></level>  <!-- 限定记录等级 -->
+		<level value="${loggingLevel}"></level>  <!-- 限定记录等级 -->
 		<appender-ref ref="DEFAULT-APPENDER" />  <!-- 调用记录方式 -->
 		<appender-ref ref="console"/>
 	</root>
