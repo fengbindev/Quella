@@ -39,6 +39,13 @@ public class APPUtil {
         return map;
     }
 
+    public static Map<String, Object> returnMap(String status, String message) {
+        Map<String, Object> map = new HashMap<>(16);
+        map.put("status", status);
+        map.put("message", message);
+        return map;
+    }
+
     /**
      * 通过所设置的类型来获得对应返回值
      * @param type

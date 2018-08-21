@@ -287,6 +287,12 @@
     </dependency>
     <!-- redis end -->
 
+    <dependency>
+      <groupId>cc.openkit</groupId>
+      <artifactId>open_kit</artifactId>
+      <version>1.1.18</version>
+    </dependency>
+
 
   </dependencies>
 
