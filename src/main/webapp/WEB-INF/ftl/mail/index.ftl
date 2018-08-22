@@ -104,7 +104,7 @@
     </div>
 </div>
     <script>
-        layui.use(['form', 'layedit', 'laydate', 'element', 'layer'], function(){
+        layui.use(['form', 'layedit',  'element', 'layer'], function(){
             var form = layui.form,
                     layer = layui.layer,
                     element = layui.element;

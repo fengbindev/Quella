@@ -107,16 +107,11 @@
         var currPage = 1;
         // 添加
         var table;
-        layui.use(['jquery', 'layer', 'table', 'laydate'], function () {
+        layui.use(['jquery', 'layer', 'table'], function () {
             table = layui.table;
             form = layui.form;
-            var laydate = layui.laydate;
             var layer = layui.layer;
 
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#searchTime' //指定元素
-            });
             //让层自适应iframe
             $('#add').on('click', function(){
                 var index = layer.open({

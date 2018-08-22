@@ -54,7 +54,7 @@
 
     <script >
 
-        layui.use(['jquery', 'layer', 'table', 'laydate'], function () {
+        layui.use(['jquery', 'layer', 'table'], function () {
             var layer = layui.layer;
         });
         // 修改

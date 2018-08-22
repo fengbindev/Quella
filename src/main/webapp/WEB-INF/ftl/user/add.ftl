@@ -65,7 +65,7 @@
 <script src="${basePath}/js/jquery.js"></script>
 <script src="${basePath}/plugins/kit-admin/layui.js"></script>
 <script>
-    layui.use(['form', 'layedit','table','laydate'], function(){
+    layui.use(['form', 'layedit','table'], function(){
         var form = layui.form ,layer = layui.layer;
         var table = layui.table;
 

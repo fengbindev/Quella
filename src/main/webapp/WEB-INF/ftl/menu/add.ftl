@@ -222,7 +222,7 @@
 <script src="${basePath}/js/jquery.js"></script>
 <script src="${basePath}/plugins/kit-admin/layui.js"></script>
 <script>
-    layui.use(['form', 'layedit', 'laydate'], function(){
+    layui.use(['form', 'layedit'], function(){
         var form = layui.form ,layer = layui.layer;
 
         //自定义验证规则

@@ -50,7 +50,7 @@
 <script src="${basePath}/plugins/layui-treeselect/plugins/layui/layui.js"></script>
 
 <script>
-    layui.use(['form', 'layedit','table','laydate'], function(){
+    layui.use(['form', 'layedit','table'], function(){
         var form = layui.form ,layer = layui.layer;
         var table = layui.table;
         //监听提交，发送请求
