@@ -57,7 +57,7 @@ public class TestGenerator {
                 .setDbColumnUnderline(true)  // 指定表名 字段名是否使用下划线
                 .setNaming(NamingStrategy.underline_to_camel) // 数据库表映射到实体的命名策略
                 .setTablePrefix("ssrs_")
-                .setInclude("");  // 生成的表
+                .setInclude("ssrs_mail");  // 生成的表
 
         //4. 包名策略配置
         PackageConfig pkConfig = new PackageConfig();

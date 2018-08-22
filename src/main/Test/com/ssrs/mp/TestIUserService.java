@@ -27,7 +27,6 @@ import java.util.Date;
 @ContextConfiguration("classpath:spring.xml")
 public class TestIUserService {
 
-    @Qualifier("userServiceImpl")
     @Autowired
     private IUserService userService;
 
