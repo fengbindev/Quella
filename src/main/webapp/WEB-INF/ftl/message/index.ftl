@@ -79,19 +79,24 @@
                 <legend>使用说明</legend>
             </fieldset>
 
-            <blockquote class="layui-elem-quote layui-quote-nm">
-            </blockquote>
+            <blockquote class="layui-elem-quote">后台调用短信发送</blockquote>
+            <pre class="layui-code">
+ @Autowired
+ private IAlidayuService alidayuService;
+alidayuService.send(phone,code);//code 为key,value格式
 
+            </pre>
 
-            <pre class="layui-status"></pre>
+            <blockquote class="layui-elem-quote">通用短信验证码发送接口说明</blockquote>
+            <pre class="layui-code">
+发送短信验证码接口地址：/alidayu/commonSendSign
+所需参数：phone(手机号码)
 
-            <blockquote class="layui-elem-quote">
-            </blockquote>
+验证码验证接口地址：/alidayu/isSignOk
+所需参数：phone(手机号) kst(验证码token) code(验证码)
 
-
-
-
-
+这两个接口配合使用可快速实现短信验证功能，具体实现请看源码
+            </pre>
         </div>
     </div>
 </div>
