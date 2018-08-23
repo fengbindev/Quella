@@ -65,11 +65,11 @@ public class MailController {
     public Object emailTest(String email, String title, String content) {
         boolean sendOk = false;
         try {
-             sendOk = mailService.sendHtmlMail(email, title, content);
+            sendOk = mailService.sendHtmlMail(email, title, content);
         } catch (Exception e) {
             return APPUtil.returnMap("101", e.getMessage());
         }
-        return sendOk?APPUtil.returnMap("200","邮件发送成功"):APPUtil.returnMap("101","邮件发送失败");
+        return sendOk ? APPUtil.returnMap("200", "邮件发送成功") : APPUtil.returnMap("101", "邮件发送失败");
     }
 }
 

@@ -26,10 +26,11 @@ public class EditorController {
 
     /**
      * 跳转到首页
+     *
      * @return
      */
-    @RequestMapping(value = "index" ,method = RequestMethod.GET)
-    public String index(){
+    @RequestMapping(value = "index", method = RequestMethod.GET)
+    public String index() {
         return "editor/index";
     }
 

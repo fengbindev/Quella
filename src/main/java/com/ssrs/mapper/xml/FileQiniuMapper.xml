@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrs.mapper.FileQiniuMapper">
+
+    <!-- 开启二级缓存 -->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ssrs.model.FileQiniu">
+        <id column="fq_id" property="fqId" />
+        <result column="fq_accessKey" property="fqAccesskey" />
+        <result column="fq_secretKey" property="fqSecretkey" />
+        <result column="fq_bucket" property="fqBucket" />
+        <result column="fq_url" property="fqUrl" />
+        <result column="fq_zone" property="fqZone" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        fq_id, fq_accessKey, fq_secretKey, fq_bucket, fq_url, fq_zone
+    </sql>
+
+</mapper>
