@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrs.mapper.TradeMapper">
+
+    <!-- 开启二级缓存 -->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ssrs.model.Trade">
+        <id column="id" property="id" />
+        <result column="payType" property="payType" />
+        <result column="body" property="body" />
+        <result column="subject" property="subject" />
+        <result column="outTradeNo" property="outTradeNo" />
+        <result column="tradeNo" property="tradeNo" />
+        <result column="totalAmount" property="totalAmount" />
+        <result column="payUrl" property="payUrl" />
+        <result column="state" property="state" />
+        <result column="createTime" property="createTime" />
+
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, payType, body, subject, outTradeNo, tradeNo, totalAmount, payUrl, state, createTime
+    </sql>
+
+</mapper>

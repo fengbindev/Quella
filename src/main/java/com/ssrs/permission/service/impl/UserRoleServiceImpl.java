@@ -22,5 +22,6 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
     @Override
     public List<String> findRoleIdByUserId(Long id) {
         return baseMapper.findRoleIdByUserId(id);
+
     }
 }
