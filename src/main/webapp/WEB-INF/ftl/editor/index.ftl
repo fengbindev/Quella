@@ -13,10 +13,12 @@
 
                             <!--这里写页面的代码-->
                             <div class="layui-card-body">
+
                                 <div id="editor1">
                                     <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
                                 </div>
                                 <#include "../common/editor.ftl">
+
                             </div>
                         </div>
                     </div>
@@ -27,10 +29,9 @@
 
         <div class="layui-tab-item">
             <blockquote class="layui-elem-quote"> 富文本调用说明</blockquote>
-            <pre class="layui-code"> </pre>
-            <blockquote class="layui-elem-quote"></blockquote>
-            <pre class="layui-code">
-
+            <pre class="layui-code"  lay-encode="true">
+注意：在使用富文本的时候，必须先配置七牛云，否则图片无法插入，当然你也可以在common/editor.ftl里面修改自己的图片服务器地址
+如果想定制更多功能，请查看富文本官方文档：http://www.wangeditor.com/
             </pre>
         </div>
     </div>
@@ -38,3 +39,5 @@
 
     <script src="${basePath}/js/jquery.js"></script>
     <script src="${basePath}/plugins/kit-admin/layui.js"></script>
+
+

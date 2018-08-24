@@ -64,15 +64,12 @@
 
         <div class="layui-tab-item">
 
-            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-                <legend>使用说明</legend>
-            </fieldset>
-            <blockquote class="layui-elem-quote"></blockquote>
+            <blockquote class="layui-elem-quote">七牛云调用说明</blockquote>
             <pre class="layui-code">
-            </pre>
+具体的参数调用说明请查看openkit第三方sdk工具包文档：http://www.openkit.cc/docs/openkit/#/
 
-            <blockquote class="layui-elem-quote"></blockquote>
-            <pre class="layui-code">
+这里给大家提供了几个文件上传通用接口，在FileController里面，请自行查看
+
             </pre>
         </div>
     </div>

@@ -11,6 +11,7 @@ import com.ssrs.service.IFileQiniuService;
 import com.ssrs.util.commom.APPUtil;
 import com.ssrs.util.commom.LoggerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,7 @@ import java.util.Map;
  * @since 2018-08-23
  */
 @Controller
+@Scope(value = "prototype")
 @RequestMapping("/fileQiniu")
 public class FileQiniuController {
 

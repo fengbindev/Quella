@@ -4,5 +4,7 @@
         var E = window.wangEditor;
         var editor = new E('#editor1');
         //  var editor = new E( document.getElementById('editor1') );
+        // 配置服务器端地址
+        editor.customConfig.uploadImgServer = '${basePath}/file/wangEditorUploadImg';
         editor.create();
     </script>

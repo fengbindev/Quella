@@ -191,6 +191,7 @@
                                     <li>前端框架：基于layui的kit-admin</li>
                                     <li> Mybatis 的增强工具：mybatisPlus</li>
                                     <li>Java工具包：Hutool</li>
+                                    <li>第三方sdk工具包：openkit</li>
                                     <li>后台脚手架：kitAdmin</li>
                                     <li>sojson：ShiroDemo</li>
                                 </ul>
