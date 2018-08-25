@@ -10,8 +10,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Quella-登录</title>
-  <link rel="stylesheet" href="<%=basePath%>/plugins/kit-admin/css/layui.css" id="layui">
-  <link rel="stylesheet" href="<%=basePath%>/plugins/kit-admin/css/login.css">
+  <link rel="stylesheet" href="<%=basePath%>/plugins/kitadmin/css/layui.css" id="layui">
+  <link rel="stylesheet" href="<%=basePath%>/plugins/kitadmin/css/login.css">
 </head>
 
 <body>
@@ -57,7 +57,7 @@
   </div>
   <script src="<%=basePath%>/js/jquery.js"></script>
   <script src="<%=basePath%>/js/MD5.js"></script>
-  <script src="<%=basePath%>/plugins/kit-admin/layui.js"></script>
+  <script src="<%=basePath%>/plugins/kitadmin/layui.js"></script>
   <script>
 
       layui.use(['jquery', 'layer','form'], function () {
