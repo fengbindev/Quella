@@ -60,7 +60,7 @@
 		<property name="mapperLocations"  >
 			<list>
 				<value>classpath:com/ssrs/permission/mapper/xml/*.xml</value>
-				<!--<value>classpath:com/ssrs/permission/mapper/xml/*.xml</value>-->
+				<value>classpath:com/ssrs/mapper/xml/*.xml</value>
 			</list>
 		</property>
 		<!-- 注入全局MP策略配置 -->
