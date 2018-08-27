@@ -86,7 +86,7 @@ public class FileQiniuController {
         QiniuConfig config = new QiniuConfig(fileQiniu.getFqAccesskey(), fileQiniu.getFqSecretkey(), fileQiniu.getFqBucket());
         try {
             Map<String, Object> qiniumap = QIniuService.uploadByFileRecorder(config, file.getBytes(), fileQiniu.getFqZone());
-            if ("200".equals(map.get("code"))) {
+            if ("200".equals(qiniumap.get("code"))) {
                 DefaultPutRet putRet = (DefaultPutRet) qiniumap.get("putRet");
                 map.put(APPUtil.RESULT_STATUS, APPUtil.RESULT_OK);
                 map.put("src", putRet.hash);

@@ -68,6 +68,12 @@
             <pre class="layui-code">
 具体的参数调用说明请查看openkit第三方sdk工具包文档：http://www.openkit.cc/docs/openkit/#/
 
+注意：机房信息按需求填写选择下面参数就行
+华东:zone0
+华北:zone1
+华南:zone2
+北美:zoneNa0
+
 这里给大家提供了几个文件上传通用接口，在FileController里面，请自行查看
 
             </pre>
@@ -93,11 +99,16 @@
                 ,done: function(res){
                     //如果上传失败
                     if(res.status != 200){
+                        var demoText = $('#demoText');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            uploadInst.upload();
+                        });
                         return layer.msg('上传失败');
                     }
                     //上传成功
                     var demoText = $('#demoText');
-                    demoText.html('<span style="color: #2ec01f;">上传成功,图片地址：<a href="'+res.src+'" target="_blank">'+res.src+'</a> </span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.html('<span style="color: #2ec01f;">上传成功,图片地址：<a href="${(fileQiniu.fqUrl)!}/'+res.src+'" target="_blank">'+res.src+'</a> </span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
                     demoText.find('.demo-reload').on('click', function(){
                         uploadInst.upload();
                     });
