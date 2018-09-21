@@ -1,8 +1,10 @@
 package com.ssrs.controller.alipay;
 
 import com.ssrs.core.config.Alipay;
+import com.ssrs.model.PaySettingAlipay;
 import com.ssrs.model.Trade;
 import com.ssrs.service.AlipayService;
+import com.ssrs.service.IPaySettingAlipayService;
 import com.ssrs.service.TradeService;
 import com.ssrs.util.alipay.AliPayStatusEnum;
 import com.ssrs.util.alipay.AlipayUtils;
@@ -26,7 +28,7 @@ import java.util.Map;
 @RequestMapping("/aliPay")
 public class AliPayController {
 
-    Alipay alipay;
+//    Alipay alipay;
 
     AlipayUtils alipayUtils;
 
@@ -36,6 +38,9 @@ public class AliPayController {
     @Autowired
     private TradeService tradeService;
 
+    @Autowired
+    private IPaySettingAlipayService paySettingAlipayService;
+
     /**
      * PC网页支付
      * @param trade
@@ -44,8 +49,9 @@ public class AliPayController {
      */
     @RequestMapping(value = "toPayAsPC",method = RequestMethod.POST)
     public ResponseEntity toPayAsPC(@RequestBody Trade trade) throws Exception{
+        PaySettingAlipay paySettingAlipay = paySettingAlipayService.selectById(1);
         trade.setOutTradeNo(alipayUtils.getOrderCode());
-        Map map = alipayService.toPayAsPC(alipay,trade);
+        Map map = alipayService.toPayAsPC(paySettingAlipay,trade);
         tradeService.createTrade(trade,map);
         return new ResponseEntity(map,HttpStatus.OK);
     }
@@ -59,7 +65,8 @@ public class AliPayController {
     @RequestMapping(value = "toPayAsWeb",method = RequestMethod.POST)
     public ResponseEntity toPayAsWeb(@RequestBody Trade trade) throws Exception{
         trade.setOutTradeNo(alipayUtils.getOrderCode());
-        Map map = alipayService.toPayAsWeb(alipay,trade);
+        PaySettingAlipay paySettingAlipay = paySettingAlipayService.selectById(1);
+        Map map = alipayService.toPayAsWeb(paySettingAlipay,trade);
         tradeService.createTrade(trade,map);
         return new ResponseEntity(map,HttpStatus.OK);
     }
@@ -73,9 +80,10 @@ public class AliPayController {
      */
     @RequestMapping(value = "/return",method = RequestMethod.GET)
     public ModelAndView returnPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        response.setContentType("text/html;charset=" + alipay.getCharset());
+        PaySettingAlipay paySettingAlipay = paySettingAlipayService.selectById(1);
+        response.setContentType("text/html;charset=utf-8");
         //内容验签，防止黑客篡改参数
-        if(alipayUtils.rsaCheck(request,alipay)){
+        if(alipayUtils.rsaCheck(request,paySettingAlipay)){
             //商户订单号
             String outTradeNo = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
             //支付宝交易号
@@ -106,11 +114,12 @@ public class AliPayController {
      */
     @RequestMapping("/notify")
     public String notify(HttpServletRequest request) throws Exception{
+        PaySettingAlipay paySettingAlipay = paySettingAlipayService.selectById(1);
         Map<String, String[]> parameterMap = request.getParameterMap();
         StringBuilder notifyBuild = new StringBuilder("/****************************** alipay notify ******************************/\n");
         parameterMap.forEach((key, value) -> notifyBuild.append(key + "=" + value[0] + "\n") );
         //内容验签，防止黑客篡改参数
-        if (alipayUtils.rsaCheck(request,alipay)) {
+        if (alipayUtils.rsaCheck(request,paySettingAlipay)) {
             //交易状态
             String tradeStatus = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"),"UTF-8");
             // 商户订单号

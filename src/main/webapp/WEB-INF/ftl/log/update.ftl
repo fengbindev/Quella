@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>权限编辑</title>
-    <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/theme/default.css" id="theme">
-    <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/kitadmin.css" id="kitadmin">
+    <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/theme/default.css" id="theme">
+    <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/kitadmin.css" id="kitadmin">
     <link rel="stylesheet" href="${basePath}/css/doc.css">
-    <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/layui.css" id="layui">
+    <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/layui.css" id="layui">
 </head>
 <body>
 

@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>角色添加</title>
-    <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/theme/default.css" id="theme">
-    <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/kitadmin.css" id="kitadmin">
+    <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/theme/default.css" id="theme">
+    <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/kitadmin.css" id="kitadmin">
     <link rel="stylesheet" href="${basePath}/css/doc.css"></link>
-    <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/layui.css" id="layui">
+    <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/layui.css" id="layui">
     <link rel="stylesheet" href="${basePath}/plugins/layui-treeselect/src/css/ztree/metro/ztree.css" media="all"/>
     <link rel="stylesheet" href="${basePath}/plugins/layui-treeselect/src/css/treeselect.css" media="all"/>
 
@@ -47,7 +47,7 @@
 </div>
 
 <script src="${basePath}/js/jquery.js"></script>
-<script src="${basePath}/plugins/kit-admin/layui.js"></script>
+<script src="${basePath}/plugins/kitadmin/layui.js"></script>
 <script>
     layui.use(['form', 'layedit','table'], function(){
         var form = layui.form ,layer = layui.layer;

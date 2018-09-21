@@ -18,7 +18,7 @@
   <div class="kit-login">
     <div class="kit-login-bg"></div>
     <div class="kit-login-wapper">
-      <h2 class="kit-login-slogan">欢迎使用 <br> Quella 1.0 后台管理系统</h2>
+      <h2 class="kit-login-slogan">欢迎使用 <br> Quella 1.1 后台管理系统</h2>
       <div class="kit-login-form">
         <h4 class="kit-login-title">登录</h4>
         <form class="layui-form" action="">

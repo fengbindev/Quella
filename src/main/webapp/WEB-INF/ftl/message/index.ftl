@@ -101,7 +101,7 @@ alidayuService.send(phone,code);//code 为key,value格式
     </div>
 </div>
     <script src="${basePath}/js/jquery.js"></script>
-    <script src="${basePath}/plugins/kit-admin/layui.js"></script>
+    <script src="${basePath}/plugins/kitadmin/layui.js"></script>
     <script>
         layui.use(['form', 'layedit', 'element', 'layer'], function(){
             var form = layui.form,

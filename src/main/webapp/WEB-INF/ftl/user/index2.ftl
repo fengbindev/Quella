@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Quella</title>
     <link   rel="shortcut icon" href="${basePath}/favicon.ico" />
-  <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/layui.css" id="layui">
-  <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/theme/default.css" id="theme">
-  <link rel="stylesheet" href="${basePath}/plugins/kit-admin/css/kitadmin.css" id="kitadmin">
+  <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/layui.css" id="layui">
+  <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/theme/default.css" id="theme">
+  <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/kitadmin.css" id="kitadmin">
 </head>
 
 <body class="layui-layout-body kit-theme-default">
@@ -148,10 +148,10 @@
           _body.addClass('kit-theme-' + themeName);
       }
   </script>
-  <script baseUrl="${basePath}" src="${basePath}/plugins/kit-admin/layui.js"></script>
-  <script src="${basePath}/plugins/kit-admin/polyfill.min.js"></script>
-  <script baseUrl="${basePath}" src="${basePath}/plugins/kit-admin/kitadmin.js"></script>
-  <script src="${basePath}/plugins/kit-admin/mockjs-config.js"></script>
+  <script baseUrl="${basePath}" src="${basePath}/plugins/kitadmin/layui.js"></script>
+  <script src="${basePath}/plugins/kitadmin/polyfill.min.js"></script>
+  <script baseUrl="${basePath}" src="${basePath}/plugins/kitadmin/kitadmin.js"></script>
+  <script src="${basePath}/plugins/kitadmin/mockjs-config.js"></script>
   <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.min.js"></script>
   <script>layui.use("admin");</script>
 <script>

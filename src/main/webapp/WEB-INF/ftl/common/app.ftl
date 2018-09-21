@@ -157,7 +157,7 @@
                     </tr>
                       <tr>
                         <td>版本号</td>
-                        <td>v1.0</td>
+                        <td>v1.1</td>
                       </tr>
                       <tr>
                         <td>作者</td>
@@ -212,6 +212,22 @@
                                         <li>密码加密：采用MD5加盐加密</li>
                                         <li>定时任务：使用Quartz做定时任务(暂时还没做分布式)</li>
                                     </ul>
+                                </p>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">2018年9月21日 (v1.1)</h3>
+                                <p>
+                                    <b>#集成一些基本的第三方服务</b>
+                                <ul>
+                                    <li>支付宝PC段支付与H5支付</li>
+                                    <li>七牛云存储</li>
+                                    <li>富文本</li>
+                                    <li>邮件发送</li>
+                                    <li>阿里云短信服务</li>
+                                </ul>
                                 </p>
                             </div>
                         </li>

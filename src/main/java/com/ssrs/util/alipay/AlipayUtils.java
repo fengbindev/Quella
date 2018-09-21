@@ -4,6 +4,7 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.internal.util.StringUtils;
 import com.ssrs.core.config.Alipay;
+import com.ssrs.model.PaySettingAlipay;
 import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
@@ -44,7 +45,7 @@ public class AlipayUtils {
      * @param request
      * @return
      */
-    public boolean rsaCheck(HttpServletRequest request, Alipay alipay){
+    public boolean rsaCheck(HttpServletRequest request, PaySettingAlipay alipay){
 
         /**
          *  获取支付宝POST过来反馈信息
@@ -64,9 +65,9 @@ public class AlipayUtils {
 
         try {
             boolean verifyResult = AlipaySignature.rsaCheckV1(params,
-                    alipay.getPublicKey(),
-                    alipay.getCharset(),
-                    alipay.getSignType());
+                    alipay.getPsaPublicKey(),
+                    alipay.getPsaCharset(),
+                    alipay.getPsaSignType());
             return verifyResult;
         } catch (AlipayApiException e) {
             return false;

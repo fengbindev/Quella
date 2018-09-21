@@ -6,6 +6,7 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
 import com.ssrs.core.config.Alipay;
+import com.ssrs.model.PaySettingAlipay;
 import com.ssrs.model.Trade;
 import com.ssrs.service.AlipayService;
 import com.ssrs.util.alipay.AlipayUtils;
@@ -23,8 +24,8 @@ public class AlipayServiceImpl implements AlipayService {
     private AlipayUtils alipayUtils = new AlipayUtils();
 
     @Override
-    public Map toPayAsPC(Alipay alipay, Trade trade) throws Exception {
-        AlipayClient alipayClient = new DefaultAlipayClient(alipay.getGatewayUrl(), alipay.getAppID(), alipay.getPrivateKey(), alipay.getFormat(), alipay.getCharset(), alipay.getPublicKey(), alipay.getSignType());
+    public Map toPayAsPC(PaySettingAlipay alipay, Trade trade) throws Exception {
+        AlipayClient alipayClient = new DefaultAlipayClient(alipay.getPsaServerUrl(), alipay.getPsaAppId(), alipay.getPsaPrivateKey(), alipay.getPsaFormat(), alipay.getPsaCharset(), alipay.getPsaPublicKey(), alipay.getPsaSignType());
 
         /**
          * 创建API对应的request(电脑网页版)
@@ -34,8 +35,8 @@ public class AlipayServiceImpl implements AlipayService {
         /**
          * 订单完成后返回的页面和异步通知地址
          */
-        request.setReturnUrl(alipay.getReturnUrl());
-        request.setNotifyUrl(alipay.getNotifyUrl());
+        request.setReturnUrl(alipay.getPsaDoMain());
+        request.setNotifyUrl(alipay.getPsaNotifyUrl());
 
         /**
          *  填充订单参数
@@ -47,7 +48,7 @@ public class AlipayServiceImpl implements AlipayService {
                 "    \"subject\":\""+trade.getSubject()+"\"," +
                 "    \"body\":\""+trade.getBody()+"\"," +
                 "    \"extend_params\":{" +
-                "    \"sys_service_provider_id\":\""+alipay.getSysServiceProviderId()+"\"" +
+//                "    \"sys_service_provider_id\":\""+alipay.getSysServiceProviderId()+"\"" +
                 "    }"+
                 "  }");//填充业务参数
         /**
@@ -62,8 +63,8 @@ public class AlipayServiceImpl implements AlipayService {
     }
 
     @Override
-    public Map toPayAsWeb(Alipay alipay, Trade trade) throws Exception {
-        AlipayClient alipayClient = new DefaultAlipayClient(alipay.getGatewayUrl(), alipay.getAppID(), alipay.getPrivateKey(), alipay.getFormat(), alipay.getCharset(), alipay.getPublicKey(), alipay.getSignType());
+    public Map toPayAsWeb(PaySettingAlipay alipay, Trade trade) throws Exception {
+        AlipayClient alipayClient = new DefaultAlipayClient(alipay.getPsaServerUrl(), alipay.getPsaAppId(), alipay.getPsaPrivateKey(), alipay.getPsaFormat(), alipay.getPsaCharset(), alipay.getPsaPublicKey(), alipay.getPsaSignType());
 
         /**
          * 创建API对应的request(手机网页版)
@@ -73,8 +74,8 @@ public class AlipayServiceImpl implements AlipayService {
         /**
          * 订单完成后返回的页面和异步通知地址
          */
-        request.setReturnUrl(alipay.getReturnUrl());
-        request.setNotifyUrl(alipay.getNotifyUrl());
+        request.setReturnUrl(alipay.getPsaDoMain());
+        request.setNotifyUrl(alipay.getPsaNotifyUrl());
         /**
          *  填充订单参数
          */
@@ -85,7 +86,7 @@ public class AlipayServiceImpl implements AlipayService {
                 "    \"subject\":\""+trade.getSubject()+"\"," +
                 "    \"body\":\""+trade.getBody()+"\"," +
                 "    \"extend_params\":{" +
-                "    \"sys_service_provider_id\":\""+alipay.getSysServiceProviderId()+"\"" +
+//                "    \"sys_service_provider_id\":\""+alipay.getSysServiceProviderId()+"\"" +
                 "    }"+
                 "  }");//填充业务参数
 

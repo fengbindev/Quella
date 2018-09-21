@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Quella</title>
+	<title>Quella-1.1</title>
 	<!-- build:css -->
     <link   rel="shortcut icon" href="${basePath}/favicon.ico" />
 	<link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/layui.css">
@@ -37,7 +37,7 @@
 					<i class="layui-icon">&#xe65a;</i>
 				</div>
 				<div class="layui-logo-brand">
-					<a href="#/">Quella 1.0</a>
+					<a href="#/">Quella 1.1</a>
 				</div>
 			</div>
 			<div class="layui-layout-left">
@@ -147,7 +147,7 @@
 	<!-- build:js -->
 
 	<script src="${basePath}/plugins/kitadmin/polyfill.min.js"></script>
-	<script src="${basePath}/plugins/kitadmin/layui.js"></script>
+	<script baseUrl="${basePath}" src="${basePath}/plugins/kitadmin/layui.js"></script>
 	<script src="${basePath}/plugins/kitadmin/kitadmin.js"></script>
 	<script src="${basePath}/plugins/kitadmin/mockjs-config.js"></script>
 	<script src="${basePath}/js/index.js"></script>
