@@ -32,6 +32,13 @@ http://quella.ssrsdev.top/
 4. redis 3.0
 5. 开发工具IDEA
 
+### 搭建说明
+
+1. 将下载的项目导入到IDEA 
+2. 修改 spring-cache.xml 文件，配置自己的redis链接
+3. 修改 jdbc.properties 文件，配置自己的mysql数据库链接
+4. 如果需要自定义一些配置可以修改 spring-mybatis.xml 文件
+5. 代码生成在Test的com.ssrs.mp.TestGenerator 按照注释修改配置即可。
 
 
 #### 2018年8月20日 (v1.0)
@@ -44,6 +51,14 @@ http://quella.ssrsdev.top/
 - 使用Quartz做定时任务(暂时还没做分布式)
  
 
+#### 2018年8月20日 (v1.0)
 
+> *集成一些基本的第三方服务*
+
+- 支付宝PC段支付与H5支付 
+- 七牛云存储
+- 富文本
+- 邮件发送
+- 阿里云短信服务
 
 
