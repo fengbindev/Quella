@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrs.mapper.PaySettingAlipayMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ssrs.model.PaySettingAlipay">
+        <id column="psa_id" property="psaId" />
+        <result column="psa_app_id" property="psaAppId" />
+        <result column="psa_private_key" property="psaPrivateKey" />
+        <result column="psa_public_key" property="psaPublicKey" />
+        <result column="psa_server_url" property="psaServerUrl" />
+        <result column="psa_do_main" property="psaDoMain" />
+        <result column="psa_notify_url" property="psaNotifyUrl" />
+        <result column="psa_charset" property="psaCharset" />
+        <result column="psa_format" property="psaFormat" />
+        <result column="psa_sign_type" property="psaSignType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        psa_id, psa_app_id, psa_private_key, psa_public_key, psa_server_url, psa_do_main,psa_notify_url, psa_charset, psa_format, psa_sign_type
+    </sql>
+
+</mapper>
