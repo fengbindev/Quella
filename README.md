@@ -8,10 +8,15 @@
 "Quella"中译英为"杀手"的意思,亦有“杀人红尘中，脱身白刃里”的感觉，正符合这个项目的意境----为一个好的项目名而兴奋的boy  :)
 
 #### 项目演示地址
-http://quella.ssrsdev.top/
+http://www.ssrsdev.top/
 账号：ssrs@qq.com
 密码：admin
 
+#### 项目演示图片
+![后台登录页面](https://images.gitee.com/uploads/images/2018/0924/154933_7976bedb_1783183.png "微信截图_20180924154342.png")
+![后台首页](https://images.gitee.com/uploads/images/2018/0924/155004_fa46045f_1783183.png "微信截图_20180924154221.png")
+![系统日志](https://images.gitee.com/uploads/images/2018/0924/155023_4a36b7f7_1783183.png "微信截图_20180924154327.png")
+![权限管理](https://images.gitee.com/uploads/images/2018/0924/155049_c094a3ed_1783183.png "微信截图_20180924154309.png")
 #### 软件架构
 软件架构说明
 
