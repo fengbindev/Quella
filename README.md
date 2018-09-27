@@ -12,6 +12,9 @@ http://www.ssrsdev.top/
 账号：ssrs@qq.com
 密码：admin
 
+#### spring boot+shiro+redis 版移步
+[https://gitee.com/hgpt/Aurora](https://gitee.com/hgpt/Aurora)
+
 #### 项目演示图片
 ![后台登录页面](https://images.gitee.com/uploads/images/2018/0924/154933_7976bedb_1783183.png "微信截图_20180924154342.png")
 ![后台首页](https://images.gitee.com/uploads/images/2018/0924/155004_fa46045f_1783183.png "微信截图_20180924154221.png")
