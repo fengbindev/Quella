@@ -150,7 +150,7 @@
 	<script baseUrl="${basePath}" src="${basePath}/plugins/kitadmin/layui.js"></script>
 	<script src="${basePath}/plugins/kitadmin/kitadmin.js"></script>
 	<script src="${basePath}/plugins/kitadmin/mockjs-config.js"></script>
-	<script src="${basePath}/js/index.js"></script>
+	<script baseUrl="${basePath}" src="${basePath}/js/index.js"></script>
 	<!-- endbuild -->
     <script>
         function logout() {

@@ -104,13 +104,12 @@
     </div>
 </div>
     <script src="${basePath}/js/jquery.js"></script>
-    <script src="${basePath}/plugins/kitadmin/layui.js"></script>
     <script>
         layui.use(['form', 'layedit',  'element', 'layer'], function(){
             var form = layui.form,
                     layer = layui.layer,
                     element = layui.element;
-
+            form.render(); //更新全部
             //监听提交，发送请求
             form.on('submit(sendMail)', function(data){
 

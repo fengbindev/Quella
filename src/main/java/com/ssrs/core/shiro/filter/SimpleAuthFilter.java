@@ -33,6 +33,10 @@ public class SimpleAuthFilter extends AccessControlFilter {
 
 		HttpServletRequest httpRequest = ((HttpServletRequest)request);
 		String url = httpRequest.getRequestURI();
+		String basePath = httpRequest.getContextPath();//获取basePath
+		if(null != url && url.startsWith(basePath)){
+			url = url.replaceFirst(basePath, "");
+		}
 		if(url.startsWith("/open/")){
 			return Boolean.TRUE;
 		}

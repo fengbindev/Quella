@@ -48,6 +48,10 @@ public class KickoutSessionFilter extends AccessControlFilter {
 		
 		HttpServletRequest httpRequest = ((HttpServletRequest)request);
 		String url = httpRequest.getRequestURI();
+		String basePath = httpRequest.getContextPath();//获取basePath
+		if(null != url && url.startsWith(basePath)){
+			url = url.replaceFirst(basePath, "");
+		}
 		Subject subject = getSubject(request, response);
 		//如果是相关目录 or 如果没有登录 就直接return true
 		if(url.startsWith("/open/") || (!subject.isAuthenticated() && !subject.isRemembered())){

@@ -2,7 +2,7 @@ var mods = [
   'element', 'sidebar', 'mockjs', 'select',
   'tabs', 'menu', 'route', 'utils', 'component', 'kit', 'echarts'
 ];
-
+var baseUrl = $("script[baseUrl]").attr('baseUrl');
 layui.define(mods, function(exports) {
   var element = layui.element,
     utils = layui.utils,
@@ -93,7 +93,7 @@ layui.define(mods, function(exports) {
           // shadeClose:false,
           // direction: 'left'
           dynamicRender: true,
-          url: '/open/setting',
+          url: baseUrl+'/open/setting',
           // width: '50%', //可以设置百分比和px
         });
       }
@@ -101,7 +101,7 @@ layui.define(mods, function(exports) {
           layer.open({
               title: false,
               type: 1,
-              content: '<img src="/images/play.png" />',
+              content: '<img src="'+baseUrl+'/images/play.png" />',
               area: ['500px', '604px'],
               shadeClose: true
           });
@@ -146,17 +146,20 @@ layui.define(mods, function(exports) {
           $.ajax({
               async:false,
               type:"GET",
-              url:"/menu/buildMenuUrl",
+              url:baseUrl+"/menu/buildMenuUrl",
               dataType:"json",
               success:function (data) {
+                for (var i=0;i<data.length;i++){
+                  data[i].component=baseUrl+data[i].component;
+                }
                   routes = data;
               }
           });
 
           //主页
-        routes.push({path: "/", component: "/open/app", name: "主页"});
+        routes.push({path: "/", component: baseUrl+"/open/app", name: "主页"});
           //个人中心
-        routes.push({path: "/user/my", component: "/user/my", name: "个人中心"});
+        routes.push({path: "/user/my", component: baseUrl+"/user/my", name: "个人中心"});
       var routeOpts = {
         routes: routes
       };
