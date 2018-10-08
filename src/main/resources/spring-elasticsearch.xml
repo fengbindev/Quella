@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	">
+
+
+	<bean id="esClientFactory" class="com.ssrs.util.elasticsearch.ESClientFactory" init-method="init" destroy-method="close">
+		<!--集群ip-->
+		<property name="hosts">
+			<array>
+				<value>127.0.0.1</value>
+			</array>
+		</property>
+		<!--集群ip端口，一定要与ip成对出现-->
+		<property name="ports">
+			<array>
+				<value>9200</value>
+			</array>
+		</property>
+		<!--协议方式-->
+		<property name="schema" value="http"/>
+		<!--链接超时设置-->
+		<property name="connectTimeOut" value="1000"/>
+		<property name="socketTimeOut" value="30000"/>
+		<property name="connerctionRequestTimeOut" value="500"/>
+		<!--最大链接数-->
+		<property name="maxConnectNum" value="100"/>
+		<property name="maxConnectPerRoute" value="100"/>
+	</bean>
+	<!--高级客户端-->
+	<bean id="restHighLevelClient" factory-bean="esClientFactory" factory-method="getHighLevelClient"></bean>
+	<!--低级客户端-->
+	<bean id="restClient" factory-bean="esClientFactory" factory-method="getClient"></bean>
+
+</beans>

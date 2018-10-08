@@ -12,38 +12,18 @@
         <param-value>classpath:spring.xml</param-value>
     </context-param>
 
-    <!--本地测试log配置-->
+
     <context-param>
         <param-name>log4jConfigLocation</param-name>
-        <param-value>classpath:log4j.properties</param-value>
+        <param-value>classpath:log4j2.xml</param-value>
     </context-param>
 
-    <!--项目上线后的log-->
-    <!-- log4j配置，文件路径，因为是跟随项目启动 -->
-    <!--<context-param>-->
-        <!--<param-name>log4jConfigLocation</param-name>-->
-        <!--<param-value>/WEB-INF/classes/log4j.xml</param-value>-->
-    <!--</context-param>-->
-    <!-- 配置log4j.xml变量，如果需要动态的就使用下面方式，使用方法${name} -->
-    <context-param>
-        <param-name>controller</param-name>
-        <param-value>controller-log</param-value>
-    </context-param>
-
-    <context-param>
-        <param-name>loggingLevel</param-name>
-        <param-value>ALL</param-value>
-    </context-param>
     <!-- 加载log4j配置文件 -->
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
     <!--新的 log4j 配置结束-->
 
-    <context-param>
-        <param-name>webAppRootKey</param-name>
-        <param-value>webApp.root</param-value>
-    </context-param>
 
     <!-- 编码过滤器 -->
     <filter>

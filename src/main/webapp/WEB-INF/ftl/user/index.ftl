@@ -41,14 +41,14 @@
 				</div>
 			</div>
 			<div class="layui-layout-left">
-				<!-- <div class="kit-search">
-          <form action="/">
-            <input type="text" name="keyword" class="kit-search-input" placeholder="关键字..." />
+				<div class="kit-search">
+          <form action="${basePath}/esSearch">
+            <input type="text" name="keyword" class="kit-search-input" placeholder="elasticsearch" />
             <button class="kit-search-btn" title="搜索" type="submit">
               <i class="layui-icon">&#xe615;</i>
             </button>
           </form>
-        </div> -->
+        </div>
 			</div>
 			<div class="layui-layout-right">
 				<ul class="kit-nav" lay-filter="header_right">

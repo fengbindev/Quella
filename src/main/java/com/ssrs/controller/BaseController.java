@@ -1,7 +1,9 @@
 package com.ssrs.controller;
 
 import com.ssrs.util.commom.StringUtils;
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -19,7 +21,7 @@ import java.util.Map.Entry;
 * @Version:        1.0
 */
 public class BaseController {
-	protected final static Logger logger = Logger.getLogger(BaseController.class);
+	protected final static Logger logger = LoggerFactory.getLogger(BaseController.class);
 	protected Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
 	public static String URL404 =  "commom/404.ftl";
 
