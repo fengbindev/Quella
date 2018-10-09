@@ -42,8 +42,11 @@
 			</div>
 			<div class="layui-layout-left">
 				<div class="kit-search">
-          <form action="${basePath}/esSearch">
+          <form action="${basePath}/search/elasticsearch" method="get">
             <input type="text" name="keyword" class="kit-search-input" placeholder="elasticsearch" />
+            <input type="hidden" name="page" value="1" />
+            <input type="hidden" name="limit" value="10" />
+
             <button class="kit-search-btn" title="搜索" type="submit">
               <i class="layui-icon">&#xe615;</i>
             </button>

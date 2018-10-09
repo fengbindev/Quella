@@ -1,0 +1,21 @@
+.layui-logo-brand{
+    font-size: 25px;
+}
+.searchResults {
+    padding-bottom: 20px;
+    line-height: 18px;
+}
+
+.searchResults P {
+    margin: 5px 0px;
+}
+.line24 {
+    line-height: 24px;
+}
+
+.fz16 {
+    font-size: 16px;
+}
+.layui-nav-bar{
+    display: none;
+}

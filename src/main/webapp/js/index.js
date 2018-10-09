@@ -160,6 +160,7 @@ layui.define(mods, function(exports) {
         routes.push({path: "/", component: baseUrl+"/open/app", name: "主页"});
           //个人中心
         routes.push({path: "/user/my", component: baseUrl+"/user/my", name: "个人中心"});
+        routes.push({path: "/esSearch", component: baseUrl+"/user/my", name: "搜索"});
       var routeOpts = {
         routes: routes
       };
