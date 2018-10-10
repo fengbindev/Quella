@@ -47,18 +47,30 @@ public class MemberController {
         List<UserOnlineBo> list = customSessionManager.getAllUser();
         List<UserOnlineBo> newList = new ArrayList<>(100);
         Iterator<UserOnlineBo> iterator = list.iterator();
+        boolean flag = true;
         //将同一个用户的session去重,之保留最后登录的session
         while (iterator.hasNext()){
             UserOnlineBo bo = iterator.next();
             Iterator<UserOnlineBo> iterator1 = newList.iterator();
+            flag = true;
             while (iterator1.hasNext()){
                 UserOnlineBo newBo = iterator1.next();
-                if (newBo.getEmail().equals(bo.getEmail()) && newBo.getLastLoginTime().getTime()<bo.getLastLoginTime().getTime()){
-                    iterator1.remove();
+                if (newBo.getEmail().equals(bo.getEmail())){
+                    if ( newBo.getLastLoginTime().getTime()<bo.getLastLoginTime().getTime()){
+                        iterator1.remove();
+                    }else {
+                        flag = false;
+                    }
+                   break;
                 }
             }
-            newList.add(bo);
+            if (flag){
+                newList.add(bo);
+            }
+
         }
+
+
         return new ModelAndView("member/index", "list", newList);
     }
 
