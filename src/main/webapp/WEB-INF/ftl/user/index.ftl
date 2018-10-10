@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Quella-1.1</title>
+	<title>Quella-1.2</title>
 	<!-- build:css -->
     <link   rel="shortcut icon" href="${basePath}/favicon.ico" />
 	<link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/layui.css">
@@ -37,7 +37,7 @@
 					<i class="layui-icon">&#xe65a;</i>
 				</div>
 				<div class="layui-logo-brand">
-					<a href="#/">Quella 1.1</a>
+					<a href="#/">Quella 1.2</a>
 				</div>
 			</div>
 			<div class="layui-layout-left">
@@ -144,7 +144,7 @@
 		</div>
 		<!-- footer -->
 		<div class="layui-footer" kit-footer="true">
-			2017 © kit.zhengjinfan.cn MIT license
+			2018 © 上善若水 Apache License 2.0  即将毕业的小菜鸟，有没有大佬介绍工作啊
 		</div>
 	</div>
 	<!-- build:js -->

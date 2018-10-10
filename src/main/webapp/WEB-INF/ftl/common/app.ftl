@@ -157,7 +157,7 @@
                     </tr>
                       <tr>
                         <td>版本号</td>
-                        <td>v1.1</td>
+                        <td>v1.2</td>
                       </tr>
                       <tr>
                         <td>作者</td>
@@ -188,12 +188,12 @@
                                 <h3 class="layui-timeline-title">特别感谢以下开源项目：</h3>
                                 <p>
                                 <ul>
-                                    <li>前端框架：基于layui的kit-admin</li>
-                                    <li> Mybatis 的增强工具：mybatisPlus</li>
-                                    <li>Java工具包：Hutool</li>
-                                    <li>第三方sdk工具包：openkit</li>
-                                    <li>后台脚手架：kitAdmin</li>
-                                    <li>sojson：ShiroDemo</li>
+                                    <li>前端框架：基于layui的<a href="https://gitee.com/kitteam/kit_admin_scaffold/" target="_blank" style="color: #01AAED">kit-admin</a></li>
+                                <li> Mybatis 的增强工具：<a href="http://mp.baomidou.com/" target="_blank" style="color: #01AAED">mybatisPlus</a></li>
+                                <li>Java工具包：<a href="http://www.hutool.cn/" target="_blank" style="color: #01AAED">Hutool</a></li>
+                                    <li>第三方sdk工具包：<a href="http://www.openkit.cc/docs/openkit/#/" target="_blank" style="color: #01AAED">openkit</a></li>
+                                    <li>后台脚手架：<a href="http://www.openkit.cc/docs/kitadmin/#/" target="_blank" style="color: #01AAED">kitAdmin</a></li>
+                                <li>sojson：<a href="https://www.sojson.com/shiro" target="_blank" style="color: #01AAED">ShiroDemo</a></li>
                                 </ul>
                                 </p>
                             </div>
@@ -227,6 +227,20 @@
                                     <li>富文本</li>
                                     <li>邮件发送</li>
                                     <li>阿里云短信服务</li>
+                                </ul>
+                                </p>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">2018年10月10日 (v1.2)</h3>
+                                <p>
+
+                                <ul>
+                                    <li>整合ElasticSearch作为全文检索方案</li>
+                                    <li>日志框架log4j升级为log4j2</li>
+                                    <li>修复在线用户显示问题</li>
                                 </ul>
                                 </p>
                             </div>

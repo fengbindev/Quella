@@ -19,7 +19,7 @@
     <input type="hidden" name="page" value="1" />
     <input type="hidden" name="limit" value="10" />
     <ul class="layui-nav" lay-filter="">
-        <li class="layui-nav-item"><a href="${basePath}/" style="font-size: 20px" >Quella 1.1</a></li>
+        <li class="layui-nav-item"><a href="${basePath}/" style="font-size: 20px" >Quella 1.2</a></li>
         <li class="layui-nav-item" style="width: 30%"><input type="text" name="keyword" id="keyword" required lay-verify="required" placeholder="请输入搜索内容" autocomplete="off" class="layui-input">  </li>
         <li class="layui-nav-item"><button class="layui-btn" style="margin-left:2px " lay-submit lay-filter="*" >搜索</button></li>
     </ul>
