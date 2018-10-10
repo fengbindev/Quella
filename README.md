@@ -27,14 +27,17 @@ http://www.ssrsdev.top/
 #### 软件架构
 软件架构说明
 
-前端框架：基于layui的kit-admin
+- 前端框架：基于layui的kit-admin
 
-页面模板：采用FreeMaker 与 Jsp 双视图
+- 页面模板：采用FreeMaker 与 Jsp 双视图
 
-后端主要框架：SpringMVC+Spring+MybatisPlus+Shiro+Redis 
+- 后端主要框架：SpringMVC+Spring+MybatisPlus+Shiro+Redis 
 
-后端做分布式session 与 分布式缓存
+- 后端使用Redis做分布式session 与 分布式缓存
 
+- 使用 Quartz作为任务调度方案
+
+- 使用ElasticSearch作为全文检索与数据分析方案
 
 #### 使用环境说明
 
@@ -43,7 +46,7 @@ http://www.ssrsdev.top/
 3. mysql 5.7
 4. redis 3.0
 5. ElasticSearch 6.4.2 
-6. 开发工具IDEA
+6. 开发工具IDEA（需要安装lombok插件）
 
 ### 搭建说明
 
