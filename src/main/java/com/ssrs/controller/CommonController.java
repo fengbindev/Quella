@@ -1,38 +1,37 @@
 package com.ssrs.controller;
 
 
+import com.ssrs.model.WebVisitCount;
+import com.ssrs.service.IWebVisitCountService;
 import com.ssrs.util.commom.LoggerUtils;
 import com.ssrs.util.commom.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UrlPathHelper;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @Scope(value = "prototype")
 @RequestMapping("open")
 public class CommonController extends BaseController {
-//	@Resource
-//	RoleService roleService;
-//	@RequestMapping("refreshDB")
-//	@ResponseBody
-//	public Map<String,Object> refreshDB(){
-//		roleService.initData();
-//		resultMap.put("status", 200);
-//		return resultMap;
-//	}
 
-
+    @Autowired
+    private IWebVisitCountService webVisitCountService;
     /**
      * 跳转到主页
      * @return
      */
     @RequestMapping(value = "app",method =RequestMethod.GET)
-    public String app(){
+    public String app(Model model){
+        WebVisitCount WeekWebVisitCount = webVisitCountService.selectByWeek();
+        model.addAttribute("weekWebVisitCount",WeekWebVisitCount);
         return "common/app";
     }
     /**

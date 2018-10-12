@@ -12,7 +12,16 @@
 	<link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/theme/default.css" id="theme">
 	<link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/nprogress.css">
 	<!-- endbuild -->
-
+	<#--用于站点统计，哪个页面需要统计就贴哪个页面，最好贴在其他<script>的前面-->
+    <script>
+		var _hmt = _hmt || [];
+		(function () {
+			var hm  = document.createElement("script");
+			hm.src = "${basePath}/webStatistics?i="+new Date().getTime();
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm,s);
+        })();
+	</script>
 </head>
 <script src="${basePath}/js/jquery.js"></script>
 

@@ -12,24 +12,28 @@ import java.util.Map;
 */
 public class APPUtil {
 
-    public static String RESULT_STATUS = "status";
-    public static Integer RESULT_OK = 200;
-    public static Integer RESULT_ERROR = 101;
+    public final static String RESULT_STATUS = "status";
+    public final static Integer RESULT_OK = 200;
+    public final static Integer RESULT_ERROR = 101;
 
-    public static int INSERT_SUCCESS_TYPE = 1;
-    public static int INSERT_ERROR_TYPE = 2;
-    public static int UPDATE_SUCCESS_TYPE = 3;
-    public static int UPDATE_ERROR_TYPE = 4;
-    public static int DELEATE_SUCCESS_TYPE = 5;
-    public static int DELEATE_ERROR_TYPE = 6;
+    public final static int INSERT_SUCCESS_TYPE = 1;
+    public final static int INSERT_ERROR_TYPE = 2;
+    public final static int UPDATE_SUCCESS_TYPE = 3;
+    public final static int UPDATE_ERROR_TYPE = 4;
+    public final static int DELEATE_SUCCESS_TYPE = 5;
+    public final static int DELEATE_ERROR_TYPE = 6;
 
-    public static String RESULT_MESSAGE = "message";
-    public static String INSERT_SUCCESS = "添加成功";
-    public static String INSERT_FILE = "添加失败，请重试！";
-    public static String UPDATE_SUCCESS = "修改成功";
-    public static String UPDATE_FILE = "修改失败，请重试！";
-    public static String DELEATE_SUCCESS = "删除成功";
-    public static String DELEATE_FILE = "删除失败，请重试！";
+    public final static String RESULT_MESSAGE = "message";
+    public final static String INSERT_SUCCESS = "添加成功";
+    public final static String INSERT_FILE = "添加失败，请重试！";
+    public final static String UPDATE_SUCCESS = "修改成功";
+    public final static String UPDATE_FILE = "修改失败，请重试！";
+    public final static String DELEATE_SUCCESS = "删除成功";
+    public final static String DELEATE_FILE = "删除失败，请重试！";
+
+    public final static String IP_COUNT = "ipCount";
+    public final static String PV_COUNT = "pvCount";
+
 
 
 

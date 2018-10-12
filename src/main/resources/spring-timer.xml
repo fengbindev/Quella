@@ -77,6 +77,34 @@
 		</property>
 	</bean>
 
+	<!--保存站点统计数据到数据库定时任务开始-->
+	<bean id="saveWebStatisticsJob" class="com.ssrs.core.timer.SaveWebStatisticsTask"/>
+	<bean id="saveWebStatisticsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="group" value="job_work_3"/>
+		<property name="name" value="job_work_name_3"/>
+		<!--false表示等上一个任务执行完后再开启新的任务-->
+		<property name="concurrent" value="false"/>
+		<property name="targetObject">
+			<ref bean="saveWebStatisticsJob"/>
+		</property>
+		<property name="targetMethod">
+			<value>run</value>
+		</property>
+	</bean>
+	<!--保存站点统计数据到数据库定时任务结束-->
+	<!--  调度触发器 -->
+	<bean id="saveWebStatisticsTrigger"
+		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="name" value="work_default_name_3"/>
+		<property name="group" value="work_default_3"/>
+		<property name="jobDetail">
+			<ref bean="saveWebStatisticsJobDetail" />
+		</property>
+		<property name="cronExpression">
+			<!--每天的23:59:00执行-->
+			<value>0 59 23 * * ? *</value>
+		</property>
+	</bean>
 
 	<!-- 调度工厂 -->
 	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
@@ -84,6 +112,7 @@
 			<list>
 				<ref bean="cleanSystemLogTrigger"/>
 				<ref bean="initQuellaDataTrigger"/>
+				<ref bean="saveWebStatisticsTrigger"/>
 			</list>
 		</property>
 	</bean>

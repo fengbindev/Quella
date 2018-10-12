@@ -254,9 +254,9 @@ public class VCache {
 			jds.select(0);
 			Long result = 0L;
 			if(null == dkey){
-				result = jds.srem(key);
-			}else{
 				result = jds.del(key);
+			}else{
+				result = jds.srem(key);
 			}
 			return result;
 		} catch (Exception e) {

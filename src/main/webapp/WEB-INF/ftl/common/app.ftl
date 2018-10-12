@@ -5,28 +5,28 @@
         <div class="layui-col-md3">
           <div class="layui-card">
             <div class="layui-card-body">
-              访客
+              今日IP：<span class="layui-badge layui-bg-green">${(ipCount)!0}</span>
             </div>
           </div>
         </div>
         <div class="layui-col-md3">
           <div class="layui-card">
             <div class="layui-card-body">
-              新用户
+                今日PV：<span class="layui-badge layui-bg-green">${(pvCount)!0}</span>
             </div>
           </div>
         </div>
         <div class="layui-col-md3">
           <div class="layui-card">
             <div class="layui-card-body">
-              销售额
+              近七日IP：<span class="layui-badge layui-bg-green">${(weekWebVisitCount.ipCount)!0}</span>
             </div>
           </div>
         </div>
         <div class="layui-col-md3">
           <div class="layui-card">
             <div class="layui-card-body">
-              成交量
+              近七日PV：<span class="layui-badge layui-bg-green">${(weekWebVisitCount.pvCount)!0}</span>
             </div>
           </div>
         </div>

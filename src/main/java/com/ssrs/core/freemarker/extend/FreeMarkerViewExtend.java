@@ -1,8 +1,10 @@
 package com.ssrs.core.freemarker.extend;
 
 import com.ssrs.core.freemarker.Constant;
+import com.ssrs.core.shiro.cache.VCache;
 import com.ssrs.core.shiro.token.manager.TokenManager;
 import com.ssrs.permission.model.User;
+import com.ssrs.util.commom.APPUtil;
 import com.ssrs.util.commom.LoggerUtils;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 
@@ -33,6 +35,10 @@ public class FreeMarkerViewExtend extends FreeMarkerView {
 		model.put("_v", Constant.VERSION);//版本号，重启的时间
 //		model.put("cdn", Constant.DOMAIN_CDN);//CDN域名
 		model.put("basePath", request.getContextPath());//base目录。
+		//今日ip数
+		model.put(APPUtil.IP_COUNT, VCache.getLenBySet(APPUtil.IP_COUNT));
+		//今日pv数
+		model.put(APPUtil.PV_COUNT,VCache.get(APPUtil.PV_COUNT,Integer.class));
 		
 	}
 }
