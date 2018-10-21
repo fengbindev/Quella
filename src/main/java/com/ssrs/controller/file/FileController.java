@@ -43,11 +43,12 @@ public class FileController {
     @RequestMapping(value = "commonUploadFile", method = RequestMethod.POST)
     @ResponseBody
     public Object commonUploadFile(MultipartFile file) {
+        FileQiniu fileQiniu = fileQiniuService.selectById(1);
         Map<Object, Object> map = CollUtil.newHashMap(16);
         try {
             String hash = upload(file);
             map.put(APPUtil.RESULT_STATUS, APPUtil.RESULT_OK);
-            map.put("src", hash);
+            map.put("src", fileQiniu.getFqUrl()+"/"+hash);
         } catch (IOException e) {
             e.printStackTrace();
             LoggerUtils.fmtError(getClass(), "测试文件上传出错");
@@ -67,11 +68,12 @@ public class FileController {
     @ResponseBody
     public Object commonUploadFiles(MultipartFile[] files) {
         Map<Object, Object> map = CollUtil.newHashMap(16);
+        FileQiniu fileQiniu = fileQiniuService.selectById(1);
         String[] strings = new String[files.length];
         for (int i = 0; i < files.length; i++) {
             try {
                 String hash = upload(files[i]);
-                strings[i] = hash;
+                strings[i] = fileQiniu.getFqUrl()+"/"+hash;
             } catch (IOException e) {
                 e.printStackTrace();
                 LoggerUtils.fmtError(getClass(), "测试文件上传出错");

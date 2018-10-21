@@ -65,6 +65,8 @@ var baseUrl = $("script[baseUrl]").attr('baseUrl');
     ,util: 'modules/util' //工具块
     ,code: 'modules/code' //代码修饰器
     ,jquery: 'modules/jquery' //DOM库（第三方）
+    ,colorpicker: 'modules/colorpicker'
+    ,slider: 'modules/slider'
     
     ,mobile: 'modules/mobile' //移动大模块 | 若当前为开发目录，则为移动模块入口，否则为移动模块集合
     ,'layui.all': '../layui.all' //PC模块合并版

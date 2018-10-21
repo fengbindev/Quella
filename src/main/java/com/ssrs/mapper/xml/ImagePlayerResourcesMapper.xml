@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssrs.mapper.ImagePlayerResourcesMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ssrs.model.ImagePlayerResources">
+        <id column="id" property="id" />
+        <result column="sequence" property="sequence" />
+        <result column="img" property="img" />
+        <result column="url" property="url" />
+        <result column="time" property="time" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="type" property="type" />
+        <result column="title" property="title" />
+        <result column="summary" property="summary" />
+        <result column="image_player_id" property="imagePlayerId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, sequence, img, url, time, start_time, end_time, type, title, summary, imagePlayerId
+    </sql>
+
+</mapper>
