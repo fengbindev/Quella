@@ -118,6 +118,8 @@
 
         //监听提交，发送请求
         form.on('submit(add)', function(data){
+            data.field.imagePlayerId =  parent.$("[name=\"imagePlayerId\"]").val();
+            console.log(data.field.imagePlayerId);
             $.post("${basePath}/swiper/addChild",data.field,function(data){
                 // 获取 session
                 if(data.status!=200){

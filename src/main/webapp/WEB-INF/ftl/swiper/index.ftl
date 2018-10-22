@@ -14,6 +14,7 @@
 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
     <ul class="layui-tab-title" style="left: 25px">
         <li class="layui-this">图片播放器</li>
+        <li>示例</li>
     </ul>
     <div class="layui-tab-content" style="height: 100px;">
         <div class="layui-tab-item layui-show">
@@ -48,14 +49,26 @@
                                     <span>这里是图片播放器的图片列表</span>
                                 </div>
                                 <table class="layui-table" id="swiperChildtable" lay-filter="swiperChildtable2"></table>
+                            <@api target="imagePlayerTag" id="1">
+                                    ${outTagName}
+                            </@api>
                             </div>
                         </div>
                     </div>
                 </div>
         </div>
-
     </div>
+
+        <div class="layui-tab-item">
+            <#--<@api target="imagePlayerTag" id="1">-->
+                <#--<#list outTagName as img>-->
+                    <#--${img.id}-->
+                <#--</#list>-->
+            <#--</@api>-->
+
+        </div>
 </div>
+    <input name="imagePlayerId" type="hidden">
     <script type="text/html" id="barDemo">
         <button class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">详情</button>
          <@shiro.hasPermission name="/swiper/update">
@@ -207,8 +220,9 @@
             table.on('row(swipertable2)', function(obj){
                 var data = obj.data;
                 imagePlayerId = data.id;
+                $("[name=\"imagePlayerId\"]").val(imagePlayerId);
+                console.log( $("[name=\"imagePlayerId\"]").val());
                 // obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
-                console.log(imagePlayerId);
                 table.render({
                     elem: '#swiperChildtable'
                     ,url:'${basePath}/swiper/getSwiperChildPage'

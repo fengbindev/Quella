@@ -43,8 +43,8 @@
 
 
 	<!-- 自动扫描 标签 -->
-	<!--<context:component-scan base-package="com.sojson.*.*.tag;com.sojson.*.tag" />-->
-	<!--<bean name="api" class="com.sojson.core.tags.APITemplateModel"></bean>-->
+	<context:component-scan base-package="com.ssrs.core.freemarker.tags" />
+	<bean name="api" class="com.ssrs.core.freemarker.tags.APITemplateModel"></bean>
 	<bean name="springContextUtil" class="com.ssrs.util.commom.SpringContextUtil" scope="singleton"></bean>
 	
 
@@ -137,7 +137,7 @@
 		<property name="freemarkerVariables">
 			<map>
 				<entry key="xml_escape" value-ref="fmXmlEscape" />
-				<!--<entry key="api" value-ref="api"/>-->
+				<entry key="api" value-ref="api"/>
 			</map>
 		</property>
 		<property name="defaultEncoding">

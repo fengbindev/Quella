@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Quella-1.2</title>
 	<!-- build:css -->
-    <link   rel="shortcut icon" href="${basePath}/favicon.ico" />
+    <link rel="shortcut icon" href="${basePath}/favicon.ico" />
 	<link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/layui.css">
 	<link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/theme/default.css" id="theme">
 	<link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/nprogress.css">

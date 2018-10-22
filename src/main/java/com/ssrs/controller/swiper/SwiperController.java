@@ -100,7 +100,9 @@ public class SwiperController {
         String url = request.getParameter("url");
         String startAndEndTime = request.getParameter("startAndEndTime");
         String type = request.getParameter("type");
+        String imagePlayerId = request.getParameter("imagePlayerId");
         ImagePlayerResources imagePlayerResources = new ImagePlayerResources();
+        imagePlayerResources.setImagePlayerId(Integer.parseInt(imagePlayerId));
         imagePlayerResources.setTitle(title);
         imagePlayerResources.setSummary(summary);
         imagePlayerResources.setSequence(Integer.parseInt(sequence));
