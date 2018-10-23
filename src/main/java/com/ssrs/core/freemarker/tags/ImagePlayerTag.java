@@ -45,7 +45,7 @@ public class ImagePlayerTag extends SuperCustomTag{
         Integer height = imagePlayer.getHeight();
         Integer width = imagePlayer.getWidth();
 
-        List<ImagePlayerResources> imgList = imagePlayerResourcesService.selectPage(new Page<>(1, displayCount), new EntityWrapper<ImagePlayerResources>().eq("image_player_id", id).eq("type",1).orderBy("sequence", "Y".equals(displayDesc))).getRecords();
+        List<ImagePlayerResources> imgList = imagePlayerResourcesService.selectPage(new Page<>(1, displayCount), new EntityWrapper<ImagePlayerResources>().eq("image_player_id", id).eq("type",1).orderBy("sequence", "N".equals(displayDesc))).getRecords();
 
         StrBuilder builder = StrBuilder.create();
         builder.append(" <link rel=\"stylesheet\" href=\""+basePath+"/plugins/swiper/css/swiper.min.css\">");
@@ -158,6 +158,22 @@ public class ImagePlayerTag extends SuperCustomTag{
                         "      navigation: {\n" +
                         "        nextEl: '.swiper-button-next',\n" +
                         "        prevEl: '.swiper-button-prev',\n" +
+                        "      },\n" +
+                        "    });\n" +
+                        "  </script>");
+                break;
+            //垂直切换
+            case 6:
+                builder.append(" <div class=\"swiper-pagination\"></div>");
+                builder.append("</div>");
+                builder.append("<script>\n" +
+                        "    var swiper = new Swiper('.swiper-container', {\n" +
+                        "loop : true,\n"+
+                        "autoplay:true,\n"+
+                        "      direction: 'vertical',\n" +
+                        "      pagination: {\n" +
+                        "        el: '.swiper-pagination',\n" +
+                        "        clickable: true,\n" +
                         "      },\n" +
                         "    });\n" +
                         "  </script>");

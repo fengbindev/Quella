@@ -8,7 +8,45 @@
     <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/kitadmin.css" id="kitadmin">
     <link rel="stylesheet" href="${basePath}/css/doc.css"></link>
     <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/layui.css" id="layui">
-    
+    <link rel="stylesheet" href="${basePath}/plugins/swiper/css/swiper.min.css" />
+    <style>
+        .swiper-container {
+            width: 350px;
+            height: 175px;
+        }
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        .swiper-slide.blue-slide{
+            background: #4390EE;
+            color: #fff;
+        }
+        .swiper-slide.red-slide{
+            background: #CA4040;
+            color: #fff;
+        }
+        .swiper-slide.orange-slide{
+            background: #FF8604;
+            color: #fff;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -25,7 +63,14 @@
             <div class="layui-inline">
                 <label class="layui-form-label">播放器样式</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="swiperType" lay-verify="required" autocomplete="off" class="layui-input">
+                        <select name="swiperType" lay-verify="required" lay-filter="type">
+                            <option value="1">普通切换</option>
+                            <option value="2">普通切换带按钮</option>
+                            <option value="3">圆点分页器</option>
+                            <option value="4">数字分页器</option>
+                            <option value="5">渐变切换</option>
+                            <option value="6">垂直切换</option>
+                        </select>
                 </div>
             </div>
         </div>
@@ -59,7 +104,15 @@
             </div>
         </div>
         <div class="layui-form-item" style="text-align: center">
-            <img src="${basePath}/images/thumbIMG.jpg" width="350px">
+            <#--<img src="${basePath}/images/thumbIMG.jpg" width="350px" height="175px">-->
+                <!-- Swiper -->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide blue-slide">Slide 1</div>
+                        <div class="swiper-slide red-slide">Slide 2</div>
+                        <div class="swiper-slide orange-slide">Slide 3</div>
+                    </div>
+                </div>
         </div>
         <div class="layui-form-item" style="text-align: center">
                 <button class="layui-btn" lay-submit="" lay-filter="add">立即提交</button>
@@ -68,9 +121,15 @@
     </form>
     </form>
 
-    <!--这里写页面的代码-->
-</div>
 
+</div>
+<script src="${basePath}/plugins/swiper/js/swiper.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container',{
+        loop : true,
+        autoplay:true,
+    });
+</script>
 <script src="${basePath}/js/jquery.js"></script>
 <script src="${basePath}/plugins/kitadmin/layui.js"></script>
 <script>
@@ -101,6 +160,7 @@
             });
             return false;
         });
+
 
     });
 </script>

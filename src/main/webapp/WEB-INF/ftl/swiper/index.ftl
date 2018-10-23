@@ -14,7 +14,7 @@
 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
     <ul class="layui-tab-title" style="left: 25px">
         <li class="layui-this">图片播放器</li>
-        <li>示例</li>
+        <li>使用说明</li>
     </ul>
     <div class="layui-tab-content" style="height: 100px;">
         <div class="layui-tab-item layui-show">
@@ -49,9 +49,6 @@
                                     <span>这里是图片播放器的图片列表</span>
                                 </div>
                                 <table class="layui-table" id="swiperChildtable" lay-filter="swiperChildtable2"></table>
-                            <@api target="imagePlayerTag" id="1">
-                                    ${outTagName}
-                            </@api>
                             </div>
                         </div>
                     </div>
@@ -60,12 +57,22 @@
     </div>
 
         <div class="layui-tab-item">
-            <#--<@api target="imagePlayerTag" id="1">-->
-                <#--<#list outTagName as img>-->
-                    <#--${img.id}-->
-                <#--</#list>-->
-            <#--</@api>-->
+            <blockquote class="layui-elem-quote">图片播放器调用说明</blockquote>
+            <pre class="layui-code">
+    这里使用了自定义标签调用,内置了6种基本图片播放器样式.
+    调用方式：
+       < @api target="imagePlayerTag" i d="1">
+          $ {outTagName}
+       < /@api>
+    target值：Spring容器的Bean的id值
+    id值：为图片播放器的id.
+    要调用那个图片播放器，只需修改id值即可。
 
+    <b>图片播放器是基于swiper4.0做的，如果不能满足你的要求，可以自己引入相应的swiper的css,js
+    参照swiper的官方文档自定义样式。
+    swiper官网：https://www.swiper.com.cn/
+    </b>
+            </pre>
         </div>
 </div>
     <input name="imagePlayerId" type="hidden">
@@ -79,7 +86,7 @@
        </@shiro.hasPermission>
     </script>
     <script type="text/html" id="kaiguan">
-        <input type="checkbox" value="{{ d.id }}" {{#  if(d.ahType == 1){ }} checked="" {{#  } }}  name="open" lay-skin="switch" lay-filter="ahType1" lay-text="开|关">
+        <input type="checkbox" value="{{ d.id }}" {{#  if(d.type == 1){ }} checked="" {{#  } }}  name="open" lay-skin="switch" lay-filter="ahType1" lay-text="开|关">
     </script>
     <script type="text/html" id="imgTpl">
         <img src="{{d.img}}" width="200px" height="100px" />
@@ -94,7 +101,8 @@
     </script>
     <script src="${basePath}/js/jquery.js"></script>
     <script>
-        layui.use(['form', 'layedit',  'element', 'layer','table'], function(){
+
+        layui.use(['form', 'layedit',  'element', 'layer','table','code'], function(){
             var form = layui.form, layer = layui.layer, element = layui.element,table = layui.table;
             var imagePlayerId;
             //让层自适应iframe
@@ -132,7 +140,16 @@
                 ,cols: [[
                     {field:'id',align:'center', width:70,  title: 'ID'}
                     ,{field:'name',  title: '名称'}
-                    ,{field:'swiperType',  title: '播放器样式'}
+                    ,{field:'swiperType',  title: '播放器样式',templet:function (d) {
+                            switch (d.swiperType){
+                                case 1:return "普通切换";break;
+                                case 2:return "普通切换带按钮";break;
+                                case 3:return "圆点分页器";break;
+                                case 4:return "数字分页器";break;
+                                case 5:return "渐变切换";break;
+                                case 6: return "垂直切换";break;
+                            }
+                        }}
                     ,{field:'right',align:'center', width:165, toolbar: '#barDemo', title: '操作'}
                     ,{ width:1}
 
@@ -238,8 +255,5 @@
                     ]]
                 });
             });
-
-
-
         });
     </script>

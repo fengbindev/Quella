@@ -83,9 +83,11 @@
             </div>
             <div class="layui-col-md12">
               <div class="layui-card">
-                <div class="layui-card-header">数据统计</div>
+                <div class="layui-card-header">图片播放器</div>
                 <div class="layui-card-body">
-                  <table id="demo_hash" lay-filter="test_hash"></table>
+                  <@api target="imagePlayerTag" id="1">
+                      ${outTagName}
+                  </@api>
                 </div>
               </div>
             </div>
@@ -474,64 +476,7 @@
         }]
       }
     });
-    //第一个实例
-    table.render({
-      method: 'post',
-      done: function() {
-        $('#demo_hash').next().css('height', 'auto');
-      },
-      limit: 20,
-      elem: '#demo_hash',
-      height: 420,
-      url: '/demo/table/user', //数据接口
-      page: true, //开启分页
-      cols: [
-        [ //表头
-          {
-            field: 'id',
-            title: 'ID',
-            width: 50,
-            fixed: 'left'
-          }, {
-            field: 'username',
-            title: '用户名',
-            width: 80
-          }, {
-            field: 'sex',
-            title: '性别',
-            width: 80,
-            sort: true
-          }, {
-            field: 'city',
-            title: '城市',
-            width: 80
-          }, {
-            field: 'sign',
-            title: '签名',
-            width: 177
-          }, {
-            field: 'experience',
-            title: '积分',
-            width: 80,
-            sort: true
-          }, {
-            field: 'score',
-            title: '评分',
-            width: 80,
-            sort: true
-          }, {
-            field: 'classify',
-            title: '职业',
-            width: 80
-          }, {
-            field: 'wealth',
-            title: '财富',
-            width: 135,
-            sort: true
-          }
-        ]
-      ]
-    });
+
   });
 </script>
 <style scoped>

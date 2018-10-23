@@ -19,7 +19,7 @@ var baseUrl = $("script[baseUrl]").attr('baseUrl');
   }
 
   ,Layui = function(){
-    this.v = '2.3.0'; //版本号
+    this.v = '2.4.3'; //版本号
   }
 
   //获取layui所在目录
