@@ -48,11 +48,11 @@
             <pre class="layui-code">
     这里使用了自定义标签调用。
     调用方式：
-       < @api target="dictionaryTag" i d="1">
-           < #list outTagName as dictionary>
-                                        < a href="$ {dictionary.url}" target="_blank">$ {dictionary.name}< /a>
-           < /#list>
-       < /@api>
+      < @api target="dictionaryTag" i d="1">
+          < #list outTagName as dic>
+               < option value="$ {dic.value}" < #if img.swiperType == dic.value?number >selected< /#if> >$ {dic.text}< /option>
+          < /#list>
+      < /@api>
     target值：Spring容器的Bean的id值
     id值：为数据字典的id.
     要调用哪个数据字典，只需修改id值即可。

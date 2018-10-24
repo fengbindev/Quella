@@ -64,12 +64,11 @@
                 <label class="layui-form-label">播放器样式</label>
                 <div class="layui-input-inline">
                         <select name="swiperType" lay-verify="required" lay-filter="type">
-                            <option value="1">普通切换</option>
-                            <option value="2">普通切换带按钮</option>
-                            <option value="3">圆点分页器</option>
-                            <option value="4">数字分页器</option>
-                            <option value="5">渐变切换</option>
-                            <option value="6">垂直切换</option>
+                              <@api target="dictionaryTag" id="1">
+                                  <#list outTagName as dic>
+                                      <option value="${dic.value}">${dic.text}</option>
+                                  </#list>
+                              </@api>
                         </select>
                 </div>
             </div>

@@ -64,12 +64,11 @@
                 <label class="layui-form-label">播放器样式</label>
                 <div class="layui-input-inline">
                     <select name="swiperType" lay-verify="required">
-                        <option value="1" <#if img.swiperType == 1>selected</#if> >普通切换</option>
-                        <option value="2" <#if img.swiperType == 2>selected</#if> >普通切换带按钮</option>
-                        <option value="3" <#if img.swiperType == 3>selected</#if> >圆点分页器</option>
-                        <option value="4" <#if img.swiperType == 4>selected</#if> >数字分页器</option>
-                        <option value="5" <#if img.swiperType == 5>selected</#if> >渐变切换</option>
-                        <option value="6" <#if img.swiperType == 6>selected</#if> >垂直切换</option>
+                        <@api target="dictionaryTag" id="1">
+                            <#list outTagName as dic>
+                                      <option value="${dic.value}" <#if img.swiperType == dic.value?number >selected</#if> >${dic.text}</option>
+                            </#list>
+                        </@api>
                     </select>
                 </div>
             </div>
