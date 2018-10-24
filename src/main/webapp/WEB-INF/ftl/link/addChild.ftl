@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>图片播放器添加</title>
+    <title>Link添加</title>
     <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/theme/default.css" id="theme">
     <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/kitadmin.css" id="kitadmin">
     <link rel="stylesheet" href="${basePath}/css/doc.css"></link>
@@ -15,27 +15,22 @@
 <div class="kit-doc">
     <form class="layui-form" action="">
         <div class="layui-form-item">
-            <label class="layui-form-label"><span class="layui-badge-dot"></span> &nbsp;标题</label>
+            <label class="layui-form-label"><span class="layui-badge-dot"></span> &nbsp;名称</label>
             <div class="layui-input-block">
-                <input name="title" lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" type="text">
+                <input name="name" lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input" type="text">
             </div>
         </div>
+
         <div class="layui-form-item">
-            <label class="layui-form-label">描述</label>
+            <label class="layui-form-label">跳转链接</label>
             <div class="layui-input-block">
-                <textarea  name="summary" placeholder="请输入描述" class="layui-textarea"></textarea>
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="layui-badge-dot"></span> &nbsp;排序</label>
-            <div class="layui-input-block">
-                <input name="sequence" lay-verify="" value="50" autocomplete="off" class="layui-input" type="text">
+                <input name="url"  autocomplete="off" class="layui-input" type="text">
             </div>
         </div>
 
         <div class="layui-form-item" >
-            <label class="layui-form-label" style="height: 137px; line-height: 117px"><span class="layui-badge-dot"></span> &nbsp;上传图片</label>
-            <input name="img" id="imgurl" lay-verify="required" value="" autocomplete="off" class="layui-input" type="hidden">
+            <label class="layui-form-label" style="height: 137px; line-height: 117px">上传图片</label>
+            <input name="imgUrl" id="imgurl"  autocomplete="off" class="layui-input" type="hidden">
             <div class=" layui-upload-drag" id="img" >
                 <i class="layui-icon">&#xe654;</i>
                 <p>点击上传图片</p>
@@ -44,33 +39,12 @@
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">链接地址</label>
             <div class="layui-input-block">
-                <input name="url" lay-verify="" placeholder="请输入图片链接地址" autocomplete="off" class="layui-input" type="text">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="layui-badge-dot"></span> &nbsp;起止日期</label>
-            <div class="layui-input-block">
-                <input type="text" name="startAndEndTime" class="layui-input" id="test10" placeholder=" - ">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label"><span class="layui-badge-dot"></span> &nbsp;是否开启</label>
-            <div class="layui-input-block">
-                <input type="checkbox" name="type" lay-skin="switch" checked lay-text="开启|关闭">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
             <button class="layui-btn" lay-submit="" lay-filter="add">提交</button>
+            </div>
         </div>
     </form>
     </form>
-
-    <!--这里写页面的代码-->
 </div>
 
 <script src="${basePath}/js/jquery.js"></script>
@@ -81,15 +55,7 @@
                 layer = layui.layer,
                 element = layui.element,
                 upload = layui.upload;
-        laydate = layui.laydate;
-
-        //日期时间范围
-        laydate.render({
-            elem: '#test10'
-            ,type: 'datetime'
-            ,range: true
-        });
-
+       
         //普通图片上传
         var uploadInst = upload.render({
             elem: '#img'
@@ -115,11 +81,10 @@
             }
         });
 
-
         //监听提交，发送请求
         form.on('submit(add)', function(data){
-            data.field.imagePlayerId =  parent.$("[name=\"imagePlayerId\"]").val();
-            $.post("${basePath}/swiper/addChild",data.field,function(data){
+            data.field.linkGroupId =  parent.$("[name=\"linkGroupId\"]").val();
+            $.post("${basePath}/link/addChild",data.field,function(data){
                 // 获取 session
                 if(data.status!=200){
                     layer.alert(data.message, {offset: 't',icon: 2});
