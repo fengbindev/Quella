@@ -57,21 +57,18 @@
     </div>
 
         <div class="layui-tab-item">
-            <blockquote class="layui-elem-quote">图片播放器调用说明</blockquote>
+            <blockquote class="layui-elem-quote">友情链接调用说明</blockquote>
             <pre class="layui-code">
-    这里使用了自定义标签调用,内置了6种基本图片播放器样式.
+    这里使用了自定义标签调用。
     调用方式：
-       < @api target="imagePlayerTag" i d="1">
-          $ {outTagName}
+       < @api target="linkTag" i d="1">
+           < #list outTagName as link>
+                                        < a href="$ {link.url}" target="_blank">$ {link.name}< /a>
+           < /#list>
        < /@api>
     target值：Spring容器的Bean的id值
-    id值：为图片播放器的id.
-    要调用那个图片播放器，只需修改id值即可。
-
-    <b>图片播放器是基于link4.0做的，如果不能满足你的要求，可以自己引入相应的link的css,js
-    参照link的官方文档自定义样式。
-    link官网：https://www.link.com.cn/
-    </b>
+    id值：为友情链接的id.
+    要调用哪个友情链接，只需修改id值即可。
             </pre>
         </div>
 </div>
