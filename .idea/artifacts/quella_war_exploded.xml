@@ -24,6 +24,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-context-support:4.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-websocket:4.2.5.RELEASE" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.6.12" />
           <element id="library" level="project" name="Maven: com.baomidou:mybatis-plus:2.3" />
           <element id="library" level="project" name="Maven: com.baomidou:mybatis-plus-support:2.3" />

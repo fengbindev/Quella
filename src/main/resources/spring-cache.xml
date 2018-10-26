@@ -24,7 +24,7 @@
 		<!-- 端口，默认6379 -->
 	    <constructor-arg index="2" value="6379"  name="port" type="int"/>
 	    <constructor-arg index="3" value="5000"  name="timeout" type="int"/>
-	    <constructor-arg index="1" value="127.0.0.1" name="host" type="java.lang.String"/>
+	    <constructor-arg index="1" value="localhost" name="host" type="java.lang.String"/>
 	    <!-- 如果你需要配置密码，请打开这里。
 	        <constructor-arg index="4" value="你的密码" name="password" type="java.lang.String"/>
 	    -->

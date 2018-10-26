@@ -75,10 +75,10 @@
 					<property name="stopProceed" value="true"></property>
 				</bean>
 				<!-- 注册性能分析插件 -->
-				<bean class="com.baomidou.mybatisplus.plugins.PerformanceInterceptor">
-					<property name="format" value="true"></property>
-					<!-- <property name="maxTime" value="5"></property> -->
-				</bean>
+				<!--<bean class="com.baomidou.mybatisplus.plugins.PerformanceInterceptor">-->
+					<!--<property name="format" value="true"></property>-->
+					<!--&lt;!&ndash; <property name="maxTime" value="5"></property> &ndash;&gt;-->
+				<!--</bean>-->
 				<!-- 注册乐观锁插件 -->
 				<bean class="com.baomidou.mybatisplus.plugins.OptimisticLockerInterceptor">
 				</bean>

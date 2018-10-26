@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>Quella-1.2</title>
+	<title>Quella-1.3</title>
 	<!-- build:css -->
     <link rel="shortcut icon" href="${basePath}/favicon.ico" />
 	<link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/layui.css">
@@ -46,7 +46,7 @@
 					<i class="layui-icon">&#xe65a;</i>
 				</div>
 				<div class="layui-logo-brand">
-					<a href="#/">Quella 1.2</a>
+					<a href="#/">Quella 1.3</a>
 				</div>
 			</div>
 			<div class="layui-layout-left">

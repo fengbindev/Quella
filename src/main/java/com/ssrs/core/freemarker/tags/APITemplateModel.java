@@ -32,7 +32,7 @@ public class APITemplateModel extends WYFTemplateModel {
 			String name =  params.get(Constant.TARGET).toString() ;
 			paramWrap = new HashMap<String, TemplateModel>(params);
 			
-			/**2
+			/**
 			 * 获取子类，用父类接收，
 			 */
 			SuperCustomTag tag =  SpringContextUtil.getBean(name,SuperCustomTag.class);
@@ -42,14 +42,8 @@ public class APITemplateModel extends WYFTemplateModel {
 			//输出
 			paramWrap.put(Constant.OUT_TAG_NAME, DEFAULT_WRAPPER.wrap(result));
 		}else{
-			LoggerUtils.error(getClass(), "Cannot be null, must include a 'name' attribute!");
+			LoggerUtils.error(getClass(), "Cannot be null, must include a 'target' attribute!");
 		}
 		return paramWrap;
 	}
-
-	
-	
-	
-	
-	
 }

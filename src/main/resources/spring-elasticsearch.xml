@@ -18,7 +18,7 @@
 		<!--集群ip-->
 		<property name="hosts">
 			<array>
-				<value>127.0.0.1</value>
+				<value>localhost</value>
 			</array>
 		</property>
 		<!--集群ip端口，一定要与ip成对出现-->

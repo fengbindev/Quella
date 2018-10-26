@@ -144,6 +144,7 @@ public class UtilPath {
 		System.out.println("projectPath:"+getProjectPath());
 		System.out.println("rootPth:"+getRootPath());
 		System.out.println("WEB-INF:"+getWEB_INF());
+
 	}
 	
 }

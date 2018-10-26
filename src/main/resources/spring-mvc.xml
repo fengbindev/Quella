@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:websocket="http://www.springframework.org/schema/websocket"
  	xmlns:task="http://www.springframework.org/schema/task"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd 
 	http://www.springframework.org/schema/context 
 	http://www.springframework.org/schema/context/spring-context-4.0.xsd 
 	http://www.springframework.org/schema/task
 	http://www.springframework.org/schema/task/spring-task-4.0.xsd
-	http://www.springframework.org/schema/mvc 
-	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+	http://www.springframework.org/schema/websocket
+    http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
 
 	<!-- 自动扫描(自动注入) -->
@@ -166,8 +169,16 @@
 	</bean>
 	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
 	<!--===============通用视图解析器 end===============-->
-	
-	
+
+	<!--===============catlina log begin===============-->
+	<bean id="catlinaLogWebsocket" class="com.ssrs.core.websocket.CatlinaLogWebsocketHandler" >
+		<property name="catalinaOutPath" value="/www/server/tomcat/logs/catalina.out"/>
+	</bean>
+	<websocket:handlers>
+		<websocket:mapping path="/catlinaLogWebsocket" handler="catlinaLogWebsocket" />
+	</websocket:handlers>
+	<!--===============catlina log end===============-->
+
 	<!--  上传文件定义大小 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
