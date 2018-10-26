@@ -15,6 +15,9 @@ http://www.ssrsdev.top/
 账号：ssrs@qq.com
 密码：admin
 
+#### 项目交流QQ群
+891137268
+
 #### spring boot+shiro+redis 版移步
 [https://gitee.com/hgpt/Aurora](https://gitee.com/hgpt/Aurora)
 
