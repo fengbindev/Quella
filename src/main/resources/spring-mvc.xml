@@ -172,6 +172,7 @@
 
 	<!--===============catlina log begin===============-->
 	<bean id="catlinaLogWebsocket" class="com.ssrs.core.websocket.CatlinaLogWebsocketHandler" >
+		<!--tomcat catalina.out 位置-->
 		<property name="catalinaOutPath" value="/www/server/tomcat/logs/catalina.out"/>
 	</bean>
 	<websocket:handlers>

@@ -250,6 +250,22 @@
                         <li class="layui-timeline-item">
                             <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
                             <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">2018年10月26日 (v1.3)</h3>
+                                <p>
+                                    <b>#完成一些功能组件并可以使用标签调用</b>
+                                <ul>
+                                    <li>图片播放器标签</li>
+                                    <li>友情链接标签</li>
+                                    <li>数据字典标签</li>
+                                    <li>站点IP、PV统计</li>
+                                    <li>实时控制台日志</li>
+                                </ul>
+                                </p>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
                                 更新说明
                             </div>
                         </li>
