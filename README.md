@@ -87,7 +87,6 @@ org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag in 
 - 邮件发送
 - 阿里云短信服务
 
-
 #### 2018年10月10日 (v1.2)
 
 > *引入ElasticSearch*
@@ -95,4 +94,14 @@ org.apache.tomcat.util.bcel.classfile.ClassFormatException: Invalid byte tag in 
 - 整合ElasticSearch作为全文检索方案 
 - 日志框架log4j升级为log4j2
 - 修复在线用户显示问题
+
+#### 2018年10月26日 (v1.3)
+
+> *完成一些功能组件并可以使用标签调用*
+
+- 图片播放器标签 
+- 友情链接标签
+- 数据字典标签
+- 站点IP、PV统计
+- 实时控制台日志
 
