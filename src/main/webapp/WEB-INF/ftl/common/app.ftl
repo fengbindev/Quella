@@ -40,7 +40,8 @@
               <div class="layui-card">
                 <div class="layui-card-header">源码地址</div>
                 <div class="layui-card-body">
-                  <p style="margin-bottom: 5px;">QQ交流群：</p>
+                  <p style="margin-bottom: 5px;">QQ交流群：891137268</p>
+                    <p style="margin-bottom: 5px;">开发文档：<a href="https://fengbindev.github.io/Quella-docs/" target="_blank" style="color: #01AAED">https://fengbindev.github.io/Quella-docs/</a></p>
                   <p style="margin-bottom: 5px;">源码下载:
                     <a href='https://gitee.com/quella01/Quella/' target="_blank">
                       <img src='https://gitee.com/quella01/Quella/badge/star.svg?theme=white' alt='star' width="100px" height="25px"></img>
@@ -159,7 +160,7 @@
                     </tr>
                       <tr>
                         <td>版本号</td>
-                        <td>v1.2</td>
+                        <td>v1.3</td>
                       </tr>
                       <tr>
                         <td>作者</td>
