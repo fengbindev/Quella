@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -51,7 +52,7 @@ public class FileController {
             map.put("src", fileQiniu.getFqUrl()+"/"+hash);
         } catch (IOException e) {
             e.printStackTrace();
-            LoggerUtils.fmtError(getClass(), "测试文件上传出错");
+            LoggerUtils.fmtError(getClass(), "文件上传出错");
             map.put(APPUtil.RESULT_STATUS, APPUtil.RESULT_ERROR);
             map.put(APPUtil.RESULT_MESSAGE, "文件上传错误");
             return map;
@@ -76,7 +77,7 @@ public class FileController {
                 strings[i] = fileQiniu.getFqUrl()+"/"+hash;
             } catch (IOException e) {
                 e.printStackTrace();
-                LoggerUtils.fmtError(getClass(), "测试文件上传出错");
+                LoggerUtils.fmtError(getClass(), "文件上传出错");
                 map.put(APPUtil.RESULT_STATUS, APPUtil.RESULT_ERROR);
                 map.put(APPUtil.RESULT_MESSAGE, "文件上传错误");
                 return map;
@@ -93,16 +94,18 @@ public class FileController {
      * @return
      */
     @RequestMapping(value = "wangEditorUploadImg")
-    public Object wangEditorUploadImg(MultipartFile[] file){
+    @ResponseBody
+    public Object wangEditorUploadImg(@RequestParam("file") MultipartFile[] file){
         Map<Object, Object> map = CollUtil.newHashMap(16);
         String[] strings = new String[file.length];
+        FileQiniu fileQiniu = fileQiniuService.selectById(1);
         for (int i = 0; i < file.length; i++) {
             try {
                 String hash = upload(file[i]);
-                strings[i] = hash;
+                strings[i] = fileQiniu.getFqUrl()+"/"+hash;
             } catch (IOException e) {
                 e.printStackTrace();
-                LoggerUtils.fmtError(getClass(), "测试文件上传出错");
+                LoggerUtils.fmtError(getClass(), "文件上传出错");
                 map.put("errno", 1);
                 return map;
             }
