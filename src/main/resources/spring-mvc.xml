@@ -26,7 +26,13 @@
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/plugins/**" location="/plugins/" />
 	<!-- 这个一定得有，注意了，如果其他配置也有需要这个，已经配置了，那不必了 -->
-	<mvc:annotation-driven/>
+	<mvc:annotation-driven >
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 
 	<mvc:interceptors>
 		<mvc:interceptor>
