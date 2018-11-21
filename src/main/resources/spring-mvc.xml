@@ -26,24 +26,7 @@
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/plugins/**" location="/plugins/" />
 	<!-- 这个一定得有，注意了，如果其他配置也有需要这个，已经配置了，那不必了 -->
-	<mvc:annotation-driven>
-		<mvc:message-converters>
-			<!--返回普通字符串时的转换模式-->
-			<bean class="org.springframework.http.converter.StringHttpMessageConverter" >
-				<property name="supportedMediaTypes">
-					<list>
-						<bean class="org.springframework.http.MediaType">
-							<constructor-arg index="0" value="text"/>
-							<constructor-arg index="1" value="html"/>
-							<constructor-arg index="2" value="UTF-8"/>
-						</bean>
-					</list>
-				</property>
-			</bean>
-			<!--对象转JSON格式的-->
-			<ref bean="mappingJacksonHttpMessageConverter" />
-		</mvc:message-converters>
-	</mvc:annotation-driven>
+	<mvc:annotation-driven/>
 
 	<mvc:interceptors>
 		<mvc:interceptor>
