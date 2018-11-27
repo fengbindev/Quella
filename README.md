@@ -21,9 +21,6 @@ https://fengbindev.github.io/Quella-docs/
 #### 项目交流QQ群
 891137268
 
-#### spring boot+shiro+redis 版移步
-[https://gitee.com/hgpt/Aurora](https://gitee.com/hgpt/Aurora)
-
 #### 项目演示图片
 ![后台登录页面](https://images.gitee.com/uploads/images/2018/0924/154933_7976bedb_1783183.png "微信截图_20180924154342.png")
 ![后台首页](https://images.gitee.com/uploads/images/2018/0924/155004_fa46045f_1783183.png "微信截图_20180924154221.png")
