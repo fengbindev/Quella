@@ -10,16 +10,15 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
-* @Description:    简单封装的cache
-* @Author:         ssrs
-* @CreateDate:     2018/8/7 16:33
-* @UpdateUser:     ssrs
-* @UpdateDate:     2018/8/7 16:33
-* @Version:        1.0
-*/
+ * @Description:    简单封装的cache
+ * @Author:         ssrs
+ * @CreateDate:     2018/8/7 16:33
+ * @UpdateUser:     ssrs
+ * @UpdateDate:     2018/8/7 16:33
+ * @Version:        1.0
+ */
 @SuppressWarnings("unchecked")
 public class VCache {
-
 
 	/****
 	 *
@@ -32,12 +31,9 @@ public class VCache {
 	 *
 	 */
 
-
-
-
 	final static JedisManager J = SpringContextUtil.getBean("jedisManager", JedisManager.class);
 	private VCache() {}
-	
+
 	/**
 	 * 简单的Get
 	 * @param <T>
@@ -45,20 +41,20 @@ public class VCache {
 	 * @param requiredType
 	 * @return
 	 */
-	public static <T> T get(String key , Class<T>...requiredType){
+	public static <T> T get(Object key , Class<T>...requiredType){
 		Jedis jds = null;
-        boolean isBroken = false;
+		boolean isBroken = false;
 		try {
 			jds = J.getJedis();
 			jds.select(0);
 			byte[] skey = SerializeUtil.serialize(key);
 			return SerializeUtil.deserialize(jds.get(skey),requiredType);
-        } catch (Exception e) {
-            isBroken = true;
-            e.printStackTrace();
-        } finally {
-            returnResource(jds, isBroken);
-        }
+		} catch (Exception e) {
+			isBroken = true;
+			e.printStackTrace();
+		} finally {
+			returnResource(jds, isBroken);
+		}
 		return null;
 	}
 	/**
@@ -68,19 +64,19 @@ public class VCache {
 	 */
 	public static void set(Object key ,Object value){
 		Jedis jds = null;
-        boolean isBroken = false;
+		boolean isBroken = false;
 		try {
 			jds = J.getJedis();
 			jds.select(0);
 			byte[] skey = SerializeUtil.serialize(key);
 			byte[] svalue = SerializeUtil.serialize(value);
 			jds.set(skey, svalue);
-        } catch (Exception e) {
-            isBroken = true;
-            e.printStackTrace();
-        } finally {
-            returnResource(jds, isBroken);
-        }
+		} catch (Exception e) {
+			isBroken = true;
+			e.printStackTrace();
+		} finally {
+			returnResource(jds, isBroken);
+		}
 	}
 	/**
 	 * 过期时间的
@@ -90,23 +86,23 @@ public class VCache {
 	 */
 	public static void setex(Object key, Object value, int timer) {
 		Jedis jds = null;
-        boolean isBroken = false;
+		boolean isBroken = false;
 		try {
 			jds = J.getJedis();
 			jds.select(0);
 			byte[] skey = SerializeUtil.serialize(key);
 			byte[] svalue = SerializeUtil.serialize(value);
 			jds.setex(skey, timer, svalue);
-        } catch (Exception e) {
-            isBroken = true;
-            e.printStackTrace();
-        } finally {
-            returnResource(jds, isBroken);
-        }
-		
+		} catch (Exception e) {
+			isBroken = true;
+			e.printStackTrace();
+		} finally {
+			returnResource(jds, isBroken);
+		}
+
 	}
 	/**
-	 * 
+	 *
 	 * @param <T>
 	 * @param mapkey map
 	 * @param key	 map里的key
@@ -127,7 +123,7 @@ public class VCache {
 				T resultObj = SerializeUtil.deserialize(x, requiredType);
 				return resultObj;
 			}
-			
+
 		} catch (Exception e) {
 			isBroken = true;
 			e.printStackTrace();
@@ -137,14 +133,14 @@ public class VCache {
 		return null;
 	}
 	/**
-	 * 
+	 *
 	 * @param mapkey map
 	 * @param key	 map里的key
 	 * @param value   map里的value
 	 */
 	public static void setVByMap(String mapkey,String key ,Object value){
 		Jedis jds = null;
-        boolean isBroken = false;
+		boolean isBroken = false;
 		try {
 			jds = J.getJedis();
 			jds.select(0);
@@ -152,13 +148,13 @@ public class VCache {
 			byte[] skey = SerializeUtil.serialize(key);
 			byte[] svalue = SerializeUtil.serialize(value);
 			jds.hset(mkey, skey,svalue);
-        } catch (Exception e) {
-            isBroken = true;
-            e.printStackTrace();
-        } finally {
-            returnResource(jds, isBroken);
-        }
-		
+		} catch (Exception e) {
+			isBroken = true;
+			e.printStackTrace();
+		} finally {
+			returnResource(jds, isBroken);
+		}
+
 	}
 	/**
 	 * 删除Map里的值
@@ -187,10 +183,10 @@ public class VCache {
 		}
 		return new Long(0);
 	}
-	
+
 	/**
 	 * 往redis里取set整个集合
-	 * 
+	 *
 	 * @param <T>
 	 * @param setKey
 	 * @param start
@@ -280,7 +276,7 @@ public class VCache {
 			jds.select(0);
 			String result = jds.srandmember(key);
 			return result;
-		} catch (Exception e){ 
+		} catch (Exception e){
 			isBroken = true;
 			e.printStackTrace();
 		} finally {
@@ -295,42 +291,42 @@ public class VCache {
 	 */
 	public static void setVBySet(String setKey,String value){
 		Jedis jds = null;
-        boolean isBroken = false;
+		boolean isBroken = false;
 		try {
 			jds = J.getJedis();
 			jds.select(0);
 			jds.sadd(setKey, value);
 		} catch (Exception e) {
-            isBroken = true;
-            e.printStackTrace();
-        } finally {
-            returnResource(jds, isBroken);
-        }
+			isBroken = true;
+			e.printStackTrace();
+		} finally {
+			returnResource(jds, isBroken);
+		}
 	}
 	/**
-	 * 取set 
+	 * 取set
 	 * @param key
 	 * @return
 	 */
 	public static Set<String> getSetByKey(String key){
 		Jedis jds = null;
-        boolean isBroken = false;
+		boolean isBroken = false;
 		try {
 			jds = J.getJedis();
 			jds.select(0);
 			Set<String> result = jds.smembers(key);
 			return result;
 		} catch (Exception e) {
-            isBroken = true;
-            e.printStackTrace();
-        } finally {
-            returnResource(jds, isBroken);
-        }
-        return null;
-		 
+			isBroken = true;
+			e.printStackTrace();
+		} finally {
+			returnResource(jds, isBroken);
+		}
+		return null;
+
 	}
-	
-	
+
+
 	/**
 	 * 往redis里存List
 	 * @param listKey
@@ -354,7 +350,7 @@ public class VCache {
 	}
 	/**
 	 * 往redis里取list
-	 * 
+	 *
 	 * @param <T>
 	 * @param listKey
 	 * @param start
@@ -384,6 +380,36 @@ public class VCache {
 		}
 		return null;
 	}
+
+	/**
+	 * 将key从redis.list中删除
+	 *
+	 * @param key
+	 * @param count
+	 * count > 0 : 从表头开始向表尾搜索，移除与 VALUE 相等的元素，数量为 COUNT 。
+	 * count < 0 : 从表尾开始向表头搜索，移除与 VALUE 相等的元素，数量为 COUNT 的绝对值。
+	 * count = 0 : 移除表中所有与 VALUE 相等的值。
+	 * @param value
+	 * @return
+	 */
+	public static Long delKeyByList(Object key,long count,Object value){
+		Jedis jds = null;
+		boolean isBroken = false;
+		try {
+			jds = J.getJedis();
+			jds.select(0);
+			byte[] lkey = SerializeUtil.serialize(key);
+			byte[] lvalue = SerializeUtil.serialize(value);
+			Long result = jds.lrem(lkey, count, lvalue);
+			return result;
+		} catch (Exception e) {
+			isBroken = true;
+			e.printStackTrace();
+		} finally {
+			returnResource(jds, isBroken);
+		}
+		return new Long(0);
+	}
 	/**
 	 * 获取list长度
 	 * @param listKey
@@ -411,7 +437,7 @@ public class VCache {
 	 * @param dkey
 	 * @return
 	 */
-	public static Long delByKey(String...dkey){
+	public static Long delByKey(Object...dkey){
 		Jedis jds = null;
 		boolean isBroken = false;
 		try {
@@ -436,7 +462,7 @@ public class VCache {
 	 * @param existskey
 	 * @return
 	 */
-	public static boolean exists(String existskey){
+	public static boolean exists(Object existskey){
 		Jedis jds = null;
 		boolean isBroken = false;
 		try {
@@ -452,19 +478,54 @@ public class VCache {
 		}
 		return false;
 	}
+
+	/**
+	 * 清除jedis
+	 */
+	public static void clear(){
+		Jedis jds = null;
+		boolean isBroken = false;
+		try {
+			jds = J.getJedis();
+			jds.select(0);
+			jds.flushDB();
+		} catch (Exception e) {
+			isBroken = true;
+			e.printStackTrace();
+		} finally {
+			returnResource(jds, isBroken);
+		}
+	}
 	/**
 	 * 释放
 	 * @param jedis
 	 * @param isBroken
 	 */
 	public static void returnResource(Jedis jedis, boolean isBroken) {
-        if (jedis == null)
-            return;
+		if (jedis == null)
+			return;
 //        if (isBroken)
 //            J.getJedisPool().returnBrokenResource(jedis);
 //        else
 //        	J.getJedisPool().returnResource(jedis);
 //        版本问题
-        jedis.close();
-	 }
+		jedis.close();
+	}
+
+	public static Set<byte[]> keys(Object keys) {
+		Jedis jds = null;
+		boolean isBroken = false;
+		try {
+			jds = J.getJedis();
+			jds.select(0);
+			Set<byte[]> sets = jds.keys(SerializeUtil.serialize(keys));
+			return sets;
+		} catch (Exception e) {
+			isBroken = true;
+			e.printStackTrace();
+		} finally {
+			returnResource(jds, isBroken);
+		}
+		return null;
+	}
 }

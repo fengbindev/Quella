@@ -114,10 +114,21 @@
       <version>${spring.version}</version>
     </dependency>
 
+    <!--spring aop 注解支持-->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>1.8.9</version>
+    </dependency>
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib</artifactId>
+      <version>2.2</version>
+    </dependency>
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjweaver</artifactId>
-      <version>1.6.12</version>
+      <version>1.8.9</version>
     </dependency>
 
     <!-- mp依赖
@@ -148,7 +159,6 @@
       <version>1.1.10</version>
     </dependency>
 
-
     <!-- 添加fastjson -->
     <dependency>
       <groupId>com.alibaba</groupId>
@@ -156,26 +166,7 @@
       <version>1.1.41</version>
     </dependency>
 
-    <!-- 添加日志相关jar包 -->
-    <!--<dependency>-->
-      <!--<groupId>log4j</groupId>-->
-      <!--<artifactId>log4j</artifactId>-->
-      <!--<version>${log4j.version}</version>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-      <!--<groupId>org.slf4j</groupId>-->
-      <!--<artifactId>slf4j-api</artifactId>-->
-      <!--<version>${slf4j.version}</version>-->
-    <!--</dependency>-->
-    <!--<dependency>-->
-      <!--<groupId>org.slf4j</groupId>-->
-      <!--<artifactId>slf4j-log4j12</artifactId>-->
-      <!--<version>${slf4j.version}</version>-->
-    <!--</dependency>-->
-    <!-- log end -->
-
-
-
+    <!--lo4j2日志相关-->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-slf4j-impl</artifactId>
@@ -279,11 +270,7 @@
       </exclusions>
     </dependency>
     <!-- freemarker + shiro（标签） begin -->
-    <!--<dependency>-->
-      <!--<artifactId>quartz</artifactId>-->
-      <!--<groupId>org.opensymphony.quartz</groupId>-->
-      <!--<version>1.6.1</version>-->
-    <!--</dependency>-->
+
     <dependency>
       <groupId>org.apache.shiro</groupId>
       <artifactId>shiro-all</artifactId>
