@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:websocket="http://www.springframework.org/schema/websocket"
- 	xmlns:task="http://www.springframework.org/schema/task"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   xmlns:task="http://www.springframework.org/schema/task"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd 
 	http://www.springframework.org/schema/context 
 	http://www.springframework.org/schema/context/spring-context-4.0.xsd 
@@ -13,7 +14,7 @@
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 	http://www.springframework.org/schema/websocket
-    http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+    http://www.springframework.org/schema/websocket/spring-websocket.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
 	<!-- 自动扫描(自动注入) -->
@@ -192,4 +193,8 @@
 		p:defaultEncoding="utf-8">
 		<property name="maxUploadSize" value="50048000" />	
 	</bean>
+
+	<!--spring aop 注解配置开启-->
+	<aop:aspectj-autoproxy/>
+	<bean id="cacheAspect" class="com.ssrs.core.cache.CacheAspect"></bean>
 </beans>
