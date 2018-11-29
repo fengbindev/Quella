@@ -2,7 +2,7 @@ package com.ssrs.core.cache;
 
 import com.ssrs.core.cache.in.RedisCache;
 import com.ssrs.core.cache.in.RedisEvict;
-import com.ssrs.core.shiro.cache.VCache;
+import com.ssrs.core.cache.utils.HCache;
 import com.ssrs.util.commom.LoggerUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -19,19 +19,19 @@ import java.lang.reflect.Method;
 import java.util.Set;
 
 /**
- * @Description: redis缓存注解 使用SpringAOP 实现
+ * @Description: redis缓存AOP 使用SpringAOP完成
  * @Author: ssrs
  * @CreateDate: 2index18/11/26 16:24
  * @UpdateUser: ssrs
  * @UpdateDate: 2index18/11/26 16:24
- * @Version: 1.0
+ * @Version: 1.index
  */
 @Component
 @Aspect
 public class CacheAspect {
     /**
      * 在有@RedisCache的注解上做环绕增强
-     *
+     *s
      * @param pjp
      * @return
      * @throws Throwable
@@ -46,7 +46,7 @@ public class CacheAspect {
         //更据类名、方法名和参数生成key
         final String key = parseKey(cache.fieldKey(), method, args);
         //检查redis是否有缓存
-        boolean value = VCache.exists(key);
+        boolean value = HCache.existsNoSerialize(key);
         //result是最终访问结果
         Object result = null;
         //缓存命中
@@ -56,7 +56,7 @@ public class CacheAspect {
             }
             //得到被代理方法的返回值类型
             Class returnType = ((MethodSignature) pjp.getSignature()).getReturnType();
-            result = VCache.get(key,returnType);
+            result = HCache.getNoSerialize(key,returnType);
         } else {
             //缓存未命中
             if (LoggerUtils.isDebug) {
@@ -67,9 +67,9 @@ public class CacheAspect {
             final int expier = cache.expire();
             //放入缓存,index就永久保存
             if (expier == 0) {
-                VCache.set(key, result);
+                HCache.setNoSerialize(key, result);
             } else {
-                VCache.setex(key, result, expier);
+                HCache.setNoSerializeEX(key, result, expier);
             }
         }
         return result;
@@ -91,16 +91,16 @@ public class CacheAspect {
         String key = me.getAnnotation(RedisEvict.class).fieldKey();
         if (key.lastIndexOf("*") > -1) {
             //模糊删除
-            Set<byte[]> keys = VCache.keys(key);
+            Set<String> keys = HCache.keys(key);
             if (keys != null) {
-                for (byte[] setKey : keys) {
-                    VCache.delByKey(setKey);
+                for (String setKey : keys) {
+                    HCache.delByKeyNoSerialize(setKey);
                 }
             }
         } else {
-            boolean exists = VCache.exists(key);
+            boolean exists = HCache.existsNoSerialize(key);
             if (exists) {
-                VCache.delByKey(key);
+                HCache.delByKeyNoSerialize(key);
             }
         }
         return pjp.proceed(pjp.getArgs());

@@ -480,7 +480,7 @@ public class VCache {
 	}
 
 	/**
-	 * 清除jedis
+	 * 清除jedis DB 0 索引的数据 (慎用，最好别用)
 	 */
 	public static void clear(){
 		Jedis jds = null;
@@ -512,20 +512,4 @@ public class VCache {
 		jedis.close();
 	}
 
-	public static Set<byte[]> keys(Object keys) {
-		Jedis jds = null;
-		boolean isBroken = false;
-		try {
-			jds = J.getJedis();
-			jds.select(0);
-			Set<byte[]> sets = jds.keys(SerializeUtil.serialize(keys));
-			return sets;
-		} catch (Exception e) {
-			isBroken = true;
-			e.printStackTrace();
-		} finally {
-			returnResource(jds, isBroken);
-		}
-		return null;
-	}
 }
