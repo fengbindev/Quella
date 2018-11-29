@@ -13,11 +13,11 @@ import java.util.Set;
 
 /**
 * @Description:    注解缓存的Redis帮助类，与JedisManager、VCache 没有区别，只是key都不进行序列化
-* @Author:         ssrs
+* @Author:          ssrs
 * @CreateDate:     2018/8/7 16:33
 * @UpdateUser:     ssrs
-* @UpdateDate:     dbIndexdbIndex18/8/7 16:33
-* @Version:        1.dbIndex
+* @UpdateDate:     2018/8/7 16:33
+* @Version:        1.0
 */
 @SuppressWarnings("unchecked")
 public class HCache {
@@ -26,7 +26,7 @@ public class HCache {
 	 */
 	final static JedisManager J = SpringContextUtil.getBean("jedisManager", JedisManager.class);
 	final static int dbIndex = 2; //redis DB 索引
-	final static String chartSet = "UTF-8";
+	final static String chartSet = "UTF-8"; //字符编码
 	final static int scanCount = 100;//redis.scan的count大小，看数据调节大小
 	private HCache() {}
 	
