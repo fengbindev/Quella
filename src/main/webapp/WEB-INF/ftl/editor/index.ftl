@@ -13,12 +13,11 @@
 
                             <!--这里写页面的代码-->
                             <div class="layui-card-body">
-
                                 <div id="editor1">
                                     <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
                                 </div>
+                                <textarea id="editorText" name="content"  hidden></textarea>
                                 <#include "../common/editor.ftl">
-
                             </div>
                         </div>
                     </div>
