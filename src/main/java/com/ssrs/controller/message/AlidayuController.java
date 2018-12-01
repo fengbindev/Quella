@@ -6,8 +6,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.ssrs.core.manager.UserManager;
 import com.ssrs.model.Alidayu;
 import com.ssrs.model.Sign;
+import com.ssrs.model.WebSetting;
 import com.ssrs.service.IAlidayuService;
 import com.ssrs.service.ISignService;
+import com.ssrs.service.IWebSettingService;
 import com.ssrs.util.commom.APPUtil;
 import com.ssrs.util.commom.LoggerUtils;
 import com.ssrs.util.commom.StringUtils;
@@ -41,6 +43,8 @@ public class AlidayuController {
     private IAlidayuService alidayuService;
     @Autowired
     private ISignService signService;
+    @Autowired
+    private IWebSettingService webSettingService;
 
     /**
      * 跳转到首页
@@ -58,7 +62,7 @@ public class AlidayuController {
     }
 
     /**
-     * 修改短信配置
+     * 修改短信配置,验证码长度要去网站设置的一致
      * @param alidayu
      * @return
      */
@@ -67,6 +71,10 @@ public class AlidayuController {
     public Object update(Alidayu alidayu){
         alidayu.setId(1);
         boolean b = alidayuService.updateById(alidayu);
+        WebSetting webSetting = new WebSetting();
+        webSetting.setId(1);
+        webSetting.setSigeSize(alidayu.getSignSize());
+        webSettingService.updateById(webSetting);
         return b? APPUtil.resultMapType(APPUtil.UPDATE_SUCCESS_TYPE):APPUtil.resultMapType(APPUtil.UPDATE_ERROR_TYPE);
     }
 

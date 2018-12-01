@@ -6,8 +6,10 @@ import com.ssrs.controller.BaseController;
 import com.ssrs.core.manager.PageManager;
 import com.ssrs.core.manager.UserManager;
 import com.ssrs.core.shiro.token.manager.TokenManager;
+import com.ssrs.model.WebSetting;
 import com.ssrs.permission.model.*;
 import com.ssrs.permission.service.*;
+import com.ssrs.service.IWebSettingService;
 import com.ssrs.util.commom.APPUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -42,6 +44,8 @@ public class UserCoreController extends BaseController {
     private IUserService userService;
     @Autowired
     private IUserRoleService userRoleService;
+    @Autowired
+    private IWebSettingService webSettingService;
 
     /**
      * 登录成功跳转到登录首页
@@ -56,6 +60,8 @@ public class UserCoreController extends BaseController {
         List<Menu> menus = menuService.getRootMenu();
         menus = UserManager.checkMenuPermission(menus);
         modelAndView.addObject("menus",menus);
+        WebSetting webSetting = webSettingService.selectById(1);
+        modelAndView.addObject("websetting",webSetting);
         return modelAndView;
     }
 

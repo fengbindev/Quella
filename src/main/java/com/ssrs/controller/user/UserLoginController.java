@@ -3,8 +3,10 @@ package com.ssrs.controller.user;
 import com.ssrs.controller.BaseController;
 import com.ssrs.core.manager.UserManager;
 import com.ssrs.core.shiro.token.manager.TokenManager;
+import com.ssrs.model.WebSetting;
 import com.ssrs.permission.model.User;
 import com.ssrs.permission.service.IUserService;
+import com.ssrs.service.IWebSettingService;
 import com.ssrs.util.commom.LoggerUtils;
 import com.ssrs.util.commom.StringUtils;
 import org.apache.shiro.authc.DisabledAccountException;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,6 +41,8 @@ public class UserLoginController extends BaseController {
 
     @Autowired
     IUserService userService;
+    @Autowired
+    IWebSettingService webSettingService;
 
     /**
      * 登录跳转
@@ -45,7 +50,9 @@ public class UserLoginController extends BaseController {
      * @return
      */
     @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String login() {
+    public String login(Model model) {
+        WebSetting webSetting = webSettingService.selectById(1);
+        model.addAttribute("websetting",webSetting);
         return "user/login";
     }
 

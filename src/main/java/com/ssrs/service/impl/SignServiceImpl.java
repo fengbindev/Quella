@@ -6,15 +6,15 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.ssrs.core.manager.UserManager;
 import com.ssrs.model.Sign;
 import com.ssrs.mapper.SignMapper;
+import com.ssrs.model.WebSetting;
 import com.ssrs.service.ISignService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.ssrs.service.IWebSettingService;
 import com.ssrs.util.sign.SignUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * <p>
@@ -38,6 +38,9 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements IS
      * @param phone
      * @return
      */
+    @Autowired
+    private IWebSettingService webSettingService;
+
     public Map<String, Object> isOk(String phone) {
 
         // 根据手机号码 按照时间倒叙排序，找到这个手机号码最后发的 8 条短信
@@ -106,7 +109,9 @@ public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements IS
         }
         // 获取验证码有效时间
         int mins = KitUtil.timeDifference(s.getSignTime(), new Date(),2);
-        if(mins > SignUtil.SIGN_ACTICE_TIME){
+        WebSetting webSetting = webSettingService.selectById(1);
+        Integer signActiceTime = Optional.ofNullable(webSetting.getSignActiveTime()).orElse(SignUtil.SIGN_ACTICE_TIME);
+        if(mins > signActiceTime){
             return KitUtil.returnMap("101","验证码已超时");
         }
         //设置为已被使用

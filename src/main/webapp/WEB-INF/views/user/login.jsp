@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Quella-登录</title>
+  <title>${websetting.webName}-登录</title>
   <link rel="stylesheet" href="<%=basePath%>/plugins/kitadmin/css/layui.css" id="layui">
   <link rel="stylesheet" href="<%=basePath%>/plugins/kitadmin/css/login.css">
 </head>
@@ -18,7 +18,7 @@
   <div class="kit-login">
     <div class="kit-login-bg"></div>
     <div class="kit-login-wapper">
-      <h2 class="kit-login-slogan">欢迎使用 <br> Quella 1.3 后台管理系统</h2>
+      <h2 class="kit-login-slogan">欢迎使用 <br>${websetting.webName}后台管理系统</h2>
       <div class="kit-login-form">
         <h4 class="kit-login-title">登录</h4>
         <form class="layui-form" action="">
