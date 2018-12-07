@@ -143,6 +143,7 @@
           <element id="library" level="project" name="Maven: org.elasticsearch.plugin:rank-eval-client:6.4.2" />
           <element id="library" level="project" name="Maven: org.elasticsearch.plugin:lang-mustache-client:6.4.2" />
           <element id="library" level="project" name="Maven: com.github.spullara.mustache.java:compiler:0.9.3" />
+          <element id="library" level="project" name="Maven: org.jsoup:jsoup:1.9.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">
