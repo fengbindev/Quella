@@ -1,10 +1,11 @@
-package com.ssrs.core.timer;
+package com.ssrs.core.timer.job;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.ssrs.model.SystemLog;
 import com.ssrs.service.ISystemLogService;
 import com.ssrs.util.commom.LoggerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 /**
@@ -15,6 +16,7 @@ import java.util.Date;
 * @UpdateDate:     2018/8/15 16:18
 * @Version:        1.0
 */
+@Component
 public class CleanSystemLogTask {
 
     @Autowired

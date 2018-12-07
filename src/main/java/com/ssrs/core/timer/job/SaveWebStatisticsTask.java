@@ -1,4 +1,4 @@
-package com.ssrs.core.timer;
+package com.ssrs.core.timer.job;
 
 import cn.hutool.core.date.DateUtil;
 import com.ssrs.core.shiro.cache.VCache;
@@ -7,6 +7,7 @@ import com.ssrs.service.IWebVisitCountService;
 import com.ssrs.util.commom.APPUtil;
 import com.ssrs.util.commom.LoggerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
 * @Description:    定时保存每日站点统计数据到数据库
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 * @UpdateDate:     2018/10/12 13:52
 * @Version:        1.0
 */
+@Component
 public class SaveWebStatisticsTask {
 
     @Autowired

@@ -82,6 +82,7 @@
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-quartz:1.2.5" />
           <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz:2.2.1" />
           <element id="library" level="project" name="Maven: c3p0:c3p0:0.9.1.1" />
+          <element id="library" level="project" name="Maven: org.quartz-scheduler:quartz-jobs:2.2.1" />
           <element id="library" level="project" name="Maven: org.apache.shiro:shiro-spring:1.2.5" />
           <element id="library" level="project" name="Maven: redis.clients:jedis:2.8.0" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-pool2:2.3" />

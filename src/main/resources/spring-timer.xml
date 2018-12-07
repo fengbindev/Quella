@@ -16,104 +16,109 @@
     <!--<task:scheduler id="scheduler" pool-size="10" />  -->
     <!--<task:annotation-driven executor="executor" scheduler="scheduler" />-->
 <!--清除日志定时任务开始-->
-	<bean id="cleanSystemLogJob" class="com.ssrs.core.timer.CleanSystemLogTask"/>
-	<bean id="cleanSystemLogJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="group" value="job_work"/>
-		<property name="name" value="job_work_name"/>
-		<!--false表示等上一个任务执行完后再开启新的任务-->
-		<property name="concurrent" value="false"/>
-		<property name="targetObject">
-			<ref bean="cleanSystemLogJob"/>
-		</property>
-		<property name="targetMethod">
-			<value>run</value>
-		</property>
-	</bean>
+	<!--<bean id="cleanSystemLogJob" class="com.ssrs.core.timer.job.CleanSystemLogTask"/>-->
+	<!--<bean id="cleanSystemLogJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+		<!--<property name="group" value="job_work"/>-->
+		<!--<property name="name" value="job_work_name"/>-->
+		<!--&lt;!&ndash;false表示等上一个任务执行完后再开启新的任务&ndash;&gt;-->
+		<!--<property name="concurrent" value="false"/>-->
+		<!--<property name="targetObject">-->
+			<!--<ref bean="cleanSystemLogJob"/>-->
+		<!--</property>-->
+		<!--<property name="targetMethod">-->
+			<!--<value>run</value>-->
+		<!--</property>-->
+	<!--</bean>-->
 
-	<!--  调度触发器 -->
-	<bean id="cleanSystemLogTrigger"
-		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="name" value="work_default_name"/>
-		<property name="group" value="work_default"/>
-		<property name="jobDetail">
-			<ref bean="cleanSystemLogJobDetail" />
-		</property>
-		<property name="cronExpression">
-			<!--测试用的-->
-			<!--<value>0/10 * * * * ?</value>-->
-			<!--每天2点触发-->
-			<value>0 0 2 * * ?</value>
-		</property>
-	</bean>
-	<!--清除日志定时任务结束-->
+	<!--&lt;!&ndash;  调度触发器 &ndash;&gt;-->
+	<!--<bean id="cleanSystemLogTrigger"-->
+		  <!--class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+		<!--<property name="name" value="work_default_name"/>-->
+		<!--<property name="group" value="work_default"/>-->
+		<!--<property name="jobDetail">-->
+			<!--<ref bean="cleanSystemLogJobDetail" />-->
+		<!--</property>-->
+		<!--<property name="cronExpression">-->
+			<!--&lt;!&ndash;测试用的&ndash;&gt;-->
+			<!--&lt;!&ndash;<value>0/10 * * * * ?</value>&ndash;&gt;-->
+			<!--&lt;!&ndash;每天2点触发&ndash;&gt;-->
+			<!--<value>0 0 2 * * ?</value>-->
+		<!--</property>-->
+	<!--</bean>-->
+	<!--&lt;!&ndash;清除日志定时任务结束&ndash;&gt;-->
 
-	<!--初始化数据库定时任务开始-->
-	<bean id="initQuellaDataJob" class="com.ssrs.core.timer.InitQuellaDataTask"/>
-	<bean id="initQuellaDataJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="group" value="job_work_2"/>
-		<property name="name" value="job_work_name_2"/>
-		<!--false表示等上一个任务执行完后再开启新的任务-->
-		<property name="concurrent" value="false"/>
-		<property name="targetObject">
-			<ref bean="initQuellaDataJob"/>
-		</property>
-		<property name="targetMethod">
-			<value>run</value>
-		</property>
-	</bean>
-	<!--初始化数据库定时任务结束-->
-	<!--  调度触发器 -->
-	<bean id="initQuellaDataTrigger"
-		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="name" value="work_default_name_2"/>
-		<property name="group" value="work_default_2"/>
-		<property name="jobDetail">
-			<ref bean="initQuellaDataJobDetail" />
-		</property>
-		<property name="cronExpression">
-			<!--测试用的-->
-			<!--<value>0/10 * * * * ?</value>-->
-			<value>0 0 0/1 * * ?</value>
-		</property>
-	</bean>
+	<!--&lt;!&ndash;初始化数据库定时任务开始&ndash;&gt;-->
+	<!--<bean id="initQuellaDataJob" class="com.ssrs.core.timer.job.InitQuellaDataTask"/>-->
+	<!--<bean id="initQuellaDataJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+		<!--<property name="group" value="job_work_2"/>-->
+		<!--<property name="name" value="job_work_name_2"/>-->
+		<!--&lt;!&ndash;false表示等上一个任务执行完后再开启新的任务&ndash;&gt;-->
+		<!--<property name="concurrent" value="false"/>-->
+		<!--<property name="targetObject">-->
+			<!--<ref bean="initQuellaDataJob"/>-->
+		<!--</property>-->
+		<!--<property name="targetMethod">-->
+			<!--<value>run</value>-->
+		<!--</property>-->
+	<!--</bean>-->
+	<!--&lt;!&ndash;初始化数据库定时任务结束&ndash;&gt;-->
+	<!--&lt;!&ndash;  调度触发器 &ndash;&gt;-->
+	<!--<bean id="initQuellaDataTrigger"-->
+		  <!--class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+		<!--<property name="name" value="work_default_name_2"/>-->
+		<!--<property name="group" value="work_default_2"/>-->
+		<!--<property name="jobDetail">-->
+			<!--<ref bean="initQuellaDataJobDetail" />-->
+		<!--</property>-->
+		<!--<property name="cronExpression">-->
+			<!--&lt;!&ndash;测试用的&ndash;&gt;-->
+			<!--&lt;!&ndash;<value>0/10 * * * * ?</value>&ndash;&gt;-->
+			<!--<value>0 0 0/1 * * ?</value>-->
+		<!--</property>-->
+	<!--</bean>-->
 
-	<!--保存站点统计数据到数据库定时任务开始-->
-	<bean id="saveWebStatisticsJob" class="com.ssrs.core.timer.SaveWebStatisticsTask"/>
-	<bean id="saveWebStatisticsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="group" value="job_work_3"/>
-		<property name="name" value="job_work_name_3"/>
-		<!--false表示等上一个任务执行完后再开启新的任务-->
-		<property name="concurrent" value="false"/>
-		<property name="targetObject">
-			<ref bean="saveWebStatisticsJob"/>
-		</property>
-		<property name="targetMethod">
-			<value>run</value>
-		</property>
-	</bean>
-	<!--保存站点统计数据到数据库定时任务结束-->
-	<!--  调度触发器 -->
-	<bean id="saveWebStatisticsTrigger"
-		  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="name" value="work_default_name_3"/>
-		<property name="group" value="work_default_3"/>
-		<property name="jobDetail">
-			<ref bean="saveWebStatisticsJobDetail" />
-		</property>
-		<property name="cronExpression">
-			<!--每天的23:59:00执行-->
-			<value>0 59 23 * * ? *</value>
-		</property>
-	</bean>
+	<!--&lt;!&ndash;保存站点统计数据到数据库定时任务开始&ndash;&gt;-->
+	<!--<bean id="saveWebStatisticsJob" class="com.ssrs.core.timer.job.SaveWebStatisticsTask"/>-->
+	<!--<bean id="saveWebStatisticsJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">-->
+		<!--<property name="group" value="job_work_3"/>-->
+		<!--<property name="name" value="job_work_name_3"/>-->
+		<!--&lt;!&ndash;false表示等上一个任务执行完后再开启新的任务&ndash;&gt;-->
+		<!--<property name="concurrent" value="false"/>-->
+		<!--<property name="targetObject">-->
+			<!--<ref bean="saveWebStatisticsJob"/>-->
+		<!--</property>-->
+		<!--<property name="targetMethod">-->
+			<!--<value>run</value>-->
+		<!--</property>-->
+	<!--</bean>-->
+	<!--&lt;!&ndash;保存站点统计数据到数据库定时任务结束&ndash;&gt;-->
+	<!--&lt;!&ndash;  调度触发器 &ndash;&gt;-->
+	<!--<bean id="saveWebStatisticsTrigger"-->
+		  <!--class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">-->
+		<!--<property name="name" value="work_default_name_3"/>-->
+		<!--<property name="group" value="work_default_3"/>-->
+		<!--<property name="jobDetail">-->
+			<!--<ref bean="saveWebStatisticsJobDetail" />-->
+		<!--</property>-->
+		<!--<property name="cronExpression">-->
+			<!--&lt;!&ndash;每天的23:59:00执行&ndash;&gt;-->
+			<!--<value>0 59 23 * * ? *</value>-->
+		<!--</property>-->
+	<!--</bean>-->
 
-	<!-- 调度工厂 -->
-	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-		<property name="triggers">
-			<list>
-				<ref bean="cleanSystemLogTrigger"/>
-				<ref bean="initQuellaDataTrigger"/>
-				<ref bean="saveWebStatisticsTrigger"/>
-			</list>
-		</property>
-	</bean>
+	<!--&lt;!&ndash; 调度工厂 &ndash;&gt;-->
+	<!--<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">-->
+		<!--<property name="triggers">-->
+			<!--<list>-->
+				<!--<ref bean="cleanSystemLogTrigger"/>-->
+				<!--<ref bean="initQuellaDataTrigger"/>-->
+				<!--<ref bean="saveWebStatisticsTrigger"/>-->
+			<!--</list>-->
+		<!--</property>-->
+	<!--</bean>-->
+
+	<context:component-scan base-package="com.ssrs.core.timer"/>
+	<bean id="schedulerFactoryBean"  class="org.springframework.scheduling.quartz.SchedulerFactoryBean" />
+	<!-- 初始化job -->
+	<bean id="initQuartzJob" class="com.ssrs.core.timer.InitQuartzJob"  init-method="init"  lazy-init="false" />
 </beans>

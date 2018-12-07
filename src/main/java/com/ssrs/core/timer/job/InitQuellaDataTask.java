@@ -1,10 +1,11 @@
-package com.ssrs.core.timer;
+package com.ssrs.core.timer.job;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.ssrs.model.SystemLog;
 import com.ssrs.permission.service.IUserService;
 import com.ssrs.util.commom.LoggerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
@@ -16,6 +17,7 @@ import java.util.Date;
 * @UpdateDate:     2018/8/17 13:35
 * @Version:        1.0
 */
+@Component
 public class InitQuellaDataTask {
 
     @Autowired
