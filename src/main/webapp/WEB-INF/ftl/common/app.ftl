@@ -160,7 +160,7 @@
                     </tr>
                       <tr>
                         <td>版本号</td>
-                        <td>v1.3</td>
+                        <td>v1.4</td>
                       </tr>
                       <tr>
                         <td>作者</td>
@@ -260,6 +260,24 @@
                                     <li>数据字典标签</li>
                                     <li>站点IP、PV统计</li>
                                     <li>实时控制台日志</li>
+                                </ul>
+                                </p>
+                            </div>
+                        </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">2018年12月8日 (v1.4)</h3>
+                                <p>
+                                    <b>#主要是对系统性能和安全做优化</b>
+                                <ul>
+                                    <li>使用Redis作为mybatis的二级缓存</li>
+                                    <li>使用SpringAOP和自定义注解完成Redis缓存</li>
+                                    <li>XSS攻击安全过滤</li>
+                                    <li>定时任务可视化控制</li>
+                                    <li>富文本可直接嵌入表单</li>
+                                    <li>增加系统全局设置页面</li>
+                                    <li>修复一些BUG</li>
                                 </ul>
                                 </p>
                             </div>
