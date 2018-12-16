@@ -582,9 +582,9 @@ CREATE TABLE `ssrs_timetask` (
 -- ----------------------------
 -- Records of ssrs_timetask
 -- ----------------------------
-INSERT INTO `ssrs_timetask` VALUES ('1', '清除系统日志', 'g1', '2018-12-05 16:45:43', '2018-12-31 00:00:00', '0 0 2 * * ?', '1', 'NONE', '0', null, 'run', 'com.ssrs.core.timer.job.CleanSystemLogTask', '清除系统日志', '15', '2018-12-05 16:46:06', '15', '2018-12-07 16:21:18');
-INSERT INTO `ssrs_timetask` VALUES ('2', '初始化数据库', 'g1', '2018-12-07 10:43:54', '2019-12-07 00:00:00', '0 0 0/1 * * ?', '1', 'NONE', '0', null, 'run', 'com.ssrs.core.timer.job.InitQuellaDataTask', '初始化数据库', '15', '2018-12-07 10:44:14', '15', '2018-12-07 10:49:53');
-INSERT INTO `ssrs_timetask` VALUES ('3', '站点统计数据到数据库', 'g1', '2018-12-07 10:46:35', '2020-12-07 00:00:00', '0 59 23 * * ? *', '1', 'NONE', '0', null, 'run', 'com.ssrs.core.timer.job.SaveWebStatisticsTask', '定时保存每日站点统计数据到数据库', '15', '2018-12-07 10:46:43', '15', '2018-12-07 10:46:43');
+INSERT INTO `ssrs_timetask` VALUES ('1', '清除系统日志', 'g1', '2018-12-05 16:45:43', '2018-12-31 00:00:00', '0 0 2 * * ?', '0', 'NONE', '0', null, 'run', 'com.ssrs.core.timer.job.CleanSystemLogTask', '清除系统日志', '15', '2018-12-05 16:46:06', '15', '2018-12-07 16:21:18');
+INSERT INTO `ssrs_timetask` VALUES ('2', '初始化数据库', 'g1', '2018-12-07 10:43:54', '2019-12-07 00:00:00', '0 0 0/1 * * ?', '0', 'NONE', '0', null, 'run', 'com.ssrs.core.timer.job.InitQuellaDataTask', '初始化数据库', '15', '2018-12-07 10:44:14', '15', '2018-12-07 10:49:53');
+INSERT INTO `ssrs_timetask` VALUES ('3', '站点统计数据到数据库', 'g1', '2018-12-07 10:46:35', '2020-12-07 00:00:00', '0 59 23 * * ? *', '0', 'NONE', '0', null, 'run', 'com.ssrs.core.timer.job.SaveWebStatisticsTask', '定时保存每日站点统计数据到数据库', '15', '2018-12-07 10:46:43', '15', '2018-12-07 10:46:43');
 
 -- ----------------------------
 -- Table structure for `ssrs_trade`
@@ -659,7 +659,7 @@ CREATE TABLE `ssrs_web_setting` (
 -- ----------------------------
 -- Records of ssrs_web_setting
 -- ----------------------------
-INSERT INTO `ssrs_web_setting` VALUES ('1', 'Quella 1.3', '4', '5', '2018 © 上善若水 Apache License 2.0');
+INSERT INTO `ssrs_web_setting` VALUES ('1', 'Quella 1.4', '4', '5', '2018 © 上善若水 Apache License 2.0');
 
 -- ----------------------------
 -- Table structure for `ssrs_web_visit_count`
