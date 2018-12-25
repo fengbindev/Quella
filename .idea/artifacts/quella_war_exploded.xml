@@ -60,6 +60,7 @@
           <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.2.1" />
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.5" />
           <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.6" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.20" />
           <element id="library" level="project" name="Maven: cn.hutool:hutool-all:4.1.5" />
           <element id="library" level="project" name="Maven: org.freemarker:freemarker:2.3.20" />
           <element id="library" level="project" name="Maven: net.mingsoft:shiro-freemarker-tags:0.1" />
