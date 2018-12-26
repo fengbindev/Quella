@@ -1,0 +1,5 @@
+##[Class:3-5]
+
+@CacheNamespace(implementation = com.ssrs.core.cache.RedisMybatisCache.class )
+public interface #{obj}Mapper extends BaseMapper<#{obj}> {
+}

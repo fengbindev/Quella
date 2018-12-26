@@ -45,8 +45,8 @@ public class DefaultValue {
         fields.add(new Field("remark", "备注", FieldType.String.getCode(), 0, false,null));
         fields.add(new Field("createDate", "创建时间", FieldType.Date.getCode(), 0, true,null));
         fields.add(new Field("updateDate", "更新时间", FieldType.Date.getCode(), 0, true,null));
-        fields.add(new Field("createBy", "创建者", FieldType.Object.getCode(), 0, false,null));
-        fields.add(new Field("updateBy", "更新者", FieldType.Object.getCode(), 0, false,null));
+        fields.add(new Field("createBy", "创建者", FieldType.Long.getCode(), 0, false,null));
+        fields.add(new Field("updateBy", "更新者", FieldType.Long.getCode(), 0, false,null));
         fields.add(new Field("status", "数据状态", FieldType.Byte.getCode(), 0, true,null));
         return fields;
     }

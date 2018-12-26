@@ -9,6 +9,8 @@ import com.ssrs.util.code.domain.Template;
 import com.ssrs.util.code.enums.FieldQuery;
 import com.ssrs.util.code.enums.FieldType;
 import com.ssrs.util.code.enums.FieldVerify;
+import com.ssrs.util.code.template.EntityTemplate;
+import com.ssrs.util.code.template.RepositoryTemplate;
 import com.ssrs.util.code.util.DefaultValue;
 import com.ssrs.util.commom.ToolUtil;
 import com.ssrs.util.result.ResultVo;
@@ -50,9 +52,9 @@ public class CodeController {
 //        if(generate.getTemplate().isValidator()){
 //            fieldMap.put("验证类", ValidatorTemplate.generate(generate));
 //        }
-//        if(generate.getTemplate().isRepository()){
-//            fieldMap.put("数据访问层", RepositoryTemplate.generate(generate));
-//        }
+        if(generate.getTemplate().isRepository()){
+            fieldMap.put("数据访问层", RepositoryTemplate.generate(generate));
+        }
 //        if(generate.getTemplate().isService()){
 //            fieldMap.put("服务层", ServiceTemplate.generate(generate));
 //            fieldMap.put("服务实现层", ServiceImplTemplate.generate(generate));

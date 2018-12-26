@@ -17,8 +17,7 @@ public enum FieldType {
     Boolean(8, Boolean.class.getSimpleName()),
     Character(9, Character.class.getSimpleName()),
     Text(10, "Text"),
-    Date(11, Date.class.getSimpleName()),
-    Object(12, Object.class.getSimpleName());
+    Date(11, Date.class.getSimpleName());
 
     private Integer code;
 
