@@ -1,0 +1,7 @@
+##[Class:3-6]
+
+@Service("#{var}Service")
+public class #{obj}ServiceImpl extends ServiceImpl<#{obj}Mapper, #{obj}> implements I#{obj}Service {
+
+}
+
