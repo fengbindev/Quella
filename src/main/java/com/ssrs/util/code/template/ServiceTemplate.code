@@ -1,0 +1,5 @@
+##[Class:3-5]
+
+public interface I#{obj}Service extends IService<#{obj}> {
+
+}

@@ -1,16 +1,13 @@
 package com.ssrs.controller.code;
 
 
-import com.ssrs.util.code.*;
-import com.ssrs.util.code.domain.Basic;
-import com.ssrs.util.code.domain.Field;
 import com.ssrs.util.code.domain.Generate;
-import com.ssrs.util.code.domain.Template;
 import com.ssrs.util.code.enums.FieldQuery;
 import com.ssrs.util.code.enums.FieldType;
 import com.ssrs.util.code.enums.FieldVerify;
 import com.ssrs.util.code.template.EntityTemplate;
 import com.ssrs.util.code.template.RepositoryTemplate;
+import com.ssrs.util.code.template.ServiceTemplate;
 import com.ssrs.util.code.util.DefaultValue;
 import com.ssrs.util.commom.ToolUtil;
 import com.ssrs.util.result.ResultVo;
@@ -24,12 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Controller
 @Scope(value = "prototype")
-    @RequestMapping("/code")
+@RequestMapping("/code")
 public class CodeController {
 
     @RequestMapping(value = "index" ,method = RequestMethod.GET)
@@ -55,10 +51,10 @@ public class CodeController {
         if(generate.getTemplate().isRepository()){
             fieldMap.put("数据访问层", RepositoryTemplate.generate(generate));
         }
-//        if(generate.getTemplate().isService()){
-//            fieldMap.put("服务层", ServiceTemplate.generate(generate));
+        if(generate.getTemplate().isService()){
+            fieldMap.put("服务层", ServiceTemplate.generate(generate));
 //            fieldMap.put("服务实现层", ServiceImplTemplate.generate(generate));
-//        }
+        }
 //        if(generate.getTemplate().isController()){
 //            fieldMap.put("控制器", ControllerTemplate.generate(generate));
 ////            menuRule(generate);
