@@ -7,6 +7,7 @@ import com.ssrs.util.code.enums.FieldType;
 import com.ssrs.util.code.enums.FieldVerify;
 import com.ssrs.util.code.template.EntityTemplate;
 import com.ssrs.util.code.template.RepositoryTemplate;
+import com.ssrs.util.code.template.ServiceImplTemplate;
 import com.ssrs.util.code.template.ServiceTemplate;
 import com.ssrs.util.code.util.DefaultValue;
 import com.ssrs.util.commom.ToolUtil;
@@ -53,7 +54,7 @@ public class CodeController {
         }
         if(generate.getTemplate().isService()){
             fieldMap.put("服务层", ServiceTemplate.generate(generate));
-//            fieldMap.put("服务实现层", ServiceImplTemplate.generate(generate));
+            fieldMap.put("服务实现层", ServiceImplTemplate.generate(generate));
         }
 //        if(generate.getTemplate().isController()){
 //            fieldMap.put("控制器", ControllerTemplate.generate(generate));

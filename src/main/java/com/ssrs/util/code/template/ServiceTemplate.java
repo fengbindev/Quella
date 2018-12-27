@@ -52,9 +52,11 @@ public class ServiceTemplate {
         ServiceTemplate.genClazzBody(generate);
 
         // 生成文件
-        String layer  ="I"+generate.getBasic().getTableEntity();
-        generate.getBasic().setTableEntity(layer);
+        String layerOld = generate.getBasic().getTableEntity();
+        String layerNew  ="I"+generate.getBasic().getTableEntity();
+        generate.getBasic().setTableEntity(layerNew);
         String filePath = GenerateUtil.getJavaFilePath(generate, "service", "Service");
+        generate.getBasic().setTableEntity(layerOld);
         try {
             GenerateUtil.generateFile(filePath, CodeUtil.save());
         } catch (FileAlreadyExistsException e) {
