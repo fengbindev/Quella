@@ -5,10 +5,7 @@ import com.ssrs.util.code.domain.Generate;
 import com.ssrs.util.code.enums.FieldQuery;
 import com.ssrs.util.code.enums.FieldType;
 import com.ssrs.util.code.enums.FieldVerify;
-import com.ssrs.util.code.template.EntityTemplate;
-import com.ssrs.util.code.template.RepositoryTemplate;
-import com.ssrs.util.code.template.ServiceImplTemplate;
-import com.ssrs.util.code.template.ServiceTemplate;
+import com.ssrs.util.code.template.*;
 import com.ssrs.util.code.util.DefaultValue;
 import com.ssrs.util.commom.ToolUtil;
 import com.ssrs.util.result.ResultVo;
@@ -56,10 +53,10 @@ public class CodeController {
             fieldMap.put("服务层", ServiceTemplate.generate(generate));
             fieldMap.put("服务实现层", ServiceImplTemplate.generate(generate));
         }
-//        if(generate.getTemplate().isController()){
-//            fieldMap.put("控制器", ControllerTemplate.generate(generate));
-////            menuRule(generate);
-//        }
+        if(generate.getTemplate().isController()){
+            fieldMap.put("控制器", ControllerTemplate.generate(generate));
+//            menuRule(generate);
+        }
 //
 //        if(generate.getTemplate().isIndex()){
 //            fieldMap.put("列表页面", IndexHtmlTemplate.generate(generate));

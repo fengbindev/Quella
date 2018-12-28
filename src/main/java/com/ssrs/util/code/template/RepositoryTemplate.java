@@ -10,9 +10,13 @@ import org.apache.ibatis.annotations.CacheNamespace;
 import java.nio.file.FileAlreadyExistsException;
 
 /**
- * @author 小懒虫
- * @date 2018/10/25
- */
+* @Description:    RepositoryTemplate.java
+* @Author:          ssrs
+* @CreateDate:     2018/12/27 22:28
+* @UpdateUser:     ssrs
+* @UpdateDate:     2018/12/27 22:28
+* @Version:        1.0
+*/
 public class RepositoryTemplate {
 
     /**

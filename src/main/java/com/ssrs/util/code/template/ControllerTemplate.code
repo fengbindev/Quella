@@ -1,0 +1,84 @@
+##[Class:3-71],[Page:72-82]
+
+@Controller
+@RequestMapping("/#{var}")
+public class #{obj}Controller {
+
+    @Autowired
+    private I#{obj}Service #{var}Service;
+
+    /**
+     * 接收 /#{var}/index GET 请求
+     * 跳转到 /webapp/WEB-INF/ftl/#{var}/index.ftl 页面
+     * @return
+     */
+    @RequestMapping(value = "index" ,method = RequestMethod.GET)
+    public String index(){
+        return "#{var}/index";
+    }
+
+    /**
+     * 接收 /#{var}/goAdd GET 请求
+     * 跳转到 /webapp/WEB-INF/ftl/#{var}/add.ftl 页面
+     * @return
+     */
+    @RequestMapping(value = "goAdd" ,method = RequestMethod.GET)
+    public String goAdd(){
+        return "#{var}/add";
+    }
+
+    /**
+     * 接收 /#{var}/goUpdate GET 请求
+     * 跳转到 /webapp/WEB-INF/ftl/#{var}/update.ftl 页面
+     * @return
+     */
+     @RequestMapping(value = "goUpdate" ,method = RequestMethod.GET)
+        public String goUpdate(long id, Model model){
+            #{obj} #{var} = #{var}Service.selectById(id);
+            model.addAttribute("stu",#{var});  //底层原理：使用request.setAttribute()方法
+            return  "#{var}/update";  //返回视图
+        }
+
+    @RequestMapping(value = "del" ,method = RequestMethod.POST)
+    @ResponseBody
+    public Object update(long id){
+        boolean b = #{var}Service.deleteById(id);
+        return b?APPUtil.resultMapType(APPUtil.DELEATE_SUCCESS_TYPE):APPUtil.resultMapType(APPUtil.DELEATE_ERROR_TYPE);
+    }
+
+    /**
+     * 接收 /#{var}/add POST 请求
+     * @return
+     */
+    @RequestMapping(value = "add" ,method = RequestMethod.POST)
+    @ResponseBody
+    public Object add(#{obj} #{var}){
+        boolean b = #{var}Service.insert(#{var});
+        //如果添加成功，就放回{status:200,message:'添加成功'}的JSON格式类型数据给前台 否则就返回{status:101,message:'添加失败'}
+        return b?APPUtil.resultMapType(APPUtil.INSERT_SUCCESS_TYPE):APPUtil.resultMapType(APPUtil.INSERT_ERROR_TYPE);
+    }
+
+    /**
+     * 接收 /#{var}/update POST 请求
+     * @return
+     */
+    @RequestMapping(value = "update" ,method = RequestMethod.POST)
+    @ResponseBody
+    public Object update(#{obj} #{var}){
+        boolean b = #{var}Service.updateById(#{var});
+        return b?APPUtil.resultMapType(APPUtil.UPDATE_SUCCESS_TYPE):APPUtil.resultMapType(APPUtil.UPDATE_ERROR_TYPE);
+    }
+
+    @RequestMapping(value = "get#{obj}Page" ,method = RequestMethod.POST)
+    @ResponseBody
+    public Object get#{obj}Page(int page,int limit#{search}){
+
+        #{matcher}
+
+        //简单分页查询 page当前页 limit 分页大小
+        Page<#{obj}> #{var}Page = #{var}Service.selectPage(new Page<>(page, limit),new EntityWrapper<#{obj}>()
+                                               #{like});
+        return PageManager.buildPage(#{var}Page);
+    }
+
+}

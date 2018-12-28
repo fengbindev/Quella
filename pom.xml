@@ -373,6 +373,7 @@
         <directory>src/main/java</directory>
         <includes>
           <include>**/*.xml</include>
+          <include>**/*.code</include>
         </includes>
       </resource>
     </resources>
