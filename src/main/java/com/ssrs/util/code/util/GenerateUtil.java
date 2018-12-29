@@ -21,7 +21,7 @@ import java.nio.file.FileAlreadyExistsException;
 public class GenerateUtil {
 
     public static String javaSuffix = ".java";
-    public static String htmlSuffix = ".html";
+    public static String htmlSuffix = ".ftl";
 
     /**
      * 生成源码文件全路径
@@ -54,10 +54,10 @@ public class GenerateUtil {
      */
     public static  String getHtmlFilePath(Generate generate, String fileName){
         String projectPath = generate.getBasic().getProjectPath();
-        String module = generate.getBasic().getGenModule();
+//        String module = generate.getBasic().getGenModule();
         String entity = generate.getBasic().getTableEntity();
-        return projectPath + DefaultValue.mavenSourcePath + "resources/templates/"
-                + module + "/" + StringUtils.toLowerCaseFirstOne(entity) + "/" + fileName + htmlSuffix;
+        return projectPath + DefaultValue.mavenSourcePath + "webapp/WEB-INF/ftl/"
+               + StringUtils.toLowerCaseFirstOne(entity) + "/" + fileName + htmlSuffix;
     }
 
     /**

@@ -94,57 +94,10 @@ public class ControllerTemplate {
                             .append("\",").append(fieldName).append(")").append(CodeUtil.lineBreak);
                 }
             });
-//            like.append(");").append(CodeUtil.lineBreak);
 
             pageTarget = pageTarget.replace("#{matcher}", matcher);
             pageTarget = pageTarget.replace("#{like}", like);
             CodeUtil.append(pageTarget).append(CodeUtil.lineBreak);
-
-//        // 生成index列表
-//        if(generate.getTemplate().isIndex()){
-//            String indexTarget = TemplateUtil.getTemplate(filePath, "index");
-//            indexTarget = indexTarget.replace("#{var}", var);
-//            indexTarget = indexTarget.replace("#{obj}", obj);
-//            indexTarget = indexTarget.replace("#{title}", title);
-//            indexTarget = indexTarget.replace("#{module}", module);
-//            // 生成模糊查询字段
-//            StringBuilder matcher = new StringBuilder();
-//            generate.getFields().forEach(field -> {
-//                if(field.getQuery() == FieldQuery.Like.getCode()){
-//                    matcher.append(".").append(CodeUtil.lineBreak);
-//                    matcher.append("\t\t\t\twithMatcher(\"").append(fieldName()).append("\", match -> match.contains())");
-//                }
-//            });
-//
-//            indexTarget = indexTarget.replace("#{matcher}", matcher);
-//            CodeUtil.append(indexTarget).append(CodeUtil.lineBreak);
-//        }
-//
-//        // 添加操作和编辑操作
-//        if(generate.getTemplate().isAdd()){
-//            String addTarget = TemplateUtil.getTemplate(filePath, "add");
-//            addTarget = addTarget.replace("#{var}", var);
-//            addTarget = addTarget.replace("#{obj}", obj);
-//            addTarget = addTarget.replace("#{module}", module);
-//            CodeUtil.append(addTarget).append(CodeUtil.lineBreak);
-//        }
-//
-//        // 详细页面
-//        if(generate.getTemplate().isDetail()){
-//            String detailTarget = TemplateUtil.getTemplate(filePath, "detail");
-//            detailTarget = detailTarget.replace("#{var}", var);
-//            detailTarget = detailTarget.replace("#{obj}", obj);
-//            detailTarget = detailTarget.replace("#{module}", module);
-//            CodeUtil.append(detailTarget).append(CodeUtil.lineBreak);
-//        }
-//
-//        // 状态操作
-//        if(generate.getTemplate().isIndex()) {
-//            String statusTarget = TemplateUtil.getTemplate(filePath, "status");
-//            statusTarget = statusTarget.replace("#{var}", var);
-//            statusTarget = statusTarget.replace("#{obj}", obj);
-//            CodeUtil.append(statusTarget).append(CodeUtil.lineBreak);
-//        }
 
         // 结束类
         CodeUtil.lineNo("}");
