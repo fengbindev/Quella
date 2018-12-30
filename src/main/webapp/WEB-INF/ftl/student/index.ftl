@@ -1,13 +1,12 @@
-##[html:2-123],[search:18-19],[list:64-64]
 <div class="layui-fluid">
     <div class="layui-row">
         <div class="layui-col-xs12">
             <div class="layui-card">
-                <div class="layui-card-header">#{title}</div>
+                <div class="layui-card-header">student</div>
                 <!--这里写页面的代码-->
                 <div class="layui-card-body">
                     <div class="layui-card-header">
-                         <@shiro.hasPermission name="/#{var}/add">
+                         <@shiro.hasPermission name="/student/add">
                         <a id="add" class="layui-btn layui-btn-xs">
                             <i class="layui-icon"></i>
                             <span>新增</span>
@@ -15,12 +14,12 @@
                          </@shiro.hasPermission>
                         <div class="layui-inline" style="float: right">
                             <div class="layui-input-inline" id="search__from_hash">
-                                <input name="#{search.name}"  placeholder="请输入#{search.title}"  autocomplete="off" class="layui-input" type="text">
+                                <input name="title"  placeholder="请输入标题"  autocomplete="off" class="layui-input" type="text">
                             </div>
                             <button class="layui-btn layui-btn-primary" onclick="search()">搜索</button>
                         </div>
                     </div>
-                    <table class="layui-table" id="#{var}table" lay-filter="#{var}table2"></table>
+                    <table class="layui-table" id="studenttable" lay-filter="studenttable2"></table>
                 </div>
             </div>
         </div>
@@ -29,10 +28,10 @@
         {{d.LAY_TABLE_INDEX+1}}
     </script>
     <script type="text/html" id="barDemo">
-        <@shiro.hasPermission name="/#{var}/update">
+        <@shiro.hasPermission name="/student/update">
        <button class="layui-btn layui-btn-xs" lay-event="edit">编辑</button>
         </@shiro.hasPermission>
-       <@shiro.hasPermission name="/#{var}/del">
+       <@shiro.hasPermission name="/student/del">
        <button class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</button>
        </@shiro.hasPermission>
     </script>
@@ -43,41 +42,45 @@
             $('#add').on('click', function(){
                 var index = layer.open({
                     type: 2,
-                    content: '${basePath}/#{var}/goAdd',
+                    content: '${basePath}/student/goAdd',
                     area: ['600px', '600px'],
                     maxmin: true,
                     end: function () {
-                        table.reload("#{var}table",{});
+                        table.reload("studenttable",{});
                     }
                 });
                 parent.layer.iframeAuto(index);
             });
             //表格渲染
             table.render({
-                elem: '##{var}table'
-                ,url:'${basePath}/#{var}/get#{obj}Page'
+                elem: '#studenttable'
+                ,url:'${basePath}/student/getStudentPage'
                 ,method:'post'
                 ,page: {layout: ['limit', 'count', 'prev', 'page', 'next', 'skip']}
                 ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
                 ,cols: [[
                     {field:'',align:'center', width:70,  title: '序号', toolbar: '#indexTpl'}
-                    ,{field:'#{search.name}',  title: '#{search.title}'}
+                    ,{field:'id',  title: '主键ID'}
+                    ,{field:'title',  title: '标题'}
+                    ,{field:'createDate',  title: '创建时间'}
+                    ,{field:'updateDate',  title: '更新时间'}
+                    ,{field:'status',  title: '数据状态'}
                     ,{field:'right',align:'center', width:150, toolbar: '#barDemo', title: '操作'}
                 ]]
             });
 
             //监听修改按钮
-            table.on('tool(#{var}table2)', function(obj){
+            table.on('tool(studenttable2)', function(obj){
                 var data = obj.data;
                 if(obj.event === 'edit'){
                     // 编辑
                     var index = layer.open({
                         type: 2,
-                        content: '${basePath}/#{var}/goUpdate?id='+data.id,
+                        content: '${basePath}/student/goUpdate?id='+data.id,
                         area: ['800px', '500px'],
                         maxmin: true,
                         end: function () {
-                            table.reload("#{var}table",{});
+                            table.reload("studenttable",{});
                         }
                     });
                     parent.layer.iframeAuto(index);
@@ -85,12 +88,12 @@
                 } else if(obj.event === 'del'){
                     layer.confirm('真的要删除么？', function(index){
                         // 写删除方法
-                        $.post("${basePath}/#{var}/del", {"id": data.id}, function (data) {
+                        $.post("${basePath}/student/del", {"id": data.id}, function (data) {
                             if (data.status == 200) {
                                 layer.msg(data.message, {icon: 1, time: 1000});
                                 // 前端修改
                                 layer.close(index);
-                                table.reload("#{var}table",{});
+                                table.reload("studenttable",{});
                             } else {
                                 layer.msg(data.message, {icon: 0, time: 1000});
                                 layer.close(index);
@@ -108,7 +111,7 @@
              search[$(item).attr('name')] = $(item).val();
         })
             var table = layui.table;
-            table.reload('#{var}table', {
+            table.reload('studenttable', {
                 where: { //设定异步数据接口的额外参数，任意设
                     search: search
                 }

@@ -31,20 +31,6 @@ public class IndexHtmlTemplate {
         // 提取html页面
         String htmlTarget = TemplateUtil.getTemplate(filePath, "html");
 
-        // 添加模块入口
-        if(!generate.getTemplate().isAdd()){
-            String addTarget = TemplateUtil.getTemplate(filePath, "add");
-            String editTarget = TemplateUtil.getTemplate(filePath, "edit");
-            htmlTarget = htmlTarget.replace(addTarget, "");
-            htmlTarget = htmlTarget.replace(editTarget, "");
-        }
-
-        // 编辑模块入口
-        if(!generate.getTemplate().isDetail()){
-            String detailTarget = TemplateUtil.getTemplate(filePath, "detail");
-            htmlTarget = htmlTarget.replace(detailTarget, "");
-        }
-
         // 拼接搜索模块
         String searchTarget = TemplateUtil.getTemplate(filePath, "search");
         StringBuilder searchBuilder = new StringBuilder();
@@ -59,34 +45,18 @@ public class IndexHtmlTemplate {
         htmlTarget = htmlTarget.replace(searchTarget, searchBuilder);
 
         // 拼接列表数据
-        String thTarget = TemplateUtil.getTemplate(filePath, "th");
         String listTarget = TemplateUtil.getTemplate(filePath, "list");
-        StringBuilder thBuilder = new StringBuilder();
-        StringBuilder ListBuilder = new StringBuilder();
+        StringBuilder listBuilder = new StringBuilder();
         generate.getFields().forEach(field -> {
             if(field.isShow()){
-                // 表头标题信息
-                thBuilder.append(thTarget.replace("#{table.th}", field.getTitle()));
-
-                // 列表信息
-                switch (field.getName()) {
-                    case "status":
-                        ListBuilder.append(listTarget.replace("#{table.list}", "th:text=\"${#dicts.dataStatus(item.status)}\">状态"));
-                        break;
-                    case "createDate":
-                    case "updateDate":
-                        ListBuilder.append(listTarget.replace("#{table.list}", "th:text=\"${#dates.format(item." +
-                                field.getName() + ", 'yyyy-MM-dd HH:mm:ss')}\">" + field.getTitle()));
-                        break;
-                    default:
-                        ListBuilder.append(listTarget.replace("#{table.list}" ,
-                                "th:text=\"${item." + field.getName() + "}\">"+ field.getTitle()));
-                }
+                String temp = listTarget;
+                temp = temp.replace("#{search.title}", field.getTitle());
+                temp = temp.replace("#{search.name}", field.getName());
+                listBuilder.append(temp);
             }
 
         });
-        htmlTarget = htmlTarget.replace(thTarget, thBuilder);
-        htmlTarget = htmlTarget.replace(listTarget, ListBuilder);
+        htmlTarget = htmlTarget.replace(listTarget, listBuilder);
 
         // 替换基本数据
         htmlTarget = htmlTarget.replace("#{var}", var);
