@@ -55,30 +55,30 @@ public class CodeController {
     @ResponseBody
     public ResultVo save(@RequestBody Generate generate){
         Map<String, String> fieldMap = new HashMap<>();
-        if(generate.getTemplate().isEntity()){
-            fieldMap.put("实体类", EntityTemplate.generate(generate));
-        }
-//        if(generate.getTemplate().isValidator()){
-//            fieldMap.put("验证类", ValidatorTemplate.generate(generate));
+//        if(generate.getTemplate().isEntity()){
+//            fieldMap.put("实体类", EntityTemplate.generate(generate));
 //        }
-        if(generate.getTemplate().isRepository()){
-            fieldMap.put("数据访问层", RepositoryTemplate.generate(generate));
-        }
-        if(generate.getTemplate().isService()){
-            fieldMap.put("服务层", ServiceTemplate.generate(generate));
-            fieldMap.put("服务实现层", ServiceImplTemplate.generate(generate));
-        }
-        if(generate.getTemplate().isController()){
-            fieldMap.put("控制器", ControllerTemplate.generate(generate));
-            menuRule(generate);
-        }
-
-        if(generate.getTemplate().isIndex()){
-            fieldMap.put("列表页面", IndexHtmlTemplate.generate(generate));
-        }
-//        if(generate.getTemplate().isAdd()){
-//            fieldMap.put("添加页面", AddHtmlTemplate.generate(generate));
+////        if(generate.getTemplate().isValidator()){
+////            fieldMap.put("验证类", ValidatorTemplate.generate(generate));
+////        }
+//        if(generate.getTemplate().isRepository()){
+//            fieldMap.put("数据访问层", RepositoryTemplate.generate(generate));
 //        }
+//        if(generate.getTemplate().isService()){
+//            fieldMap.put("服务层", ServiceTemplate.generate(generate));
+//            fieldMap.put("服务实现层", ServiceImplTemplate.generate(generate));
+//        }
+//        if(generate.getTemplate().isController()){
+//            fieldMap.put("控制器", ControllerTemplate.generate(generate));
+//            menuRule(generate);
+//        }
+//
+//        if(generate.getTemplate().isIndex()){
+//            fieldMap.put("列表页面", IndexHtmlTemplate.generate(generate));
+//        }
+        if(generate.getTemplate().isAdd()){
+            fieldMap.put("添加页面", AddHtmlTemplate.generate(generate));
+        }
 //        if(generate.getTemplate().isDetail()){
 //            fieldMap.put("详细页面", DetailHtmlTemplate.generate(generate));
 //        }

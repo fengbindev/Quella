@@ -54,7 +54,6 @@ public class GenerateUtil {
      */
     public static  String getHtmlFilePath(Generate generate, String fileName){
         String projectPath = generate.getBasic().getProjectPath();
-//        String module = generate.getBasic().getGenModule();
         String entity = generate.getBasic().getTableEntity();
         return projectPath + DefaultValue.mavenSourcePath + "webapp/WEB-INF/ftl/"
                + StringUtils.toLowerCaseFirstOne(entity) + "/" + fileName + htmlSuffix;
