@@ -76,12 +76,12 @@ public class CodeController {
 //        if(generate.getTemplate().isIndex()){
 //            fieldMap.put("列表页面", IndexHtmlTemplate.generate(generate));
 //        }
-        if(generate.getTemplate().isAdd()){
-            fieldMap.put("添加页面", AddHtmlTemplate.generate(generate));
-        }
-//        if(generate.getTemplate().isDetail()){
-//            fieldMap.put("详细页面", DetailHtmlTemplate.generate(generate));
+//        if(generate.getTemplate().isAdd()){
+//            fieldMap.put("添加页面", AddHtmlTemplate.generate(generate));
 //        }
+        if(generate.getTemplate().isDetail()){
+            fieldMap.put("详细页面", UpdateHtmlTemplate.generate(generate));
+        }
         return ResultVoUtil.success(fieldMap);
     }
 

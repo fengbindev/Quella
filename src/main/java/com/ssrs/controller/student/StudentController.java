@@ -53,7 +53,7 @@ public class StudentController {
      @RequestMapping(value = "goUpdate" ,method = RequestMethod.GET)
         public String goUpdate(long id, Model model){
             Student student = studentService.selectById(id);
-            model.addAttribute("stu",student);  //底层原理：使用request.setAttribute()方法
+            model.addAttribute("student",student);  //底层原理：使用request.setAttribute()方法
             return  "student/update";  //返回视图
         }
 

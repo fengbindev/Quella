@@ -35,7 +35,7 @@ public class #{obj}Controller {
      @RequestMapping(value = "goUpdate" ,method = RequestMethod.GET)
         public String goUpdate(long id, Model model){
             #{obj} #{var} = #{var}Service.selectById(id);
-            model.addAttribute("stu",#{var});  //底层原理：使用request.setAttribute()方法
+            model.addAttribute("#{var}",#{var});  //底层原理：使用request.setAttribute()方法
             return  "#{var}/update";  //返回视图
         }
 
