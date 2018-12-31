@@ -31,13 +31,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <div class="layui-inline">
-                        <label class="layui-form-label">父级菜单</label>
+
+                <div class="layui-form layui-form-item layui-inline">
+                        <label class="layui-form-label">上级类目</label>
                         <div class="layui-input-inline">
-                            <input class="layui-input select-tree"  type="text" name="genPMenu" value="1"  placeholder="请选择父级菜单">
+                            <select name="genPMenu">
+                                <#list menus as menu>
+                                    <option value="${menu.id}">${menu.title}</option>
+                                </#list>
+                            </select>
                         </div>
-                    </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">模块名称</label>
                         <div class="layui-input-inline">
@@ -402,8 +405,8 @@
               if(!verifyBasic()){
                   return false;
               }
-
-
+              //将genPMenu赋值给basic
+                basic['genPMenu'] = $("select[name=\"genPMenu\"]").val();
               // 封装数据
               var generate = {
                   basic: basic,
@@ -411,7 +414,6 @@
                   template: getTemplate()
               };
 
-              console.log(JSON.stringify(generate));
               $.ajax({
                   type: "POST",
                   url: "${basePath}/code/save",

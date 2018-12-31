@@ -2,7 +2,7 @@
     <div class="layui-row">
         <div class="layui-col-xs12">
             <div class="layui-card">
-                <div class="layui-card-header">student</div>
+                <div class="layui-card-header">学生信息管理</div>
                 <!--这里写页面的代码-->
                 <div class="layui-card-body">
                     <div class="layui-card-header">

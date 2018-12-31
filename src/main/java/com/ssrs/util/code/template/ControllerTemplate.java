@@ -108,14 +108,14 @@ public class ControllerTemplate {
      */
     public static String generate(Generate generate) {
         CodeUtil.create();
-        CodeUtil.setPackageName(TemplateUtil.getPackage(generate, "controller"));
+        CodeUtil.setPackageName(TemplateUtil.getPackage(generate, "controller."+ToolUtil.lowerFirst(generate.getBasic().getTableEntity())));
         CodeUtil.addImportAll("org.springframework.web.bind.annotation");
         TemplateUtil.genAuthor(generate);
         ControllerTemplate.genImport(generate);
         ControllerTemplate.getClazzBody(generate);
 
         // 生成文件
-        String filePath = GenerateUtil.getJavaFilePath(generate, "controller", "Controller");
+        String filePath = GenerateUtil.getJavaFilePath(generate, "controller."+ToolUtil.lowerFirst(generate.getBasic().getTableEntity()), "Controller");
         try {
             GenerateUtil.generateFile(filePath, CodeUtil.save());
         } catch (FileAlreadyExistsException e) {
