@@ -6,15 +6,14 @@ import com.ssrs.permission.model.Menu;
 import com.ssrs.permission.model.Permission;
 import com.ssrs.permission.service.IMenuService;
 import com.ssrs.permission.service.IPermissionService;
-import com.ssrs.util.code.domain.Basic;
-import com.ssrs.util.code.domain.Field;
-import com.ssrs.util.code.domain.Generate;
+import com.ssrs.util.code.domain.*;
 import com.ssrs.util.code.enums.FieldQuery;
 import com.ssrs.util.code.enums.FieldType;
 import com.ssrs.util.code.enums.FieldVerify;
 import com.ssrs.util.code.template.*;
 import com.ssrs.util.code.util.CodeUtil;
 import com.ssrs.util.code.util.DefaultValue;
+import com.ssrs.util.code.util.TableParseUtil;
 import com.ssrs.util.commom.ToolUtil;
 import com.ssrs.util.result.ResultVo;
 import com.ssrs.util.result.ResultVoUtil;
@@ -28,13 +27,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @Scope(value = "prototype")
@@ -48,6 +46,11 @@ public class CodeController {
     @Autowired
     private DataSource dataSource;
 
+    /**
+     * 代码在线生成
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "index" ,method = RequestMethod.GET)
     public String index(Model model){
         List<Menu> menus = menuService.getRootMenu();
@@ -59,6 +62,24 @@ public class CodeController {
         model.addAttribute("menus",menus);
         return "code/index";
     }
+
+    /**
+     * 代码逆向生成
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "index2" ,method = RequestMethod.GET)
+    public String index2(Model model){
+        List<Menu> menus = menuService.getRootMenu();
+        model.addAttribute("basic", DefaultValue.getBasic());
+        model.addAttribute("fieldList", DefaultValue.fieldList());
+        model.addAttribute("fieldType", ToolUtil.enumToMap(FieldType.class));
+        model.addAttribute("fieldQuery", ToolUtil.enumToMap(FieldQuery.class));
+        model.addAttribute("fieldVerify", ToolUtil.enumToMap(FieldVerify.class));
+        model.addAttribute("menus",menus);
+        return "code/index2";
+    }
+
 
     @RequestMapping(value = "save" ,method = RequestMethod.POST)
     @ResponseBody
@@ -80,7 +101,7 @@ public class CodeController {
         }
         if(generate.getTemplate().isController()){
             fieldMap.put("控制器", ControllerTemplate.generate(generate));
-//            menuRule(generate);
+            menuRule(generate);
         }
 
         if(generate.getTemplate().isIndex()){
@@ -93,6 +114,73 @@ public class CodeController {
             fieldMap.put("编辑页面", UpdateHtmlTemplate.generate(generate));
         }
         return ResultVoUtil.success(fieldMap);
+    }
+
+    /**
+     * 逆向生成方式一
+     * @param generate
+     * @return
+     */
+    @RequestMapping(value = "save2" ,method = RequestMethod.POST)
+    @ResponseBody
+    public ResultVo save2(@RequestBody Generate generate){
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        String sql = "show create table "+generate.getBasic().getTablePrefix()+generate.getBasic().getTableName();
+        String ddl = "";
+        Map<String, Long> fieldType = CodeUtil.enumToMapFX(FieldType.class);
+        try {
+            connection = dataSource.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            resultSet.next();
+            ddl = resultSet.getString(2);
+            ClassInfo classInfo = TableParseUtil.processTableIntoClassInfo(ddl);
+            List<FieldInfo> fieldList = classInfo.getFieldList();
+            List<Field> fields = new ArrayList<>();
+            fieldList.forEach(fieldInfo -> {
+                Field field = new Field();
+                field.setName(fieldInfo.getFieldName());
+                field.setTitle(fieldInfo.getFieldComment());
+                field.setType(fieldType.get(fieldInfo.getFieldClass()).intValue());
+                //模糊查询
+                field.setQuery(2);
+                field.setShow(false);
+                //必填验证
+                field.setVerify(Arrays.asList(1));
+                fields.add(field);
+            });
+            generate.setFields(fields);
+            ResultVo resultVo = this.save(generate);
+            return  resultVo;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultVoUtil.error("生成出错了");
+        }finally {
+            if (resultSet!=null){
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (statement!=null){
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection!=null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
     }
 
     /**

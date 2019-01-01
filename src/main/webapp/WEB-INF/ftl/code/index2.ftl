@@ -2,8 +2,7 @@
 <link rel="stylesheet" href="${basePath}/plugins/formSelects-v4/formSelects-v4.css"></link>
 <div class="layui-card">
     <div class="layui-card-header timo-card-header">
-        <span><i class="fa fa-bars"></i> 代码生成</span>
-        <i class="layui-icon layui-icon-refresh refresh-btn" style="left:92px"></i>
+        <span><i class="fa fa-bars"></i> 数据库逆向解析方式一</span>
         <button class="layui-btn layui-btn-sm entity-save">
             <i class="fa fa-floppy-o"></i>保存</button>
     </div>
@@ -64,7 +63,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">表名称</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="tableName"  value="${(basic.tableName)!}" autocomplete="off" class="layui-input">
+                            <input type="text" name="tableName"   value="${(basic.tableName)!}" placeholder="请输入要生成的数据库名(去掉前缀)" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-inline">
@@ -77,74 +76,13 @@
             </div>
         </fieldset>
         <div class="panel">
-            <div class="panel-header">
-                <div class="title">实体类</div>
-                <div class="control">
-                    <button class="field-add layui-btn layui-btn-primary layui-btn-xs">
-                        <i class="fa layui-icon layui-icon-add-circle-fine"></i>添加
-                    </button>
-                    <button class="field-del layui-btn layui-btn-primary layui-btn-xs">
-                        <i class="fa layui-icon layui-icon-close"></i>删除
-                    </button>
-                    <button class="field-up layui-btn layui-btn-primary layui-btn-xs">
-                        <i class="fa layui-icon layui-icon-up"></i>向上
-                    </button>
-                    <button class="field-down layui-btn layui-btn-primary layui-btn-xs">
-                        <i class="fa layui-icon layui-icon-down"></i>向下
-                    </button>
-                </div>
-                <div class="entity"><span class="bindTableEntity"></span>(<span class="bindTablePrefix"></span><span class="bindTableName"></span>)</div>
+            <div class="layui-card-header timo-card-header">
+                <span><i class="fa fa-bars"></i> 数据库逆向解析方式二</span>
+                <button class="layui-btn layui-btn-sm entity-save">
+                    <i class="fa fa-floppy-o"></i>保存</button>
             </div>
-            <div class="panel-body panel-body-entity">
-                <table class="layui-table">
-                    <thead>
-                    <tr>
-                        <th width="20">#</th>
-                        <th width="100">字段名称</th>
-                        <th width="100">字段标题</th>
-                        <th width="100">数据类型</th>
-                        <th width="100">查询（可选）</th>
-                        <th width="100">列表显示</th>
-                        <th>字段验证（可选）</th>
-                    </tr>
-                    </thead>
-                    <tbody id="entity_hash">
-                    <#list  fieldList as field >
-                    <tr>
-                        <td class="entity-number">${field_index+1}</td>
-                        <td class="entity-name"><input type="text" value="${field.name}" name="name" /></td>
-                        <td class="entity-title"><input type="text" value="${field.title}"  name="title" /></td>
-                        <td class="layui-form">
-                            <select name="type" lay-verify="required">
-                               <#list fieldType?keys  as key>
-                                   <option value="${key}"  <#if key?number == field.type > selected </#if> >${fieldType[key]}</option>
-                               </#list>
-                            </select>
-                        </td>
-                        <td class="layui-form">
-                            <select name="query">
-                                <option value="">请选择</option>
-                                 <#list fieldQuery?keys  as key>
-                                     <option value="${key}" <#if key?number == field.query > selected </#if>>${fieldQuery[key]}</option>
-                                 </#list>
-                            </select>
-                        </td>
-                        <td class="layui-form entity-show">
-                            <input name="show" type="checkbox" lay-text="是|否" <#if field.show > checked </#if> lay-skin="switch">
-                        </td>
-                        <td class="layui-form entity-verify">
-                            <select name="verify" xm-select='entity-verify${field.name}'>
-                                <option value=""></option>
-                                 <#list fieldVerify?keys  as key>
-                                     <option value="${key}">${fieldVerify[key]}</option>
-                                 </#list>
-                            </select>
-                        </td>
-                    </tr>
-                    </#list>
-                    </tbody>
-                </table>
-            </div>
+
+            <textarea name="" required lay-verify="required"  placeholder="请输入数据库表的DDL语句" class="layui-textarea" style="height: 200px"></textarea>
         </div>
         <div class="panel">
             <div class="panel-header">
@@ -153,7 +91,6 @@
                 <div class="path">模块路径：<span class="bindPackagePath"></span><span class="bindGenModule"></span></div>
             </div>
             <div id="float_hash" class="panel-body panel-body-float">
-                <div class="float-label active" data-name="validator">数据库表：<span class="bindTableEntity"></span>Table</div>
                 <div class="float-label active" data-name="entity">实体类：<span class="bindTableEntity"></span>Model</div>
                 <div class="float-label active" data-name="controller">控制器：<span class="bindTableEntity"></span>Controller</div>
                 <div class="float-label active" data-name="service">服务层：<span class="bindTableEntity"></span>Service</div>
@@ -262,81 +199,10 @@
               }
           });
 
-          /* 实体模型操作 */
-          var entity = $("#entity_hash");
-          var field = null;
-          // 选中字段
-          entity.on("click", ".entity-number", function () {
-              if(field !== null){
-                  $(field).css("background-color", "#FFFFFF");
-                  $(field).css("color", "#666666");
-              }
-              if(field !== this){
-                  $(this).css("background-color", "#5FB878");
-                  $(this).css("color", "#FFFFFF");
-                  field = this;
-              }else{
-                  field = null;
-              }
-          });
-
-          // 添加字段
-          $(".field-add").on("click", function () {
-              var element = entity.children("tr:last-child").clone();
-              element.find("input, select").val("");
-              element.find("[name='type']").val("1");
-              var random = Math.random()*10000;
-              element.find("[xm-select]").attr("xm-select", random);
-              if(field == null){
-                  entity.append(element);
-              }else {
-                  $(field).parent().after(element);
-              }
-              element.children(".entity-number").click();
-              form.render();
-              formSelects.render(random);
-              resetNumber();
-          });
-          // 删除字段
-          $(".field-del").on("click", function () {
-              if(field != null){
-                  $(field).parent().remove();
-                  resetNumber();
-              }
-          });
-          // 上移字段
-          $(".field-up").on("click", function () {
-              if(field != null){
-                  var parent = $(field).parent();
-                  if(parent.prev().length === 1){
-                      parent.insertBefore(parent.prev());
-                      resetNumber();
-                  }
-              }
-          });
-          // 下移字段
-          $(".field-down").on("click", function () {
-              if(field != null){
-                  var parent = $(field).parent();
-                  if(parent.next().length === 1){
-                      parent.insertAfter(parent.next());
-                      resetNumber();
-                  }
-              }
-          });
-
-          // 重置字段编号
-          var resetNumber = function(){
-              entity.children().each(function (key, val) {
-                  $(val).children(".entity-number").text(key + 1);
-              });
-          };
-
-          // 模块悬浮标签
+            // 模块悬浮标签
           $(".float-label").on("click", function(){
               $(this).toggleClass("active");
           });
-
 
           /***************************************下面是提交时的数据封装*******************************************/
 
@@ -362,25 +228,6 @@
               });
               return template;
           };
-          // 提取实体类数据
-          var getEntity = function(){
-              var fieldList = [];
-              entity.children().each(function (key, trNode) {
-                  var field = {};
-                  field.name = $(trNode).find("[name='name']").val();
-                  field.title = $(trNode).find("[name='title']").val();
-                  field.type = $(trNode).find("[name='type']").val();
-                  field.query = $(trNode).find("[name='query']").val();
-                  if (!field.query){
-                      field.query = 0;
-                  }
-                  field.show = $(trNode).find("[name='show']").is(':checked');
-                  var xmId = $(trNode).find(".entity-verify select").attr("xm-select");
-                  field.verify = formSelects.value(xmId, 'val');
-                  fieldList[key] = field;
-              });
-              return fieldList;
-          };
 
           // 保存按钮
           $(".entity-save").on("click", function () {
@@ -393,13 +240,12 @@
               // 封装数据
               var generate = {
                   basic: basic,
-                  fields: getEntity(),
                   template: getTemplate()
               };
 
               $.ajax({
                   type: "POST",
-                  url: "${basePath}/code/save",
+                  url: "${basePath}/code/save2",
                   contentType: "application/json; charset=utf-8",
                   data: JSON.stringify(generate),
                   dataType: "json",

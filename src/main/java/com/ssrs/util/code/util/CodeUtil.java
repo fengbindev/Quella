@@ -199,6 +199,25 @@ public class CodeUtil {
         }
         return map;
     }
+    /**
+     * 将枚举转成List集合
+     * @param enumClass 枚举类
+     */
+    public static Map<String, Long> enumToMapFX(Class<?> enumClass){
+        Map<String, Long> map = new TreeMap<>();
+        try {
+            Object[] objects = enumClass.getEnumConstants();
+            Method getCode = enumClass.getMethod("getCode");
+            Method getMessage = enumClass.getMethod("getMessage");
+            for (Object obj : objects) {
+                Object iCode = getCode.invoke(obj);
+                Object iMessage = getMessage.invoke(obj);
+                map.put(String.valueOf(iMessage), Long.valueOf(String.valueOf(iCode)));
+            }
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException ignored) {
+        }
+        return map;
+    }
 
     /**
      * 根据枚举code获取枚举对象
