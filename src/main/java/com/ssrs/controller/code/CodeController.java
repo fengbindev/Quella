@@ -1,16 +1,19 @@
 package com.ssrs.controller.code;
 
 
+import cn.hutool.core.util.StrUtil;
 import com.ssrs.permission.model.Menu;
 import com.ssrs.permission.model.Permission;
 import com.ssrs.permission.service.IMenuService;
 import com.ssrs.permission.service.IPermissionService;
 import com.ssrs.util.code.domain.Basic;
+import com.ssrs.util.code.domain.Field;
 import com.ssrs.util.code.domain.Generate;
 import com.ssrs.util.code.enums.FieldQuery;
 import com.ssrs.util.code.enums.FieldType;
 import com.ssrs.util.code.enums.FieldVerify;
 import com.ssrs.util.code.template.*;
+import com.ssrs.util.code.util.CodeUtil;
 import com.ssrs.util.code.util.DefaultValue;
 import com.ssrs.util.commom.ToolUtil;
 import com.ssrs.util.result.ResultVo;
@@ -24,6 +27,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +45,8 @@ public class CodeController {
     private IMenuService menuService;
     @Autowired
     private IPermissionService permissionService;
+    @Autowired
+    private DataSource dataSource;
 
     @RequestMapping(value = "index" ,method = RequestMethod.GET)
     public String index(Model model){
@@ -55,32 +64,33 @@ public class CodeController {
     @ResponseBody
     public ResultVo save(@RequestBody Generate generate){
         Map<String, String> fieldMap = new HashMap<>();
-//        if(generate.getTemplate().isEntity()){
-//            fieldMap.put("实体类", EntityTemplate.generate(generate));
-//        }
-////        if(generate.getTemplate().isValidator()){
-////            fieldMap.put("验证类", ValidatorTemplate.generate(generate));
-////        }
-//        if(generate.getTemplate().isRepository()){
-//            fieldMap.put("数据访问层", RepositoryTemplate.generate(generate));
-//        }
-//        if(generate.getTemplate().isService()){
-//            fieldMap.put("服务层", ServiceTemplate.generate(generate));
-//            fieldMap.put("服务实现层", ServiceImplTemplate.generate(generate));
-//        }
-//        if(generate.getTemplate().isController()){
-//            fieldMap.put("控制器", ControllerTemplate.generate(generate));
+        if(generate.getTemplate().isValidator()){
+            String tableName = generate.getBasic().getTablePrefix()+generate.getBasic().getTableName();
+            fieldMap.put("数据库表",  createTable(generate)?"表"+tableName+"生成成功":"表"+tableName+"生成失败");
+        }
+        if(generate.getTemplate().isEntity()){
+            fieldMap.put("实体类", EntityTemplate.generate(generate));
+        }
+        if(generate.getTemplate().isRepository()){
+            fieldMap.put("数据访问层", RepositoryTemplate.generate(generate));
+        }
+        if(generate.getTemplate().isService()){
+            fieldMap.put("服务层", ServiceTemplate.generate(generate));
+            fieldMap.put("服务实现层", ServiceImplTemplate.generate(generate));
+        }
+        if(generate.getTemplate().isController()){
+            fieldMap.put("控制器", ControllerTemplate.generate(generate));
 //            menuRule(generate);
-//        }
-//
-//        if(generate.getTemplate().isIndex()){
-//            fieldMap.put("列表页面", IndexHtmlTemplate.generate(generate));
-//        }
-//        if(generate.getTemplate().isAdd()){
-//            fieldMap.put("添加页面", AddHtmlTemplate.generate(generate));
-//        }
+        }
+
+        if(generate.getTemplate().isIndex()){
+            fieldMap.put("列表页面", IndexHtmlTemplate.generate(generate));
+        }
+        if(generate.getTemplate().isAdd()){
+            fieldMap.put("添加页面", AddHtmlTemplate.generate(generate));
+        }
         if(generate.getTemplate().isDetail()){
-            fieldMap.put("详细页面", UpdateHtmlTemplate.generate(generate));
+            fieldMap.put("编辑页面", UpdateHtmlTemplate.generate(generate));
         }
         return ResultVoUtil.success(fieldMap);
     }
@@ -125,7 +135,87 @@ public class CodeController {
         delPermission.setParentId(menu.getPermission().getId());
         delPermission.setName(basic.getGenTitle()+"删除");
         permissionService.insert2(delPermission);
+    }
 
+    private boolean createTable(Generate generate){
+        List<Field> fields = generate.getFields();
+        Map<Long, String> fieldType = CodeUtil.enumToMap(FieldType.class);
+        String tableName = generate.getBasic().getTablePrefix()+generate.getBasic().getTableName();
+        StringBuilder sqlBuilder = new StringBuilder();
+        sqlBuilder.append("CREATE TABLE `"+tableName+"` (")
+                    .append("`id` bigint(20) NOT NULL AUTO_INCREMENT,");
+        fields.forEach(field -> {
+            String fieldName = StrUtil.toUnderlineCase(field.getName());
+            String type = fieldType.get((long) field.getType());
+            String isDefault = "DEFAULT";
+            if (field.getVerify().size()>0){
+                isDefault = "NOT";
+            }
+            if (!"id".equals(fieldName)){
+                switch (type){
+                    case "String" :
+                        sqlBuilder.append("`").append(fieldName).append("` varchar(255) ").append(isDefault).append(" NULL COMMENT ").append("'").append(field.getTitle()).append("',");
+                        break;
+                    case "Byte" :
+                        sqlBuilder.append("`").append(fieldName).append("` tinyint(1) ").append(isDefault).append(" NULL COMMENT ").append("'").append(field.getTitle()).append("',");
+                        break;
+                    case "Short" :
+                        sqlBuilder.append("`").append(fieldName).append("` smallint(6) ").append(isDefault).append(" NULL COMMENT ").append("'").append(field.getTitle()).append("',");
+                        break;
+                    case "Integer" :
+                        sqlBuilder.append("`").append(fieldName).append("` int(11) ").append(isDefault).append(" NULL COMMENT ").append("'").append(field.getTitle()).append("',");
+                        break;
+                    case "Long" :
+                        sqlBuilder.append("`").append(fieldName).append("` bigint(20) ").append(isDefault).append(" NULL COMMENT ").append("'").append(field.getTitle()).append("',");
+                        break;
+                    case "Float" :
+                        sqlBuilder.append("`").append(fieldName).append("` float ").append(isDefault).append(" NULL COMMENT ").append("'").append(field.getTitle()).append("',");
+                        break;
+                    case "Double" :
+                        sqlBuilder.append("`").append(fieldName).append("` double ").append(isDefault).append(" NULL COMMENT ").append("'").append(field.getTitle()).append("',");
+                        break;
+                    case "Boolean" :
+                        sqlBuilder.append("`").append(fieldName).append("` bit ").append(isDefault).append(" NULL COMMENT ").append("'").append(field.getTitle()).append("',");
+                        break;
+                    case "Character" :
+                        sqlBuilder.append("`").append(fieldName).append("`  varchar(255) ").append(isDefault).append(" NULL COMMENT ").append("'").append(field.getTitle()).append("',");
+                        break;
+                    case "Text" :
+                        sqlBuilder.append("`").append(fieldName).append("`  varchar(255) ").append(isDefault).append(" NULL COMMENT ").append("'").append(field.getTitle()).append("',");
+                        break;
+                    case "Date" :
+                        sqlBuilder.append("`").append(fieldName).append("`  datetime ").append(isDefault).append(" NULL COMMENT ").append("'").append(field.getTitle()).append("',");
+                        break;
+                }
+            }
+        });
+        sqlBuilder.append("PRIMARY KEY (`id`)").append(") ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;");
 
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = dataSource.getConnection();
+             statement = connection.createStatement();
+            statement.execute(sqlBuilder.toString());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }finally {
+            if (statement!=null){
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection!=null){
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return true;
     }
 }

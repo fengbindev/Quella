@@ -15,7 +15,7 @@
         <div class="layui-form-item">
                 <label class="layui-form-label">#{field.title}</label>
                 <div class="layui-input-block">
-                    <input type="text" name="#{field.name}" value="${#{var}.#{field.name}}" id="#{field.name}_hash" lay-verify="#{required}" autocomplete="off" class="layui-input">
+                    <input type="text" name="#{field.name}" value="${(#{var}.#{field.name})!#{datetime}}" id="#{field.name}_hash" lay-verify="#{required}" autocomplete="off" class="layui-input">
                 </div>
         </div>
 

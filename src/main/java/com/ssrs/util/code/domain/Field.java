@@ -2,6 +2,7 @@ package com.ssrs.util.code.domain;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -11,7 +12,7 @@ public class Field {
     private int type;
     private int query;
     private boolean show;
-    private List<Integer> verify;
+    private List<Integer> verify = new ArrayList<>();
 
     public Field() {
     }

@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  * @author 上善若水
- * @date 2018/12/28
+ * @date 2019/01/01
  */
 @Data
 @TableName("ssrs_student")

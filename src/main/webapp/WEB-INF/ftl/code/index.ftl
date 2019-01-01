@@ -41,12 +41,12 @@
                                 </#list>
                             </select>
                         </div>
-                    <div class="layui-inline">
-                        <label class="layui-form-label">模块名称</label>
-                        <div class="layui-input-inline">
-                            <input type="text" name="genModule" value="${(basic.genModule)!}"  autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
+                    <#--<div class="layui-inline">-->
+                        <#--<label class="layui-form-label">模块名称</label>-->
+                        <#--<div class="layui-input-inline">-->
+                            <#--<input type="text" name="genModule" value="${(basic.genModule)!}"  autocomplete="off" class="layui-input">-->
+                        <#--</div>-->
+                    <#--</div>-->
                     <div class="layui-inline">
                         <label class="layui-form-label">业务名称</label>
                         <div class="layui-input-inline">
@@ -167,17 +167,17 @@
             <div class="panel-header">
                 <div class="title">模板信息</div>
                 <div class="info"><i></i>创建<i class="lose"></i>忽略</div>
-                <div class="path">模块路径：<span class="bindPackagePath"></span>.<span class="bindGenModule"></span></div>
+                <div class="path">模块路径：<span class="bindPackagePath"></span><span class="bindGenModule"></span></div>
             </div>
             <div id="float_hash" class="panel-body panel-body-float">
-                <div class="float-label active" data-name="entity">实体类：<span class="bindTableEntity"></span></div>
+                <div class="float-label active" data-name="validator">数据库表：<span class="bindTableEntity"></span>Table</div>
+                <div class="float-label active" data-name="entity">实体类：<span class="bindTableEntity"></span>Model</div>
                 <div class="float-label active" data-name="controller">控制器：<span class="bindTableEntity"></span>Controller</div>
                 <div class="float-label active" data-name="service">服务层：<span class="bindTableEntity"></span>Service</div>
-                <div class="float-label active" data-name="repository">dao层：<span class="bindTableEntity"></span>Repository</div>
-                <div class="float-label active" data-name="validator">认证类：<span class="bindTableEntity"></span>Form</div>
-                <div class="float-label active" data-name="index">列表页面：<span class="bindTableEntity"></span>/index.html</div>
-                <div class="float-label active" data-name="add">添加页面：<span class="bindTableEntity"></span>/add.html</div>
-                <div class="float-label active" data-name="detail">详细页面：<span class="bindTableEntity"></span>/detail.html</div>
+                <div class="float-label active" data-name="repository">dao层：<span class="bindTableEntity"></span>Mapper</div>
+                <div class="float-label active" data-name="index">列表页面：<span class="bindTableEntity"></span>/index.ftl</div>
+                <div class="float-label active" data-name="add">添加页面：<span class="bindTableEntity"></span>/add.ftl</div>
+                <div class="float-label active" data-name="detail">编辑页面：<span class="bindTableEntity"></span>/update.ftl</div>
             </div>
         </div>
     </div>

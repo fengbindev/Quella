@@ -41,6 +41,12 @@ public class UpdateHtmlTemplate {
                 temp = temp.replace("#{field.title}", field.getTitle());
                 temp = temp.replace("#{field.name}", field.getName());
                 temp = temp.replace("#{var}", var);
+                //date类型
+                if (field.getType() == 11){
+                    temp = temp.replace("#{datetime}", "?datetime");
+                }else {
+                    temp = temp.replace("#{datetime}", "");
+                }
                 List<Integer> verify = field.getVerify();
                 verify.forEach(code -> {
                     requiredList.add(required[code]);

@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>sss编辑</title>
+    <title>学生信息管理编辑</title>
     <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/theme/default.css" id="theme">
     <link rel="stylesheet" href="${basePath}/plugins/kitadmin/css/kitadmin.css" id="kitadmin">
     <link rel="stylesheet" href="${basePath}/css/doc.css"></link>
@@ -14,49 +14,49 @@
         <div class="layui-form-item">
                 <label class="layui-form-label">主键ID</label>
                 <div class="layui-input-block">
-                    <input type="text" name="id" value="${student.id}" id="id_hash" lay-verify="" autocomplete="off" class="layui-input">
+                    <input type="text" name="id" value="${(student.id)!}" id="id_hash" lay-verify="" autocomplete="off" class="layui-input">
                 </div>
         </div>
         <div class="layui-form-item">
                 <label class="layui-form-label">标题</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" value="${student.title}" id="title_hash" lay-verify="" autocomplete="off" class="layui-input">
+                    <input type="text" name="title" value="${(student.title)!}" id="title_hash" lay-verify="required" autocomplete="off" class="layui-input">
                 </div>
         </div>
         <div class="layui-form-item">
                 <label class="layui-form-label">备注</label>
                 <div class="layui-input-block">
-                    <input type="text" name="remark" value="${student.remark}" id="remark_hash" lay-verify="" autocomplete="off" class="layui-input">
+                    <input type="text" name="remark" value="${(student.remark)!}" id="remark_hash" lay-verify="" autocomplete="off" class="layui-input">
                 </div>
         </div>
         <div class="layui-form-item">
                 <label class="layui-form-label">创建时间</label>
                 <div class="layui-input-block">
-                    <input type="text" name="createDate" value="${student.createDate}" id="createDate_hash" lay-verify="" autocomplete="off" class="layui-input">
+                    <input type="text" name="createDate" value="${(student.createDate)!?datetime}" id="createDate_hash" lay-verify="required|required" autocomplete="off" class="layui-input">
                 </div>
         </div>
         <div class="layui-form-item">
                 <label class="layui-form-label">更新时间</label>
                 <div class="layui-input-block">
-                    <input type="text" name="updateDate" value="${student.updateDate}" id="updateDate_hash" lay-verify="" autocomplete="off" class="layui-input">
+                    <input type="text" name="updateDate" value="${(student.updateDate)!?datetime}" id="updateDate_hash" lay-verify="required|required" autocomplete="off" class="layui-input">
                 </div>
         </div>
         <div class="layui-form-item">
                 <label class="layui-form-label">创建者</label>
                 <div class="layui-input-block">
-                    <input type="text" name="createBy" value="${student.createBy}" id="createBy_hash" lay-verify="" autocomplete="off" class="layui-input">
+                    <input type="text" name="createBy" value="${(student.createBy)!}" id="createBy_hash" lay-verify="" autocomplete="off" class="layui-input">
                 </div>
         </div>
         <div class="layui-form-item">
                 <label class="layui-form-label">更新者</label>
                 <div class="layui-input-block">
-                    <input type="text" name="updateBy" value="${student.updateBy}" id="updateBy_hash" lay-verify="" autocomplete="off" class="layui-input">
+                    <input type="text" name="updateBy" value="${(student.updateBy)!}" id="updateBy_hash" lay-verify="" autocomplete="off" class="layui-input">
                 </div>
         </div>
         <div class="layui-form-item">
                 <label class="layui-form-label">数据状态</label>
                 <div class="layui-input-block">
-                    <input type="text" name="status" value="${student.status}" id="status_hash" lay-verify="" autocomplete="off" class="layui-input">
+                    <input type="text" name="status" value="${(student.status)!}" id="status_hash" lay-verify="" autocomplete="off" class="layui-input">
                 </div>
         </div>
 
