@@ -84,13 +84,13 @@
                         <i class="fa layui-icon layui-icon-add-circle-fine"></i>添加
                     </button>
                     <button class="field-del layui-btn layui-btn-primary layui-btn-xs">
-                        <i class="fa fa-minus-circle"></i>删除
+                        <i class="fa layui-icon layui-icon-close"></i>删除
                     </button>
                     <button class="field-up layui-btn layui-btn-primary layui-btn-xs">
-                        <i class="fa fa-arrow-up"></i>向上
+                        <i class="fa layui-icon layui-icon-up"></i>向上
                     </button>
                     <button class="field-down layui-btn layui-btn-primary layui-btn-xs">
-                        <i class="fa fa-arrow-down"></i>向下
+                        <i class="fa layui-icon layui-icon-down"></i>向下
                     </button>
                 </div>
                 <div class="entity"><span class="bindTableEntity"></span>(<span class="bindTablePrefix"></span><span class="bindTableName"></span>)</div>
