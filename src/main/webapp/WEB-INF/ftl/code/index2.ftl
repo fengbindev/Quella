@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="${basePath}/css/code.css"></link>
 <link rel="stylesheet" href="${basePath}/plugins/formSelects-v4/formSelects-v4.css"></link>
+<div class="layui-fluid">
 <div class="layui-card">
     <div class="layui-card-header timo-card-header">
         <span><i class="fa fa-bars"></i> 数据库逆向解析方式一</span>
@@ -102,7 +103,8 @@
         </div>
     </div>
 </div>
-<script src="${basePath}/js/jquery.js"></script>
+<div>
+  <script src="${basePath}/js/jquery.js"></script>
   <script>
       // 验证下拉选择器
       layui.config({
