@@ -41,4 +41,8 @@ public class Basic {
      * 实体类名
      */
     private String tableEntity;
+    /**
+     * 数据表的ddl
+     */
+    private String ddl;
 }

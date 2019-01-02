@@ -82,7 +82,7 @@
                     <i class="fa fa-floppy-o"></i>保存</button>
             </div>
 
-            <textarea name="" required lay-verify="required"  placeholder="请输入数据库表的DDL语句" class="layui-textarea" style="height: 200px"></textarea>
+            <textarea name="ddl" required lay-verify="required"  placeholder="请输入数据库表的DDL语句" class="layui-textarea" style="height: 200px"></textarea>
         </div>
         <div class="panel">
             <div class="panel-header">
@@ -128,7 +128,8 @@
               genPMenu: '',
               tablePrefix: '',
               tableName: '',
-              tableEntity: ''
+              tableEntity: '',
+              ddl:''
           };
           // 监听表单数据变动
           $('#basic_hash').on('input propertychange', function(e) {
@@ -237,6 +238,8 @@
               }
               //将genPMenu赋值给basic
                 basic['genPMenu'] = $("select[name=\"genPMenu\"]").val();
+              //将ddl赋值给basic
+              basic['ddl'] = $("textarea[name=\"ddl\"]").val();
               // 封装数据
               var generate = {
                   basic: basic,

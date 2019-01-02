@@ -14,6 +14,7 @@ import com.ssrs.util.code.template.*;
 import com.ssrs.util.code.util.CodeUtil;
 import com.ssrs.util.code.util.DefaultValue;
 import com.ssrs.util.code.util.TableParseUtil;
+import com.ssrs.util.commom.StringUtils;
 import com.ssrs.util.commom.ToolUtil;
 import com.ssrs.util.result.ResultVo;
 import com.ssrs.util.result.ResultVoUtil;
@@ -117,7 +118,7 @@ public class CodeController {
     }
 
     /**
-     * 逆向生成方式一
+     * 逆向生成
      * @param generate
      * @return
      */
@@ -127,15 +128,19 @@ public class CodeController {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
-        String sql = "show create table "+generate.getBasic().getTablePrefix()+generate.getBasic().getTableName();
-        String ddl = "";
-        Map<String, Long> fieldType = CodeUtil.enumToMapFX(FieldType.class);
         try {
-            connection = dataSource.getConnection();
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
-            resultSet.next();
-            ddl = resultSet.getString(2);
+            String ddl = "";
+            if (StringUtils.isBlank(generate.getBasic().getDdl())){
+                String sql = "show create table "+generate.getBasic().getTablePrefix()+generate.getBasic().getTableName();
+                connection = dataSource.getConnection();
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery(sql);
+                resultSet.next();
+                ddl = resultSet.getString(2);
+            }else {
+                ddl = generate.getBasic().getDdl();
+            }
+            Map<String, Long> fieldType = CodeUtil.enumToMapFX(FieldType.class);
             ClassInfo classInfo = TableParseUtil.processTableIntoClassInfo(ddl);
             List<FieldInfo> fieldList = classInfo.getFieldList();
             List<Field> fields = new ArrayList<>();
