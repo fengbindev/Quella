@@ -101,30 +101,7 @@
                 <div class="layui-card-header">快捷入口</div>
                 <div class="layui-card-body">
                   <div class="layui-row layui-col-space5">
-                    <!-- <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div>
-                        <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div>
-                        <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div>
-                        <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div>
-                        <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div>
-                        <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div>
-                        <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div>
-                        <div class="layui-col-sm3">
-                          <div style="height:75px;  background-color:#ccc;"></div>
-                        </div> -->
+
                     <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
                       <div style="height:75px;  background-color:#ccc;"></div>
                     </div>
