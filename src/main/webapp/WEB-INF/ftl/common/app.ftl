@@ -160,7 +160,7 @@
                     </tr>
                       <tr>
                         <td>版本号</td>
-                        <td>v1.4</td>
+                        <td>v1.5</td>
                       </tr>
                       <tr>
                         <td>作者</td>
@@ -282,6 +282,21 @@
                                 </p>
                             </div>
                         </li>
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">2019年1月2日 (v1.5)</h3>
+                                <p>
+                                    <b>#主要是提高开发速度，进行了高度灵活的代码的生成</b>
+                                <ul>
+                                    <li>代码在线生成</li>
+                                    <li>代码逆向解析生成</li>
+                                    <li>表单在线构建</li>
+                                </ul>
+                                </p>
+                            </div>
+                        </li>
+
                         <li class="layui-timeline-item">
                             <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
                             <div class="layui-timeline-content layui-text">
